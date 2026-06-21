@@ -50,9 +50,9 @@
   }
 
   p{margin:0;}
-  a{color:inherit; text-decoration:none;}
+  a{color:inherit; text-decoration:none; -webkit-tap-highlight-color:transparent;}
   img{max-width:100%; display:block;}
-  button{font-family:inherit; cursor:pointer;}
+  button{font-family:inherit; cursor:pointer; -webkit-tap-highlight-color:transparent;}
 
   .wrap{max-width:var(--max); margin:0 auto; padding-inline:24px;}
 
@@ -115,6 +115,7 @@
     padding:7px 14px;
   }
   .lang-toggle button.active{background:var(--orange); color:#0b0908;}
+  .tab:focus, .tab:active, .btn:focus, .btn:active, .lang-toggle button:focus, .lang-toggle button:active, .menu-item:focus, .menu-item:active{outline:none; box-shadow:none;}
 
   .btn{
     display:inline-flex; align-items:center; gap:8px;
@@ -462,161 +463,161 @@
     <div class="panel menu-grid active" data-panel="pizzas">
 
       <!-- Pizza L -->
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20une%20Pizza%20Marguerite" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/marguerite.jpg" alt="Marguerite" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Marguerite (L)" data-ar="مارغريت (L)">Marguerite (L)</div>
         <div class="menu-desc" data-fr="Sauce tomate, fromage" data-ar="صلصة طماطم، جبن">Sauce tomate, fromage</div>
         <div class="menu-price">250 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20une%20Pizza%20Marguerite%20Plus" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/marguerite-plus.jpg" alt="Marguerite Plus" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Marguerite Plus (L)" data-ar="مارغريت بلاس (L)">Marguerite Plus (L)</div>
         <div class="menu-desc" data-fr="Sauce tomate, fromage, cheddar" data-ar="صلصة طماطم، جبن، شيدار">Sauce tomate, fromage, cheddar</div>
         <div class="menu-price">350 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20une%20Pizza%203%20Fromage%20L" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/3-fromage.jpg" alt="3 Fromage" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="3 Fromage (L)" data-ar="3 أجبان (L)">3 Fromage (L)</div>
         <div class="menu-desc" data-fr="Sauce tomate, fromage, cheddar, mozzarella" data-ar="صلصة طماطم، جبن، شيدار، موتزاريلا">Sauce tomate, fromage, cheddar, mozzarella</div>
         <div class="menu-price">400 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20une%20Pizza%204%20Fromage%20L" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/4-fromage.jpg" alt="4 Fromage" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="4 Fromage (L)" data-ar="4 أجبان (L)">4 Fromage (L)</div>
         <div class="menu-desc" data-fr="Sauce tomate, fromage, cheddar, mozzarella, camembert" data-ar="صلصة طماطم، جبن، شيدار، موتزاريلا، كامامبار">Sauce tomate, fromage, cheddar, mozzarella, camembert</div>
         <div class="menu-price">500 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20une%20Pizza%205%20Fromage" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/5-fromage.jpg" alt="5 Fromage" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="5 Fromage (L)" data-ar="5 أجبان (L)">5 Fromage (L)</div>
         <div class="menu-desc" data-fr="Sauce blanche, fromage, cheddar, camembert, mozzarella, gruyère" data-ar="صلصة بيضاء، جبن، شيدار، كامامبار، موتزاريلا، غريار">Sauce blanche, fromage, cheddar, camembert, mozzarella, gruyère</div>
         <div class="menu-price">650 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20une%20Pizza%20Poulet%20L" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/poulet-l.jpg" alt="Poulet L" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Poulet (L)" data-ar="دجاج (L)">Poulet (L)</div>
         <div class="menu-desc" data-fr="Sauce tomate, fromage, poulet grillé" data-ar="صلصة طماطم، جبن، دجاج مثلي">Sauce tomate, fromage, poulet grillé</div>
         <div class="menu-price">450 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20une%20Pizza%20Chawrma%20L" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/chawrma-l.jpg" alt="Chawrma L" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Chawrma (L)" data-ar="شاورما (L)">Chawrma (L)</div>
         <div class="menu-desc" data-fr="Sauce tomate, fromage, chawarma, mozzarella" data-ar="صلصة طماطم، جبن، شاورما، موتزاريلا">Sauce tomate, fromage, chawarma, mozzarella</div>
         <div class="menu-price">500 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20une%20Pizza%20Champignons%20L" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/champignons-l.jpg" alt="Champignons L" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Champignons (L)" data-ar="فطر (L)">Champignons (L)</div>
         <div class="menu-desc" data-fr="Sauce tomate, fromage, champignons naturels, mozzarella" data-ar="صلصة طماطم، جبن، فطر طبيعي، موتزاريلا">Sauce tomate, fromage, champignons naturels, mozzarella</div>
         <div class="menu-price">500 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20une%20Pizza%20Poulet%20Fum%C3%A9%20L" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/poulet-fume-l.jpg" alt="Poulet Fumé L" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Poulet Fumé (L)" data-ar="دجاج مدخن (L)">Poulet Fumé (L)</div>
         <div class="menu-desc" data-fr="Sauce tomate, fromage, poulet fumé, mozzarella" data-ar="صلصة طماطم، جبن، دجاج مدخن، موتزاريلا">Sauce tomate, fromage, poulet fumé, mozzarella</div>
         <div class="menu-price">550 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20une%20Pizza%20Viande%20L" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/viande-l.jpg" alt="Viande L" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Viande (L)" data-ar="لحم (L)">Viande (L)</div>
         <div class="menu-desc" data-fr="Sauce tomate, fromage, viande hachée, mozzarella" data-ar="صلصة طماطم، جبن، لحم مفروم، موتزاريلا">Sauce tomate, fromage, viande hachée, mozzarella</div>
         <div class="menu-price">550 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20une%20Pizza%20Thon%20L" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/thon-l.jpg" alt="Thon L" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Thon (L)" data-ar="تونة (L)">Thon (L)</div>
         <div class="menu-desc" data-fr="Sauce tomate, fromage, thon, cheddar" data-ar="صلصة طماطم، جبن، تونة، شيدار">Sauce tomate, fromage, thon, cheddar</div>
         <div class="menu-price">600 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20une%20Pizza%20Bois%C3%A9e%20L" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/boisee-l.jpg" alt="Boisée L" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Boisée (L)" data-ar="بوازي (L)">Boisée (L)</div>
         <div class="menu-desc" data-fr="Sauce tomate, cheddar, mozzarella, champignons, mélange viande" data-ar="صلصة طماطم، شيدار، موتزاريلا، فطر، خلطة لحم">Sauce tomate, cheddar, mozzarella, champignons, mélange viande</div>
         <div class="menu-price">600 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20une%20Pizza%20Mixte%20L" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/mixte-l.jpg" alt="Mixte L" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Mixte (L)" data-ar="ميكست (L)">Mixte (L)</div>
         <div class="menu-desc" data-fr="Sauce tomate, fromage, viande hachée, poulet haché, mozzarella" data-ar="صلصة طماطم، جبن، لحم مفروم، دجاج مفروم، موتزاريلا">Sauce tomate, fromage, viande hachée, poulet haché, mozzarella</div>
         <div class="menu-price">600 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20une%20Pizza%20Royal%20L" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/royal-l.jpg" alt="Royal L" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Royal (L)" data-ar="رويال (L)">Royal (L)</div>
         <div class="menu-desc" data-fr="Sauce tomate, fromage, mozzarella, cheddar" data-ar="صلصة طماطم، جبن، موتزاريلا، شيدار">Sauce tomate, fromage, mozzarella, cheddar</div>
         <div class="menu-price">700 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20une%20Pizza%204%20Saisons%20L" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/4-saisons-l.jpg" alt="4 Saisons L" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="4 Saisons (L)" data-ar="4 سيزون (L)">4 Saisons (L)</div>
         <div class="menu-desc" data-fr="Sauce tomate, fromage, viande hachée, poulet haché, cheddar, mozzarella" data-ar="صلصة طماطم، جبن، لحم مفروم، دجاج مفروم، شيدار، موتزاريلا">Sauce tomate, fromage, viande hachée, poulet haché, cheddar, mozzarella</div>
         <div class="menu-price">800 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20une%20Pizza%20Crevette%20L" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/crevette-l.jpg" alt="Crevette L" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Crevette (L)" data-ar="كريفيت (L)">Crevette (L)</div>
         <div class="menu-desc" data-fr="Sauce tomate, fromage, mozzarella, cheddar" data-ar="صلصة طماطم، جبن، موتزاريلا، شيدار">Sauce tomate, fromage, mozzarella, cheddar</div>
         <div class="menu-price">800 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20une%20Pizza%20Special%20L" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/special-l.jpg" alt="Special L" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Special (L)" data-ar="سبيسيال (L)">Special (L)</div>
         <div class="menu-desc" data-fr="Sauce tomate, fromage, poulet fumé, chawarma, camembert, thon, mozzarella" data-ar="صلصة طماطم، جبن، دجاج مدخن، شاورما، كامامبار، تونة، موتزاريلا">Sauce tomate, fromage, poulet fumé, chawarma, camembert, thon, mozzarella</div>
         <div class="menu-price">2000 DA</div>
-      </a>
+      </div>
 
       <!-- Pizza Medium -->
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20une%20Pizza%20Mixte%20Medium" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/mixte-medium.jpg" alt="Mixte Medium" onerror="handleImgErr(this)">
           <span class="menu-badge" data-fr="Medium" data-ar="وسط">Medium</span>
@@ -624,9 +625,9 @@
         <div class="menu-name" data-fr="Mixte (Medium)" data-ar="ميكست (وسط)">Mixte (Medium)</div>
         <div class="menu-desc" data-fr="Sauce tomate, poulet haché, poulet grillé, fromage, mozzarella" data-ar="صلصة طماطم، دجاج مفروم، دجاج مشوي، جبن، موتزاريلا">Sauce tomate, poulet haché, poulet grillé, fromage, mozzarella</div>
         <div class="menu-price">1000 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20une%20Pizza%203%20Saison%20Medium" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/3-saison-medium.jpg" alt="3 Saison Medium" onerror="handleImgErr(this)">
           <span class="menu-badge" data-fr="Medium" data-ar="وسط">Medium</span>
@@ -634,9 +635,9 @@
         <div class="menu-name" data-fr="3 Saison (Medium)" data-ar="3 سيزون (وسط)">3 Saison (Medium)</div>
         <div class="menu-desc" data-fr="Sauce tomate, viande hachée, poulet haché, fromage fumé, mozzarella" data-ar="صلصة طماطم، لحم مفروم، دجاج مفروم، جبن مدخن، موتزاريلا">Sauce tomate, viande hachée, poulet haché, fromage fumé, mozzarella</div>
         <div class="menu-price">1200 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20une%20Pizza%204%20Saison%20Medium" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/4-saison-medium.jpg" alt="4 Saison Medium" onerror="handleImgErr(this)">
           <span class="menu-badge" data-fr="Medium" data-ar="وسط">Medium</span>
@@ -644,9 +645,9 @@
         <div class="menu-name" data-fr="4 Saison (Medium)" data-ar="4 سيزون (وسط)">4 Saison (Medium)</div>
         <div class="menu-desc" data-fr="Sauce tomate, fromage, viande hachée, poulet haché, champignons, poulet fumé, thon, mozzarella" data-ar="صلصة طماطم، جبن، لحم مفروم، دجاج مفروم، فطر، دجاج مدخن، تونة، موتزاريلا">Sauce tomate, fromage, viande hachée, poulet haché, champignons, poulet fumé, thon, mozzarella</div>
         <div class="menu-price">1300 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20une%20Pizza%20Special%20Medium" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/special-medium.jpg" alt="Special Medium" onerror="handleImgErr(this)">
           <span class="menu-badge" data-fr="Medium" data-ar="وسط">Medium</span>
@@ -654,9 +655,9 @@
         <div class="menu-name" data-fr="Special (Medium)" data-ar="سبيسيال (وسط)">Special (Medium)</div>
         <div class="menu-desc" data-fr="Sauce tomate, fromage, chawarma, viande hachée, poulet haché, camembert, champignons, bœuf fumé, thon" data-ar="صلصة طماطم، جبن، شاورما، لحم مفروم، دجاج مفروم، كمبيار، فطر، بيض بقر مدخن، تونة">Sauce tomate, fromage, chawarma, viande hachée, poulet haché, camembert, champignons, bœuf fumé, thon</div>
         <div class="menu-price">1500 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20une%20Pizza%20Bss%20Medium" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/bss-medium.jpg" alt="Bss Medium" onerror="handleImgErr(this)">
           <span class="menu-badge" data-fr="Medium" data-ar="وسط">Medium</span>
@@ -664,10 +665,10 @@
         <div class="menu-name" data-fr="Bss (Medium)" data-ar="بي إس إس (وسط)">Bss (Medium)</div>
         <div class="menu-desc" data-fr="Sauce tomate, fromage, chawarma, viande hachée, poulet haché, camembert, champignons, mozzarella" data-ar="صلصة طماطم، جبن، شاورما، لحم مفروم، دجاج مفروم، كمبيار، فطر، موتزاريلا">Sauce tomate, fromage, chawarma, viande hachée, poulet haché, camembert, champignons, mozzarella</div>
         <div class="menu-price">1700 DA</div>
-      </a>
+      </div>
 
       <!-- Miga Pizza -->
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20une%20Miga%20Pizza%20Mixte" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/miga-mixte.jpg" alt="Miga Mixte" onerror="handleImgErr(this)">
           <span class="menu-badge" data-fr="Miga" data-ar="ميغا">Miga</span>
@@ -675,9 +676,9 @@
         <div class="menu-name" data-fr="Mixte (Miga)" data-ar="ميكست (ميغا)">Mixte (Miga)</div>
         <div class="menu-desc" data-fr="Sauce tomate, viande, fromage, viande hachée, poulet haché, poulet, mozzarella" data-ar="صلصة طماطم، لحم، جبن، لحم مفروم، دجاج مفروم، دجاج، موتزاريلا">Sauce tomate, viande, fromage, viande hachée, poulet haché, poulet, mozzarella</div>
         <div class="menu-price">1300 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20une%20Miga%20Pizza%203%20Saison" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/miga-3saison.jpg" alt="Miga 3 Saison" onerror="handleImgErr(this)">
           <span class="menu-badge" data-fr="Miga" data-ar="ميغا">Miga</span>
@@ -685,9 +686,9 @@
         <div class="menu-name" data-fr="3 Saison (Miga)" data-ar="3 سيزون (ميغا)">3 Saison (Miga)</div>
         <div class="menu-desc" data-fr="Sauce tomate, viande hachée, poulet haché, mozzarella, cheddar, bords poulet fumé" data-ar="صلصة طماطم، لحم مفروم، دجاج مفروم، موتزاريلا، شيدار، حواف دجاج مدخن">Sauce tomate, viande hachée, poulet haché, mozzarella, cheddar, bords poulet fumé</div>
         <div class="menu-price">1500 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20une%20Miga%20Pizza%204%20Saison" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/miga-4saison.jpg" alt="Miga 4 Saison" onerror="handleImgErr(this)">
           <span class="menu-badge" data-fr="Miga" data-ar="ميغا">Miga</span>
@@ -695,9 +696,9 @@
         <div class="menu-name" data-fr="4 Saison (Miga)" data-ar="4 سيزون (ميغا)">4 Saison (Miga)</div>
         <div class="menu-desc" data-fr="Sauce tomate, poulet haché, viande, fromage, mozzarella, cheddar, thon, poulet fumé, bords fromage" data-ar="صلصة طماطم، دجاج مفروم، لحم، جبن، موتزاريلا، شيدار، تونة، دجاج مدخن، حواف جبنية">Sauce tomate, poulet haché, viande, fromage, mozzarella, cheddar, thon, poulet fumé, bords fromage</div>
         <div class="menu-price">1700 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20une%20Miga%20Pizza%20Jardin%C3%A9" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/miga-jardine.jpg" alt="Miga Jardiné" onerror="handleImgErr(this)">
           <span class="menu-badge" data-fr="Miga" data-ar="ميغا">Miga</span>
@@ -705,9 +706,9 @@
         <div class="menu-name" data-fr="Jardiné (Miga)" data-ar="جارديني (ميغا)">Jardiné (Miga)</div>
         <div class="menu-desc" data-fr="Sauce tomate, fromage, thon, camembert, viande hachée, poulet, mozzarella, bords fromage" data-ar="صلصة طماطم، جبن، تونة، كمبيار، لحم مفروم، دجاج، موتزاريلا، حواف جبنية">Sauce tomate, fromage, thon, camembert, viande hachée, poulet, mozzarella, bords fromage</div>
         <div class="menu-price">1900 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20une%20Miga%20Pizza%20Special%208%20Saison" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/miga-special8.jpg" alt="Miga Special 8 Saison" onerror="handleImgErr(this)">
           <span class="menu-badge" data-fr="Miga" data-ar="ميغا">Miga</span>
@@ -715,9 +716,9 @@
         <div class="menu-name" data-fr="Special 8 Saison (Miga)" data-ar="سبيسيال 8 سيزون (ميغا)">Special 8 Saison (Miga)</div>
         <div class="menu-desc" data-fr="Sauce tomate, fromage, poulet fumé, chawarma, viande hachée, camembert, mozzarella, poulet haché" data-ar="صلصة طماطم، جبن، دجاج مدخن، شاورما، لحم مفروم، كمبيار، موتزاريلا، دجاج مفروم">Sauce tomate, fromage, poulet fumé, chawarma, viande hachée, camembert, mozzarella, poulet haché</div>
         <div class="menu-price">2200 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20une%20Miga%20Pizza%20Bss" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/miga-bss.jpg" alt="Bss Miga" onerror="handleImgErr(this)">
           <span class="menu-badge" data-fr="Best-seller" data-ar="الأكثر مبيعاً">Best-seller</span>
@@ -725,7 +726,7 @@
         <div class="menu-name" data-fr="Bss Miga" data-ar="بي إس إس ميغا">Bss Miga</div>
         <div class="menu-desc" data-fr="Sauce tomate, viande hachée, poulet fumé, poulet haché, thon, champignons, chawarma, poulet haché, camembert, mozzarella, cheddar, bords" data-ar="صلصة طماطم، لحم مفروم، دجاج مدخن، دجاج مثلي، تونة، فطر، شاورما، دجاج مفروم، كمبيار، موتزاريلا، شيدار، حواف">Sauce tomate, viande hachée, poulet fumé, poulet haché, thon, champignons, chawarma, camembert, mozzarella, cheddar, bords</div>
         <div class="menu-price">2500 DA</div>
-      </a>
+      </div>
 
     </div>
 
@@ -733,34 +734,34 @@
     <div class="panel menu-grid" data-panel="tacos">
 
       <!-- Tacos -->
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20un%20Tacos%20Poulet" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/tacos-poulet.jpg" alt="Tacos Poulet" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Tacos Poulet" data-ar="تاكوس دجاج">Tacos Poulet</div>
         <div class="menu-desc" data-fr="M: 400 DA · L: 600 DA · XXL: 1100 DA" data-ar="M: 400 DA · L: 600 DA · XXL: 1100 DA">M: 400 DA · L: 600 DA · XXL: 1100 DA</div>
         <div class="menu-price">À partir de 400 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20un%20Tacos%20Viande" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/tacos-viande.jpg" alt="Tacos Viande" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Tacos Viande" data-ar="تاكوس لحم">Tacos Viande</div>
         <div class="menu-desc" data-fr="M: 500 DA · L: 700 DA · XL: 900 DA · XXL: 1300 DA" data-ar="M: 500 DA · L: 700 DA · XL: 900 DA · XXL: 1300 DA">M: 500 DA · L: 700 DA · XL: 900 DA · XXL: 1300 DA</div>
         <div class="menu-price">À partir de 500 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20un%20Tacos%20Poulet%20Marine" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/tacos-poulet-marine.jpg" alt="Tacos Poulet Mariné" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Tacos Poulet Mariné" data-ar="تاكوس دجاج مارين">Tacos Poulet Mariné</div>
         <div class="menu-desc" data-fr="M: 500 DA · L: 700 DA" data-ar="M: 500 DA · L: 700 DA">M: 500 DA · L: 700 DA</div>
         <div class="menu-price">À partir de 500 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20un%20Tacos%20Mixte" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/tacos-mixte.jpg" alt="Tacos Mixte" onerror="handleImgErr(this)">
           <span class="menu-badge" data-fr="Best-seller" data-ar="الأكثر مبيعاً">Best-seller</span>
@@ -768,276 +769,276 @@
         <div class="menu-name" data-fr="Tacos Mixte" data-ar="تاكوس ميكست">Tacos Mixte</div>
         <div class="menu-desc" data-fr="M: 500 DA · L: 700 DA · XL: 1000 DA · XXL: 1200 DA" data-ar="M: 500 DA · L: 700 DA · XL: 1000 DA · XXL: 1200 DA">M: 500 DA · L: 700 DA · XL: 1000 DA · XXL: 1200 DA</div>
         <div class="menu-price">À partir de 500 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20un%20Tacos%20Gratin%C3%A9" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/tacos-gratine.jpg" alt="Tacos Gratiné" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Tacos Gratiné" data-ar="تاكوس غراتيني">Tacos Gratiné</div>
         <div class="menu-desc" data-fr="M: 600 DA · L: 800 DA · XL: 1000 DA · XXL: 1200 DA" data-ar="M: 600 DA · L: 800 DA · XL: 1000 DA · XXL: 1200 DA">M: 600 DA · L: 800 DA · XL: 1000 DA · XXL: 1200 DA</div>
         <div class="menu-price">À partir de 600 DA</div>
-      </a>
+      </div>
 
       <!-- Soufflé -->
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20un%20Souffl%C3%A9%20Viande" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/souffle-viande.jpg" alt="Soufflé Viande" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Soufflé Viande" data-ar="سوفلي لحم">Soufflé Viande</div>
         <div class="menu-desc" data-fr="" data-ar=""></div>
         <div class="menu-price">400 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20un%20Souffl%C3%A9%20Poulet%20Giant" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/souffle-poulet.jpg" alt="Soufflé Poulet Giant" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Soufflé Poulet Giant" data-ar="سوفلي دجاج جاينت">Soufflé Poulet Giant</div>
         <div class="menu-desc" data-fr="" data-ar=""></div>
         <div class="menu-price">600 DA</div>
-      </a>
+      </div>
 
       <!-- Panini -->
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20un%20Panini%203%20Fromage" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/panini-3fromage.jpg" alt="Panini 3 Fromage" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Panini 3 Fromage" data-ar="بانيني 3 جبن">Panini 3 Fromage</div>
         <div class="menu-desc" data-fr="" data-ar=""></div>
         <div class="menu-price">300 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20un%20Panini%20Poulet" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/panini-poulet.jpg" alt="Panini Poulet" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Panini Poulet" data-ar="بانيني دجاج">Panini Poulet</div>
         <div class="menu-desc" data-fr="" data-ar=""></div>
         <div class="menu-price">300 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20un%20Panini%20Viande" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/panini-viande.jpg" alt="Panini Viande" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Panini Viande" data-ar="بانيني لحم">Panini Viande</div>
         <div class="menu-desc" data-fr="" data-ar=""></div>
         <div class="menu-price">300 DA</div>
-      </a>
+      </div>
 
       <!-- Sandwiches -->
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20un%20Sandwich%20Chawarma" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/sandwich-chawarma.jpg" alt="Sandwich Chawarma" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Sandwich Chawarma" data-ar="ساندويتش شاورما">Sandwich Chawarma</div>
         <div class="menu-desc" data-fr="" data-ar=""></div>
         <div class="menu-price">300 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20un%20Sandwich%20Poulet%20Marine" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/sandwich-poulet-marine.jpg" alt="Sandwich Poulet Marine" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Sandwich Poulet Marine" data-ar="ساندويتش دجاج مارين">Sandwich Poulet Marine</div>
         <div class="menu-desc" data-fr="" data-ar=""></div>
         <div class="menu-price">300 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20un%20Sandwich%20Viande%20Hach%C3%A9e" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/sandwich-viande.jpg" alt="Sandwich Viande Haché" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Sandwich Viande Haché" data-ar="ساندويتش لحم مفروم">Sandwich Viande Haché</div>
         <div class="menu-desc" data-fr="" data-ar=""></div>
         <div class="menu-price">300 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20un%20Sandwich%20Poulet%20Hach%C3%A9" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/sandwich-poulet-hache.jpg" alt="Sandwich Poulet Haché" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Sandwich Poulet Haché" data-ar="ساندويتش دجاج مفروم">Sandwich Poulet Haché</div>
         <div class="menu-desc" data-fr="" data-ar=""></div>
         <div class="menu-price">300 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20un%20Sandwich%20Escalope" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/sandwich-escalope.jpg" alt="Sandwich Escalope" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Sandwich Escalope" data-ar="ساندويتش إسكالوب">Sandwich Escalope</div>
         <div class="menu-desc" data-fr="" data-ar=""></div>
         <div class="menu-price">300 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20un%20Raghif" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/raghif.jpg" alt="Raghif" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Raghif" data-ar="رغيف">Raghif</div>
         <div class="menu-desc" data-fr="" data-ar=""></div>
         <div class="menu-price">350 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20des%20Fajitas" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/fajitas.jpg" alt="Fajitas" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Fajitas" data-ar="فاهيتاس">Fajitas</div>
         <div class="menu-desc" data-fr="" data-ar=""></div>
         <div class="menu-price">450 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20un%20Arabi%20Chawarma" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/arabi-chawarma.jpg" alt="Arabi Chawarma" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Arabi Chawarma" data-ar="عربي شاورما">Arabi Chawarma</div>
         <div class="menu-desc" data-fr="" data-ar=""></div>
         <div class="menu-price">400 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20un%20Panozo%20Poulet" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/panozo-poulet.jpg" alt="Panozo Poulet" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Panozo Poulet" data-ar="بانوزو دجاج">Panozo Poulet</div>
         <div class="menu-desc" data-fr="" data-ar=""></div>
         <div class="menu-price">500 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20un%20Panozo%20Viande" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/panozo-viande.jpg" alt="Panozo Viande" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Panozo Viande" data-ar="بانوزو لحم">Panozo Viande</div>
         <div class="menu-desc" data-fr="" data-ar=""></div>
         <div class="menu-price">600 DA</div>
-      </a>
+      </div>
 
       <!-- Burgers -->
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20un%20Chicken%20Burger" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/chicken-burger.jpg" alt="Chicken Burger" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Chicken Burger" data-ar="تشيكن برغر">Chicken Burger</div>
         <div class="menu-desc" data-fr="Poulet haché, salade, tomate, sauce burger" data-ar="دجاج مفروم، سلطة، طماطم، صلصة برغر">Poulet haché, salade, tomate, sauce burger</div>
         <div class="menu-price">250 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20un%20Cheese%20Burger" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/cheese-burger.jpg" alt="Cheese Burger" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Cheese Burger" data-ar="تشيز برغر">Cheese Burger</div>
         <div class="menu-desc" data-fr="Steak haché, salade, tomate, sauce burger, oignon" data-ar="ستيك مفروم، سلطة، طماطم، صلصة برغر، بصل">Steak haché, salade, tomate, sauce burger, oignon</div>
         <div class="menu-price">300 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20un%20Crispy%20Burger" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/crispy-burger.jpg" alt="Crispy Burger" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Crispy Burger" data-ar="كريسبي برغر">Crispy Burger</div>
         <div class="menu-desc" data-fr="Poulet tender, salade, tomate, sauce fromage" data-ar="دجاج تندر، سلطة، طماطم، صلصة جبن">Poulet tender, salade, tomate, sauce fromage</div>
         <div class="menu-price">350 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20un%20Double%20Cheese%20Burger" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/double-cheese-burger.jpg" alt="Double Cheese Burger" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Double Cheese Burger" data-ar="دابل تشيز برغر">Double Cheese Burger</div>
         <div class="menu-desc" data-fr="100g steak haché, salade, tomate, sauce fromage, oignon" data-ar="100 غ ستيك مفروم، سلطة، طماطم، صلصة جبن، بصل">100g steak haché, salade, tomate, sauce fromage, oignon</div>
         <div class="menu-price">400 DA</div>
-      </a>
+      </div>
 
       <!-- Plats -->
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20Chawrma%20Plat" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/chawrma-plat.jpg" alt="Chawrma Plat" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Plat Chawrma" data-ar="طبق شاورما">Plat Chawrma</div>
         <div class="menu-desc" data-fr="" data-ar=""></div>
         <div class="menu-price">600 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20Viande%20Hach%C3%A9e%20Plat" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/viande-hachee-plat.jpg" alt="Viande Hachée Plat" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Plat Viande Hachée" data-ar="طبق لحم مفروم">Plat Viande Hachée</div>
         <div class="menu-desc" data-fr="" data-ar=""></div>
         <div class="menu-price">600 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20Poulet%20Marine%20Plat" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/poulet-marine-plat.jpg" alt="Poulet Marine Plat" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Plat Poulet Marine" data-ar="طبق دجاج مارين">Plat Poulet Marine</div>
         <div class="menu-desc" data-fr="" data-ar=""></div>
         <div class="menu-price">600 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20Escalope%20Plat" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/escalope-plat.jpg" alt="Escalope Plat" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Plat Escalope" data-ar="طبق إسكالوب">Plat Escalope</div>
         <div class="menu-desc" data-fr="" data-ar=""></div>
         <div class="menu-price">600 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20Poulet%20Hach%C3%A9%20Plat" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/poulet-hache-plat.jpg" alt="Poulet Haché Plat" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Plat Poulet Haché" data-ar="طبق دجاج مفروم">Plat Poulet Haché</div>
         <div class="menu-desc" data-fr="" data-ar=""></div>
         <div class="menu-price">600 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20Kabda%20Poulet%20Plat" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/kabda-poulet.jpg" alt="Kabda Poulet" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Plat Kabda Poulet" data-ar="طبق كبدة دجاج">Plat Kabda Poulet</div>
         <div class="menu-desc" data-fr="" data-ar=""></div>
         <div class="menu-price">700 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20Mixte%20Plat" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/mixte-plat.jpg" alt="Mixte Plat" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Plat Mixte" data-ar="طبق ميكست">Plat Mixte</div>
         <div class="menu-desc" data-fr="" data-ar=""></div>
         <div class="menu-price">800 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20Viande%20Plat" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/viande-plat.jpg" alt="Viande Plat" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Plat Viande" data-ar="طبق لحم">Plat Viande</div>
         <div class="menu-desc" data-fr="" data-ar=""></div>
         <div class="menu-price">800 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20Steak%20Viande%20Plat" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/steak-viande.jpg" alt="Steak Viande" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Plat Steak Viande" data-ar="طبق ستيك لحم">Plat Steak Viande</div>
         <div class="menu-desc" data-fr="" data-ar=""></div>
         <div class="menu-price">1200 DA</div>
-      </a>
+      </div>
 
       <!-- Plate Familly -->
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20une%20Plate%20Familly%205%20Personnes" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/plate-familly-5.jpg" alt="Plate Familly 5 Personnes" onerror="handleImgErr(this)">
           <span class="menu-badge" data-fr="Famille" data-ar="عائلي">Famille</span>
@@ -1045,9 +1046,9 @@
         <div class="menu-name" data-fr="Plate Familly 5 Personnes" data-ar="طبق عائلي 5 أشخاص">Plate Familly 5 Personnes</div>
         <div class="menu-desc" data-fr="" data-ar=""></div>
         <div class="menu-price">2500 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20une%20Plate%20Familly%202%20Personnes" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/plate-familly-2.jpg" alt="Plate Familly 2 Personnes" onerror="handleImgErr(this)">
           <span class="menu-badge" data-fr="Duo" data-ar="ثنائي">Duo</span>
@@ -1055,28 +1056,28 @@
         <div class="menu-name" data-fr="Plate Familly 2 Personnes" data-ar="طبق عائلي 2 أشخاص">Plate Familly 2 Personnes</div>
         <div class="menu-desc" data-fr="" data-ar=""></div>
         <div class="menu-price">1500 DA</div>
-      </a>
+      </div>
 
       <!-- Boxes Crispy Chicken -->
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20Box%20Crispy%204%20pcs" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/crispy-4pcs.jpg" alt="Crispy 4 pièces" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Crispy Chicken 4 pièces" data-ar="كريسبي تشيكن 4 قطع">Crispy Chicken 4 pièces</div>
         <div class="menu-desc" data-fr="4 filets de poulet croustillants" data-ar="4 قطع فيليه دجاج مقرمش">4 filets de poulet croustillants</div>
         <div class="menu-price">700 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20Box%20Crispy%208%20pcs" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/crispy-8pcs.jpg" alt="Crispy 8 pièces" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Crispy Chicken 8 pièces" data-ar="كريسبي تشيكن 8 قطع">Crispy Chicken 8 pièces</div>
         <div class="menu-desc" data-fr="8 filets de poulet croustillants" data-ar="8 قطع فيليه دجاج مقرمش">8 filets de poulet croustillants</div>
         <div class="menu-price">1500 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20Box%20Crispy%20Family" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/crispy-family.jpg" alt="Crispy Family" onerror="handleImgErr(this)">
           <span class="menu-badge" data-fr="Famille" data-ar="عائلي">Famille</span>
@@ -1084,68 +1085,68 @@
         <div class="menu-name" data-fr="Family Crispy Chicken" data-ar="فاميلي كريسبي تشيكن">Family Crispy Chicken</div>
         <div class="menu-desc" data-fr="Box familiale de filets croustillants" data-ar="صندوق عائلي من قطع الدجاج المقرمش">Box familiale de filets croustillants</div>
         <div class="menu-price">2500 DA</div>
-      </a>
+      </div>
 
     </div>
 
     <!-- desserts -->
     <div class="panel menu-grid" data-panel="desserts">
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20un%20Tiramisu%20Fraise" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/tiramisu-fraise.jpg" alt="Tiramisu Fraise" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Tiramisu Fraise" data-ar="تيراميسو فراولة">Tiramisu Fraise</div>
         <div class="menu-desc" data-fr="" data-ar=""></div>
         <div class="menu-price">450 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20un%20Tiramisu%20Pistachio" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/tiramisu-pistachio.jpg" alt="Tiramisu Pistachio" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Tiramisu Pistachio" data-ar="تيراميسو فستق">Tiramisu Pistachio</div>
         <div class="menu-desc" data-fr="" data-ar=""></div>
         <div class="menu-price">450 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20un%20Tiramisu%20Chocolate" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/tiramisu-chocolate.jpg" alt="Tiramisu Chocolate" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Tiramisu Chocolate" data-ar="تيراميسو شوكولاتة">Tiramisu Chocolate</div>
         <div class="menu-desc" data-fr="" data-ar=""></div>
         <div class="menu-price">450 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20une%20Box%20Cr%C3%AApes%20Pasta%20Chocolat" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/pasta-chocolat.jpg" alt="Pasta Chocolat" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Box Crêpes Pasta Chocolat" data-ar="باكس كريب باستا شوكولاتة">Box Crêpes Pasta Chocolat</div>
         <div class="menu-desc" data-fr="" data-ar=""></div>
         <div class="menu-price">700 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20une%20Box%20Cr%C3%AApes%20Pasta%20Fraise" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/pasta-fraise.jpg" alt="Pasta Fraise" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Box Crêpes Pasta Fraise" data-ar="باكس كريب باستا فراولة">Box Crêpes Pasta Fraise</div>
         <div class="menu-desc" data-fr="" data-ar=""></div>
         <div class="menu-price">850 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20une%20Box%20Cr%C3%AApes%20Pasta%20Banane" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/pasta-banane.jpg" alt="Pasta Banane" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Box Crêpes Pasta Banane" data-ar="باكس كريب باستا موز">Box Crêpes Pasta Banane</div>
         <div class="menu-desc" data-fr="" data-ar=""></div>
         <div class="menu-price">850 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20une%20Box%20Cr%C3%AApes%20Pasta%20Bss" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/pasta-bss.jpg" alt="Pasta Bss" onerror="handleImgErr(this)">
           <span class="menu-badge" data-fr="Spécial" data-ar="سبيسيال">Spécial</span>
@@ -1153,93 +1154,93 @@
         <div class="menu-name" data-fr="Box Crêpes Pasta Bss" data-ar="باكس كريب باستا بي إس إس">Box Crêpes Pasta Bss</div>
         <div class="menu-desc" data-fr="" data-ar=""></div>
         <div class="menu-price">1200 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20une%20Cr%C3%A8me%20br%C3%BCl%C3%A9e" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/creme-brulee.jpg" alt="Crème brûlée" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Crème brûlée" data-ar="كريم بروليه">Crème brûlée</div>
         <div class="menu-desc" data-fr="" data-ar=""></div>
         <div class="menu-price">250 DA / 350 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20un%20San%20Sebastian" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/san-sebastian.jpg" alt="San Sebastian" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="San Sebastian" data-ar="سان سيباستيان">San Sebastian</div>
         <div class="menu-desc" data-fr="" data-ar=""></div>
         <div class="menu-price">550 DA / 650 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20un%20Matilda%20cake" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/matilda-cake.jpg" alt="Matilda cake" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Matilda cake" data-ar="ماتيلدا كيك">Matilda cake</div>
         <div class="menu-desc" data-fr="" data-ar=""></div>
         <div class="menu-price">450 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20un%20Cheesecake" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/cheesecake.jpg" alt="Cheesecake" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Cheesecake" data-ar="تشيزكيك">Cheesecake</div>
         <div class="menu-desc" data-fr="" data-ar=""></div>
         <div class="menu-price">350 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20un%20Can%20cake" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/can-cake.jpg" alt="Can cake" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Can cake" data-ar="كان كيك">Can cake</div>
         <div class="menu-desc" data-fr="" data-ar=""></div>
         <div class="menu-price">450 DA</div>
-      </a>
+      </div>
 
     </div>
 
     <!-- boissons -->
     <div class="panel menu-grid" data-panel="boissons">
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20une%20Canette%20gazeuse%2033cl" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/canette-33cl.jpg" alt="Canette gazeuse 33cl" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Canette gazeuse 33cl" data-ar="علبة غازية 33 سل">Canette gazeuse 33cl</div>
         <div class="menu-desc" data-fr="" data-ar=""></div>
         <div class="menu-price">70 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20un%20Jus%2033cl%20gazeuse" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/jus-33cl.jpg" alt="Jus 33cl gazeuse" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Jus 33cl gazeuse" data-ar="عصير 33 سل غازي">Jus 33cl gazeuse</div>
         <div class="menu-desc" data-fr="" data-ar=""></div>
         <div class="menu-price">80 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20un%20Jus%201L" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/jus-1l.jpg" alt="Jus 1L" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Jus 1L" data-ar="عصير 1 لتر">Jus 1L</div>
         <div class="menu-desc" data-fr="" data-ar=""></div>
         <div class="menu-price">150 DA</div>
-      </a>
+      </div>
 
-      <a class="menu-item" href="https://wa.me/213670814232?text=Bonjour%2C%20je%20veux%20commander%20un%20Jus%20Top" target="_blank" rel="noopener">
+      <div class="menu-item">
         <div class="menu-photo">
           <img src="images/jus-top.jpg" alt="Jus Top" onerror="handleImgErr(this)">
         </div>
         <div class="menu-name" data-fr="Jus Top" data-ar="جوس توب">Jus Top</div>
         <div class="menu-desc" data-fr="" data-ar=""></div>
         <div class="menu-price">40 DA</div>
-      </a>
+      </div>
 
     </div>
 
@@ -1269,7 +1270,7 @@
         <a class="btn btn-primary" href="https://wa.me/213670814232" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9s-.5-.1-.7.1-.8.9-.9 1.1-.3.2-.6.1a8.2 8.2 0 0 1-2.4-1.5 9 9 0 0 1-1.7-2.1c-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5a.5.5 0 0 0 0-.5c-.1-.1-.7-1.6-.9-2.2s-.5-.5-.7-.5h-.6a1.1 1.1 0 0 0-.8.4 3.4 3.4 0 0 0-1 2.5 6 6 0 0 0 1.2 3.1 13.6 13.6 0 0 0 5.3 4.7c.7.3 1.3.5 1.7.6a4 4 0 0 0 1.9.1 3.1 3.1 0 0 0 2-1.4 2.5 2.5 0 0 0 .2-1.4c-.1-.1-.3-.2-.6-.3z"/></svg>
           <span data-fr="Discuter sur WhatsApp" data-ar="تواصل عبر واتساب">Discuter sur WhatsApp</span>
-        </a>
+        </div>
       </div>
     </div>
     <div class="story-art">
@@ -1289,7 +1290,7 @@
       <a class="btn btn-outline" href="https://www.instagram.com/bss_food_03/" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/></svg>
         <span data-fr="Voir sur Instagram" data-ar="مشاهدة على إنستغرام">Voir sur Instagram</span>
-      </a>
+      </div>
     </div>
 
     <div class="insta-grid">
@@ -1360,10 +1361,10 @@
         <div class="hero-ctas" style="justify-content:flex-start; margin-top:24px;">
           <a class="btn btn-primary" href="https://wa.me/213670814232" target="_blank" rel="noopener">
             <span data-fr="WhatsApp" data-ar="واتساب">WhatsApp</span>
-          </a>
+          </div>
           <a class="btn btn-outline" href="tel:+213670814232">
             <span data-fr="Appeler" data-ar="اتصل">Appeler</span>
-          </a>
+          </div>
         </div>
       </div>
 
@@ -1380,17 +1381,17 @@
     <div class="foot-grid">
       <a class="logo-mini" href="#" aria-label="BSS FOOD - accueil">
         <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/7QCEUGhvdG9zaG9wIDMuMAA4QklNBAQAAAAAAGgcAigAYkZCTUQwYTAwMGFkZTAxMDAwMGIxMDMwMDAwZWYwNTAwMDAwZjA4MDAwMGYxMDgwMDAwMjQwZDAwMDA1MjEyMDAwMGFjMTIwMDAwNjkxNDAwMDAwYzE1MDAwMGRiMTkwMDAwAP/bAIQABQYGCwgLCwsLCw0LCwsNDg4NDQ4ODw0ODg4NDxAQEBEREBAQEA8TEhMPEBETFBQTERMWFhYTFhUVFhkWGRYWEgEFBQUKBwoICQkICwgKCAsKCgkJCgoMCQoJCgkMDQsKCwsKCw0MCwsICwsMDAwNDQwMDQoLCg0MDQ0MExQTExOc/8IAEQgAlgCWAwEiAAIRAQMRAf/EAKkAAAICAwEBAAAAAAAAAAAAAAAHAwUBAgYECBAAAgICAgAFBAEFAAAAAAAAAQMCBAAFERIQExQgMBUiIzEkBiEzNFARAAECBAMCCgcHAwUBAAAAAAECEQADEiExQVFhcQQQEyAiMoGRocEwQlLR4fDxFCMzYnKisYKDshVQU5LC0hIBAAEDAwIGAwEBAQAAAAAAAREAITFBUWFxgRAgkaGx8DDB0fHhUP/aAAwDAQACAQMBAAABTAAAABm7wUYGQ6CgaGmVcevyb4AAAAAAHOmHOCYAAAAa6o6yPNawtbuutvPy3UeaPfjePZq3s6qHITRYzgAAAc6Yc4JgAAADqdLHSToNfLHX+zzzx+CfTpub043eJk8D52VPqsi0q8xgGdRzphzgmAALCvZGskS86q4i34dgU3oil6Cei57z+m84e6o7CuYFwLussu7WHr621r+DA2hHOmHOCYADfvuP6DWXN4tZoJOs4q19sh6I6Bl7RcPTuO3xuhJW53W2PnFn9RbY2QVC70lmPRzphz7RpiWKbG7lrmFU438NfDcay9QmOruM6oL6I+enpnTwdGsGrjbWL3UeY7TSr1N/Ug2KtjXVzphz7RJjfQD6Z9aRtNJ+uuErQ5w5PKoJMbR9RXdBrPzN91ksNjT8w3uZMqdhwczPUUpnEnlHOmHOCYAA9PmsNZ+kqvZ5PF0tnL5ptPTeeylj3g6PHFV8vgbnk52gzHHr4rOGx5THr8nu5Yc6Yc+dEwAGfZ4jWS3irTX0ero+SMxMPC+xnVh6r4D1+QMxzb+YxvnAbRjnTDnBMDnATA5wEwOcBMDnATOHOAmBzgJgc4CYHOAmBzgJhzgH/9oACAEBAAEFAvh8nun5np6Q8dbW71Wx4Py1awu15VJxkukqI8mPD2u8oLiyv8tJ064/2WTGV8M+CtMcMT8tRvC0u6xnshHPqE5EpeqTrfnhG06j0SLeNVJZ+GjRNmV25Dio5nR1iLWT/If7HLKj0wEjE2oXhZrSRP310l09jYCY5CZjkK8yChcSWqriZNgSj1OqTwZpVYxf85ZHHvo/xUU6sX5GhXOWaa4RpSjIO1Nk5OvPmxdk0gcllz0ofZLMQ4pnt1Dt7Rm2Plx18455ihjrS/CtBkIu2TWZ6gS8DggcgkyP06zJNmiyv7a0ezNzLmyBznlnFVZtx+vYgdyRR04sQuacJVV0i4x2etguAWigvYpjKG0tTrwutjYrHxiOTV0glHYaeUBq6CoqvbVbVMIoovbFlgZozymxqG9Nv99U/kobj765/JQ24LESh5dCf78Ifuovzqlqh5VejtoqWyjXtLr7GyiF+ELVaQ4P9Py+y5fd3rgXajxGnVqXkMRd2KAhG4jBV7cedHxGak81qcLERTsVoy9RWpQpbqIhsdxFiyecp7GdYTMnyTWaM+m9ssVJozknNh/HR7a22YiMNm6yb9aVZnMjnGCBOQqSli6MRi4DBi49hfjmurDvYbKyz3Ll1LGGcQOMWqU8PGfpQ/xqHJGQOW48x7HJHiPugnnxhMjCcDOIm7AZLYHPUOYVa8rFq92MJ9s/eNh1PtDpDPUYWDPMOItqGcUGZ6ejnNBeS3HQMbJhyMuMLCf+V//aAAgBAwEBPwHmD0AjgXB2SVKQ+jjLZE+WlaUFil9Mt+yFyyNu0aa7ufQwc4nAbNToNNYHDVAAJLZNTCuUX1ldhLeETqkqFy+R6sVBfWsfa/8AoZ78d8KTSWPz8OZLGJOCb79B2nweEylTXV3nCJREotMBv7JEfbwl6JQScibnbeJkwrLkuYmGVLRQU1KYYa5l4HTSRmm4/TmOzHv5mCP1KP7Rb/KJNQuEVPrh2bYmJUs3CQfZcA9zu8ITnVSzd5+kGk4rJ/pv3vh29kMjap8ur74Su6RLRc2vdyq2wN2QoOHZrsRxS+sl9RHKq1ceyer3YCFJpWeVChoU4DRtU6NCOgekxvZYL0nW1j23hmSsaKT4VCCCmhRYgU2AwzvYYiEODWA4SoRLQsFKkoJYuLPhfuhVhfEl20+X4gY5OpRYp6Rtfu2wyMircwu3bbuLQGJtKL6O47mfxiVwWYSXSA+PKW273z3RI4ElyVKJNnDUpb1bdm+PsyFqa6SND1T/ABAQoFWKlXQnMk4HuHiRzODoWpaeTDqBcdmuyJ0tKSCEAKOJEcHJfZl8fKJ6qHqIH3hW5IDj1RvwTuEf6jLQVm5qawvfMuddlmEDhw69BSN9zu1+XMcHUJqVlFqgqk6ExMlmWopVimx45c1Uu6VFO4tB4fMV1i/ZfwaBwlY9YkaEn6xWk+p3K97xyjYIA29b+beEKUVXJeBOUBSFEDQFvS//2gAIAQIBAT8B5i1NfaPQTBa2OUcKnklKQptWOcS5hQpQ67a+W3KJcwKq2N3thvHPN4+zOrpIcXNVXl874CUDBIFr/WODoSEsnB9XjD3c0wuemXYv2AmJiuUS8st+pJ+Wj7JW1U0q1AsO6JaKAwsIlCbNWpfVTak5d2PlGHMz7P5hckEk1M+6EAJ27fpaCNjwA2XjaL7oI1MDiMND26MG/ujSNYOkEjB4HG7R3R2wpY+kKmaRWRth8O/mLIa8JJ1tC4TfDRo5Ilo5LJ4VZnygF78ZSDiHjkhFAhtsNt4qRp6X/9oACAEBAQY/AvQ1jFKqT23T5j08o+0h/wBx93Mnk2Bw3y7+nQAWXKqTvBuIpIY6HGGpCrYn5tADDLACOSAND3WMG+cYmlunKUk/0m3puWSlwlVJ7RAmhITT+Z3O76Rjh2PDnM+EAUmm9ZPVaJ01QKUN0Ws77NPTTpbPygFI/M9mink5lXs0nGGoVVo0dEY5M8JVNSpQF2szDthgg0YlyLttBwiiZLRNR3G+2H4Mpl/8SseyKVBiPRaITdSsgIEqQGQg9f1lHWOgpU0pF0qD9gOPlCVKRbNOajpu2wjoCWA5NB+TDCoueqHL/wAwDRSPH38TixjkuEWmepN8lQUKFx6AITiY+yyuqn8Q+0r3DixYHH4wD0QW8P4gFan+dBGmxrmKj0E/z2Q0VapOlh2wQQAcpiRT/wBhhCpK/wAeS9CvbSMvn3+gmcI9Y9CXvOcLVMmUt3mPxFfPZBKFqdORHnFPLckv8wCkntyhwRNH5VfSByqTLCRcnNtNsaDBI9kDTibreqEjAU6xoMwLB4StOKS8JnI6k4VdufPkSPYRUf1KghS0o2kReYnf8Bfxg09Is1xYcXKlZly8mN1NkkeeAgCosC41746aEnsY94bmAa2G8wmSZYZJcEqD3jppI89xHNQNVCJmxh3AcbJSSdgeAVpKXwdvIwBkIrra5DUubbzClpJNIe7fwB5wFTbnR6Ujz8Y5SWFMGcG4vmHvjAUQ2VTOomETwEgpVLU4xKSoYwkoZypr3yMBdCq+iXpNIyVfBseaiZyhFQCuiBZ9phUyqsC5fr79DAnTQDmHwSn5vCpaEG+BLAY4tjH3aKm0zOphl0sD6ozwzPEr9Z8QDC1Ln10pJ9Yu39UPtRH9n/EfCAfzIPf9Y/s/4j4QkgP0kG1/nGChVlUG3a8HfxiEJciqWzjuhQTyk1QGalW1NLtaOSmh0YA2NjkRBXweyhoCz6FMCuUVSw3SU6SBlf4Ry4SxAfa2YPFMG1J7x8IWhUxVNSktgGcjLZAQ7Fgk7Cj6QUVeoUh8SVfWBKnkdEAEKwNOBBhUqSXdNNh0QN8J+6WaQASGpcDV4oSKU53qJ2aNzUXZqh+4weXWFHJsu1hE2WoIT010qIDKBOFXzaCJZSSb0hVRJ8YonAqa1Qu+8QZaAQDiTa2gHEaG6TO4fD6wSzklzvMY09pfwj8S+74x1nHdxSeD+t117zzqEs2N0v5xSVqCPWoSAyc9sM/RN0HVPHhGkB+k/dBAswJ2W4iRgMeJU6Z+HJvvVkIUvU894CFF0jDZu4iR6uOwaxbDbA/Ms/tAb+TH9z/zfyhjtvuD8yl7YtlB5+g42BZ8fjFopODuIGdOWMdFLQwJfRPwivhU0y0+w/TPuhpQoQNpPe/osIz4vvJVW5REYzUdxj8aZ3D3R1Zk3eWHhDSJaZI2C/fDqJJ48f8Aav/aAAgBAQIBPyH8IBCLf1jM9z0PzmHvXeR9oHklLZqxYZztNvWpPZufmB6uJ4M8TF9L1OtnwIJbGGxkkdKuGr3NMUxkJtQSExe8OaCGCnIXzcxlg61bSCRluu034/MC1mLDeh/TUa/6SG5BlF2W3RNMEwm5DY190qUN69chszG94W9THAeGlCEgi2LWtNRBWoKYsCUijci8GKJoh+V0eVikyHEy9KAhZ3sIEWYxrOaiEWpey8PtSoBoBZ4mx+tqEK8ZvpCBFWEkkYi5biAGhTnPKwkMpY7tu9JG1pbPew+/Wla8wSPxNL5iwKz15wqXZCHvxilSEjCLuqShc1QzSEAGNiDNkRKJ/wCqwAqQgzEZ0dYvaKzsUjiOFLvWk6mSoAiYkwPB0RC4jCPDRmLHil0/p+8xYvc5PwDJKxRRdj759L20vU8CgwmzDo1KDLFTebr4IFPHtQHD0py8lcHsILdazxzq7U0HqulpSYWlOs0biEckEvFK9WKnGoHe1KUCWowGWqadmjtHJ571/wBm7D4aOAPO4yzebdstMZxxYPez4pdqCd+7P85ojLElkuLHoZrhPEsdGHpRIiIds5MwgA2nFIEsBtFAdmWoo1WPWgaZG+2R7mSStWkDulYz3p4oIOdzolmtOhHCw9fnzCUN6iLA/V0h9ahuNoRCcpqaTGc6VeTb8pN4GXFlBJW0SnqOI0jwISciueXA1XcbMkNfNxpoJtQyw6p9S3GtbdqlrmkcdbUfbqIIZSAzGd6ZcvhPqLKRNMRI3JhAZuBjUz5eIB6tcfhUlwKOD1+lPQNkZHWLHdoqpI1CExcS29Li6BwLPzQi1sGVi6BfOKXSyLVjPQ70alQFNw0khRu9lQxlkbKgRYo3EocWCv2bgt4bFiowgySyGG43LRTlwbhAFMSbVjXlvSQJ6ELTQhTZ8YganshoVici23o4q8cBqkwa6xUrQHNJqmFQksxpQD5EhaA5NmxQCW2AJkzHLGq0JCSQQhDco4XQ8ItMR925qTOw3ALrAxtVhoX6ih+6HpXvN814u9pIpnak+8/zRjWFCoR0KNEQZySYh9Y617p4+6KkPmsPoo54CJ0HABYliGgySEXUikl7JNtKgkmWAgTOxO9t70jD8AUWlFE0nuawK7XIMRskY7JUgbNMicewaIkEoJFiQCe6lnEVLriLcwejVy6LKJaAOujBQebIgH4AayNGklGQVZVAYnEq1LKBVaB3onemvkZlmpuwlG+IIpZv4uE60sQK4jEQVNIkxmqZGS1oYoQ5BICehcJYYRV3kBZdBLMCIygFAGAsSLZL9yRqHOZFUNAuYiWLaVIXegVBA5PEXN29HRPQGpLYsVo3TsOZnu0K9va3vqppCDop9lOQr710Y+HHoW9PNqkmFiuYYWm+KtfiWgGVsA5pHeKDhscWw+utRNY4P5UtmsMvStvBdVwf7Ui4DMJx7OZoOAAgBQnGYcDmUtQqIUQ5Y/1qxNYJRP27vf0KeBL2g/4eeP8AV0aTpel+bIcTFHaYoAMgn5jitaeGiZi/bb+0Enm9CD1asO6o6B/agYgROyQLogmI13jwbduCYPCIBkmylliYqecfPna9/Y1EEbUVjz7D+xxQTZFobzKa99qPQUqQhSHOiB3KzMEohG+ZmBX9EYq+glv/AA/tATqwF/QTQTMAG+79bUUgtAkPMjT5ZoAQ3GrMMnudfNrk9aJZ9DWgRQetWBjuj7f8puJfUfeXwuaRXH8RpEbNSX1X8p89ZVnwXGv4y3/lf//aAAwDAQICAgMCAAAQ8828g0888o88/wDLTILPKPPM7/niPvKPK1H2qOoPKPHozLZ+Jo6LMFiQKj0CaLb3XgI0DtKPOOZYQRM3aPHjb5jv33KMMMMEMMMMIP/aAAgBAwIBPxDyCfwc8UGxi4neH+Xi1IrFkMHHzcVhLSegfQvPAli6eZeoHVligowjcc63+xWqbtrh8Eq5AgIDZxWJxCfBhwqdAhO4jcRwouJZLnkNRSMjdMdwJ1uFalaswJ9opmkAS6Nn+XKve5Nc1avWrnxrUKAWlryI9jFfQK/5vk4eo7X7Kd9jCCz4Ynxdrgguw59k9qsYiE3VkxH8VmwHEfydUqQXl1BGRyuc6RdvMVaJv88ATcjHdeiAyyFjcbzE34t4EREjMbkk1ehuNDq/YISuEx8IMGCLVC2Vw3sBagxRNPMz1Hu1dDEoUECWC8jhqASsXvIPWKhCBcXPRTFh6cDnadGbeECOzPpTGRlvGrouHiK0kxnuiaJeG6Jp/VnFT+J5nroRi9TSlCMbWdSVAsmBFyrRTEJRS8RLsk1qV4DkJ3DVl7eQzAkQYJTKwbptU1z4gPN7Tes32Nterh3oIkTftwvPQWTikF5yAJkhvYRIBRkgOFFnQRdzgoYGZEIQsTGzmimhoJm/Xbxel7maXWMnWjoGOFAO8lTgpZ+QEHZK1HqP6e9Q9VJXzqQkLdZ+lc2NAesZ/L//2gAIAQICAT8Q8FiOfCCfQsPt+BG5AZ6sR3mvqEzj8NADQTOGmuklz3z4EgPRYPufGyIM38j0Mtum76e/hBVMUP0fw1pv/WPAJfA/zXDyr4fT2q5R+ma336bPAmmodnu/lZPEYvR8kCbrh/XmEDVrxR4ZjGfHSn0f3nwiDsMunkApwNvvNK8QPtlPIaM+BNGQYfG0h1FA4I707EeJBFKXhP5f/9oACAEBAgE/EPwzWR2H8+ByYv8ATL9w8idiswnuVNOaNy/3/n5yrqMDj8YnCwnMkLqDinfISXLO3tat8JZwBCfdV+wIHKpQxbEoH5iSKBdQNAGsHHtTGhmLVspRIa8BFQ55aZFG/eVR1GDaNr02k8bzgw6JPwao8kgN6vqxj/fy8LnVJqD2CsPkH7IwUL5hjObhVDF8M+9F870ZKXYRfgzTWutjalOKIaxEZ/i+fgppkwv23XlRNFRJPxW4GweWVx0/ktbI0cSjhWlqGdjXr9xUDRQc+c4oOgLSk/aoheTPqKLtt9gsUsUhqksTG4DnLp4OzGXAYQuNJJpL/UtPhWqpnYaJqJh/BDo8d/1vxXcC6+RNPArI4JgchoE3hmsRjKXhFlToFRcz6DvzW7DzC6jg2V3i3LioQN4Iq+/5Th1YbD+GrV8Sl2r9Eis8jhJPuCa0CLhITzxD799S/RFFO0L+aDlKaNAC33rkp2zhONE1taiPG/TxFYUH9PEuxTa3wiJ1Kh1MomossRZm6Nx2pA8LuUVoV9NJAJwW6E2V1qw07H4gy9VwNQ7+5huZeZzwCsKQL5KDnnaincaKgMirP2yhgmZeaFtf2PFEME9DhTpjklhlI6lcM0H73RJ1c4Z9qSW6TLOZdaEmAOJEuk3aNGLjgg9klaivcahoyZNHWAeUwHRAbeWX/wCElcmei/amtfozsdXFKLL6S7f6pzqkVfslTAtRqluJl0VkCgwZATmMqekmkBqnDMFKS0h0LRmbxbk6oFNx4KLYMhKBEVel8QDBUYDJdoplVAK1u64mJNPbo6vg+wCufA9HxDBFvWhwUP7fQRXAdRTpg0uStzJurvelBByPb5KyekhQmY5aamzdYTt0Pa7JVkjHgX1wltKB0rIPbrVLAvsTMVh+OwtDflg8L8KXBNY0feLS1rlN6Y5PhOJKfS7+Lj616t6BtMuOlNSxKhuF2X11dqOobIG4LKEx0aubb2hXwUBgSBgDQEKi1Ptv61hp/wBHIYelRNNGmndS0IYCJ6lQazuX3v6ClpcNQkfSoKtSyAIzPaH19GABt0RFAv8A6vPKHcCiLNAf0cR0hlkrKy9/GR7B96GtYc9FbVje17bVjKzqlZ0gjL1yVgJ26UugkBNAW3IyMMtcYot4Hgqo8uSwl0MhlL611hAkHhuSaKkhBvKMPOlXm8LjpV0ovS+ie/aUd0T760jceVodBs33E3mJ+y+8QjYGlyRNcVcpi8VIaL9Cr/Q2Cn9EBT/OayT7qnlj90ESxyg3bFdSvXJI0iTLbOKsEVvEEckcgipLTHLVgLXJMtedgxjF6kFdOzH0Wb9lM4QfZE7WO1JHmUZTSFtBpvJ2Z9DM17CgL8FzV43FMfZ3NbbSJ7Mu7N3ejOVRdmncIS99CDmnHPYU4gKPcUOxpa5SqO/bGh3kq8xpWMmyUiQWChaaijgdbPP9tDb+1AhgR2KVX9IiDA47FbpM2pOHBAhmX4MtlS1i5AN50pxZd5gW5HM3eRQWg7sf6aKrfBKrpQ+gmw3j/pT9reGoX7fNIY8zWlAYCUEAS5fseUMVkI+E++aAR9zmkX4luUtn7UV94tsp2Y9T+W4vU0fNEFT/AKxqgCmcipL38LjDvRUKDb+H/lf/2Q==" alt="BSS FOOD - Pizza Houssam logo">
-      </a>
+      </div>
       <div class="foot-socials">
         <a href="https://www.instagram.com/bss_food_03/" target="_blank" rel="noopener" aria-label="Instagram">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/></svg>
-        </a>
+        </div>
         <a href="https://wa.me/213670814232" target="_blank" rel="noopener" aria-label="WhatsApp">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9s-.5-.1-.7.1-.8.9-.9 1.1-.3.2-.6.1a8.2 8.2 0 0 1-2.4-1.5 9 9 0 0 1-1.7-2.1c-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5a.5.5 0 0 0 0-.5c-.1-.1-.7-1.6-.9-2.2s-.5-.5-.7-.5h-.6a1.1 1.1 0 0 0-.8.4 3.4 3.4 0 0 0-1 2.5 6 6 0 0 0 1.2 3.1 13.6 13.6 0 0 0 5.3 4.7c.7.3 1.3.5 1.7.6a4 4 0 0 0 1.9.1 3.1 3.1 0 0 0 2-1.4 2.5 2.5 0 0 0 .2-1.4c-.1-.1-.3-.2-.6-.3z"/></svg>
-        </a>
+        </div>
         <a href="tel:+213670814232" aria-label="Phone">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.81.3 1.6.54 2.36a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.72-1.11a2 2 0 0 1 2.11-.45c.76.24 1.55.42 2.36.54A2 2 0 0 1 22 16.92z"/></svg>
-        </a>
+        </div>
       </div>
     </div>
     <p class="foot-bottom" data-fr="© 2026 BSS FOOD — Pizza Houssam · Laghouat, Algérie" data-ar="© 2026 BSS FOOD — بيتزا حسام · الأغواط، الجزائر">© 2026 BSS FOOD — Pizza Houssam · Laghouat, Algérie</p>
