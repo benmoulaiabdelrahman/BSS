@@ -115,7 +115,6 @@
     padding:7px 14px;
   }
   .lang-toggle button.active{background:var(--orange); color:#0b0908;}
-  .tab:focus, .tab:active, .btn:focus, .btn:active, .lang-toggle button:focus, .lang-toggle button:active, .menu-item:focus, .menu-item:active{outline:none; box-shadow:none;}
 
   .btn{
     display:inline-flex; align-items:center; gap:8px;
@@ -244,6 +243,8 @@
   .menu-item{
     display:flex; flex-direction:column; align-items:center; text-align:center;
     color:inherit;
+    -webkit-tap-highlight-color:transparent;
+    cursor:default;
   }
   .menu-photo{
     position:relative; width:100%; max-width:172px; aspect-ratio:1/1; margin-bottom:18px;
@@ -1254,7 +1255,7 @@
   </div>
 </section>
 
-<!-- story -->
+
 <section class="section story">
   <div class="wrap story-grid">
     <div>
@@ -1270,7 +1271,7 @@
         <a class="btn btn-primary" href="https://wa.me/213670814232" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9s-.5-.1-.7.1-.8.9-.9 1.1-.3.2-.6.1a8.2 8.2 0 0 1-2.4-1.5 9 9 0 0 1-1.7-2.1c-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5a.5.5 0 0 0 0-.5c-.1-.1-.7-1.6-.9-2.2s-.5-.5-.7-.5h-.6a1.1 1.1 0 0 0-.8.4 3.4 3.4 0 0 0-1 2.5 6 6 0 0 0 1.2 3.1 13.6 13.6 0 0 0 5.3 4.7c.7.3 1.3.5 1.7.6a4 4 0 0 0 1.9.1 3.1 3.1 0 0 0 2-1.4 2.5 2.5 0 0 0 .2-1.4c-.1-.1-.3-.2-.6-.3z"/></svg>
           <span data-fr="Discuter sur WhatsApp" data-ar="تواصل عبر واتساب">Discuter sur WhatsApp</span>
-        </div>
+        </a>
       </div>
     </div>
     <div class="story-art">
@@ -1290,7 +1291,7 @@
       <a class="btn btn-outline" href="https://www.instagram.com/bss_food_03/" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/></svg>
         <span data-fr="Voir sur Instagram" data-ar="مشاهدة على إنستغرام">Voir sur Instagram</span>
-      </div>
+      </a>
     </div>
 
     <div class="insta-grid">
@@ -1361,10 +1362,10 @@
         <div class="hero-ctas" style="justify-content:flex-start; margin-top:24px;">
           <a class="btn btn-primary" href="https://wa.me/213670814232" target="_blank" rel="noopener">
             <span data-fr="WhatsApp" data-ar="واتساب">WhatsApp</span>
-          </div>
+          </a>
           <a class="btn btn-outline" href="tel:+213670814232">
             <span data-fr="Appeler" data-ar="اتصل">Appeler</span>
-          </div>
+          </a>
         </div>
       </div>
 
@@ -1381,17 +1382,17 @@
     <div class="foot-grid">
       <a class="logo-mini" href="#" aria-label="BSS FOOD - accueil">
         <img src="data:image/jpeg;base64,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" alt="BSS FOOD - Pizza Houssam logo">
-      </div>
+      </a>
       <div class="foot-socials">
         <a href="https://www.instagram.com/bss_food_03/" target="_blank" rel="noopener" aria-label="Instagram">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/></svg>
-        </div>
+        </a>
         <a href="https://wa.me/213670814232" target="_blank" rel="noopener" aria-label="WhatsApp">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9s-.5-.1-.7.1-.8.9-.9 1.1-.3.2-.6.1a8.2 8.2 0 0 1-2.4-1.5 9 9 0 0 1-1.7-2.1c-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5a.5.5 0 0 0 0-.5c-.1-.1-.7-1.6-.9-2.2s-.5-.5-.7-.5h-.6a1.1 1.1 0 0 0-.8.4 3.4 3.4 0 0 0-1 2.5 6 6 0 0 0 1.2 3.1 13.6 13.6 0 0 0 5.3 4.7c.7.3 1.3.5 1.7.6a4 4 0 0 0 1.9.1 3.1 3.1 0 0 0 2-1.4 2.5 2.5 0 0 0 .2-1.4c-.1-.1-.3-.2-.6-.3z"/></svg>
-        </div>
+        </a>
         <a href="tel:+213670814232" aria-label="Phone">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.81.3 1.6.54 2.36a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.72-1.11a2 2 0 0 1 2.11-.45c.76.24 1.55.42 2.36.54A2 2 0 0 1 22 16.92z"/></svg>
-        </div>
+        </a>
       </div>
     </div>
     <p class="foot-bottom" data-fr="© 2026 BSS FOOD — Pizza Houssam · Laghouat, Algérie" data-ar="© 2026 BSS FOOD — بيتزا حسام · الأغواط، الجزائر">© 2026 BSS FOOD — Pizza Houssam · Laghouat, Algérie</p>
