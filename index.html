@@ -120,6 +120,45 @@
     border:1px solid rgba(255,255,255,0.12);
   }
 
+  .splash-divider{
+    width:100%;
+    line-height:0;
+    margin:0 0 -1px 0;
+    padding:0;
+    display:block;
+    background:linear-gradient(to bottom, #0b0908 55%, #fb0c0e 55%);
+    font-size:0;
+  }
+  .splash-divider img{
+    display:block;
+    width:100%;
+    height:auto;
+    vertical-align:bottom;
+    margin:0;
+    padding:0;
+  }
+
+  #menu{
+    background:#fa0101;
+    margin-top:0 !important;
+    padding:0 0 80px !important;
+  }
+  #menu .section-head h2{color:#fffaf3;}
+  #menu .eyebrow{color:#ffe7a8;}
+  #menu .tab{
+    color:rgba(255,255,255,0.9);
+    border-color:rgba(255,255,255,0.22);
+    background:rgba(255,255,255,0.08);
+  }
+  #menu .tab.active{
+    background:#fff;
+    color:#b01717;
+    border-color:#fff;
+  }
+  #menu .menu-name{color:#fffaf3;}
+  #menu .menu-desc{color:rgba(255,255,255,0.88);}
+  #menu .menu-price{color:#fff6b8;}
+
   /* ---------- hero ---------- */
   .hero{
     position:relative;
@@ -434,8 +473,11 @@
   </div>
 </section>
 
+<div class="splash-divider" aria-hidden="true">
+  <img src="images/splash.png" alt="" loading="eager" decoding="async">
+</div>
 <!-- menu -->
-<section class="section" id="menu">
+<section class="section" id="menu" style="margin-top:0;padding-top:0;">
   <div class="wrap">
     <div class="section-head">
       <div>
