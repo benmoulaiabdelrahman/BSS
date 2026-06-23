@@ -62,31 +62,6 @@
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
-  /* ---------- top ticker ---------- */
-  .ticker-bar{
-    background:linear-gradient(90deg, var(--red), var(--orange));
-    color:#0b0908;
-    font-weight:800;
-    font-size:13px;
-    overflow:hidden;
-    white-space:nowrap;
-    position:relative;
-    z-index:50;
-  }
-  .ticker-track{
-    display:inline-flex;
-    gap:48px;
-    padding:9px 0;
-    animation:ticker 22s linear infinite;
-    width:max-content;
-  }
-  html[dir="rtl"] .ticker-track{animation-direction:reverse;}
-  @keyframes ticker{
-    from{transform:translateX(0);}
-    to{transform:translateX(-50%);}
-  }
-  .ticker-track span{display:inline-flex; align-items:center; gap:10px;}
-
   /* ---------- header ---------- */
   header{
     position:sticky; top:0; z-index:40;
@@ -132,6 +107,17 @@
   }
   .btn-outline{
     border-color:var(--orange); color:var(--orange); background:transparent;
+  }
+  .btn-instagram{
+    background:linear-gradient(135deg, #f58529 0%, #dd2a7b 55%, #8134af 100%);
+    color:#fff;
+    box-shadow:0 10px 26px rgba(221,42,123,0.28);
+  }
+  .btn-maps{
+    background:linear-gradient(135deg, #1a73e8 0%, #4285f4 100%);
+    color:#fff;
+    box-shadow:0 10px 26px rgba(26,115,232,0.28);
+    border:1px solid rgba(255,255,255,0.12);
   }
 
   /* ---------- hero ---------- */
@@ -180,7 +166,6 @@
   }
   @media (prefers-reduced-motion: reduce){
     .hero h1{animation:none;}
-    .ticker-track{animation:none;}
   }
 
   .hero-tagline{
@@ -400,11 +385,6 @@
 
 <div class="grain"></div>
 
-<!-- ticker -->
-<div class="ticker-bar">
-  <div class="ticker-track" id="tickerTrack"></div>
-</div>
-
 <!-- header -->
 <header>
   <div class="wrap nav">
@@ -442,9 +422,13 @@
     </p>
 
     <div class="hero-ctas">
-      <a class="btn btn-ghost" href="https://www.instagram.com/bss_food_03/" target="_blank" rel="noopener">
+      <a class="btn btn-instagram" href="https://www.instagram.com/bss_food_03/" target="_blank" rel="noopener" aria-label="Instagram">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
         <span>@bss_food_03</span>
+      </a>
+      <a class="btn btn-maps" href="https://maps.app.goo.gl/dcLUXafJvyWMUcDF6" target="_blank" rel="noopener" aria-label="Location">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s6-5.33 6-11a6 6 0 0 0-12 0c0 5.67 6 11 6 11z"/><circle cx="12" cy="10" r="2.5" fill="currentColor" stroke="none"/></svg>
+        <span data-fr="Localisation" data-ar="الموقع">Location</span>
       </a>
     </div>
   </div>
@@ -1251,102 +1235,6 @@
   </div>
 </section>
 
-<!-- instagram -->
-<section class="section" id="instagram">
-  <div class="wrap">
-    <div class="insta-head">
-      <div>
-        <span class="eyebrow" data-fr="Suivez-nous" data-ar="تابعونا">Suivez-nous</span>
-        <h2 data-fr="@bss_food_03" data-ar="@bss_food_03">@bss_food_03</h2>
-      </div>
-      <a class="btn btn-outline" href="https://www.instagram.com/bss_food_03/" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/></svg>
-        <span data-fr="Voir sur Instagram" data-ar="مشاهدة على إنستغرام">Voir sur Instagram</span>
-      </a>
-    </div>
-
-    <div class="insta-grid">
-      <div class="insta-card">
-        <div class="bgshape" style="background:linear-gradient(160deg, #ff9233, #2a1410);"></div>
-        <div class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
-        <span data-fr="Horaires d'été" data-ar="توقيت الصيف">Horaires d'été</span>
-      </div>
-      <div class="insta-card">
-        <div class="bgshape" style="background:linear-gradient(160deg, #1a1a1a, #ff546833);"></div>
-        <div class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
-        <span data-fr="Livraison uniquement" data-ar="توصيل فقط">Livraison uniquement</span>
-      </div>
-      <div class="insta-card">
-        <div class="bgshape" style="background:linear-gradient(160deg, #ffdc4d, #2a1410);"></div>
-        <div class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
-        <span data-fr="Pizza fraîchement sortie" data-ar="بيتزا طازجة">Pizza fraîchement sortie</span>
-      </div>
-      <div class="insta-card">
-        <div class="bgshape" style="background:linear-gradient(160deg, #ff5468, #1a1a1a);"></div>
-        <div class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
-        <span data-fr="Dans les coulisses" data-ar="خلف الكواليس">Dans les coulisses</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- location -->
-<section class="section" id="contact">
-  <div class="wrap">
-    <div class="section-head">
-      <div>
-        <span class="eyebrow" data-fr="Nous trouver" data-ar="موقعنا">Nous trouver</span>
-        <h2 data-fr="Infos & Localisation" data-ar="معلومات والموقع">Infos & Localisation</h2>
-      </div>
-    </div>
-
-    <div class="location-grid">
-      <div class="info-card">
-        <div class="info-row">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <div>
-            <b data-fr="Adresse" data-ar="العنوان">Adresse</b>
-            <span data-fr="Laghouat, Algérie" data-ar="الأغواط، الجزائر">Laghouat, Algérie</span>
-          </div>
-        </div>
-        <div class="info-row">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
-          <div>
-            <b data-fr="Horaires" data-ar="ساعات العمل">Horaires</b>
-            <span data-fr="Tous les jours · 11:00 – 23:00" data-ar="يومياً · 11:00 – 23:00">Tous les jours · 11:00 – 23:00</span>
-          </div>
-        </div>
-        <div class="info-row">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.81.3 1.6.54 2.36a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.72-1.11a2 2 0 0 1 2.11-.45c.76.24 1.55.42 2.36.54A2 2 0 0 1 22 16.92z"/></svg>
-          <div>
-            <b data-fr="Téléphone" data-ar="الهاتف">Téléphone</b>
-            <span>+213 670 81 43 22</span>
-          </div>
-        </div>
-        <div class="info-row">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/></svg>
-          <div>
-            <b data-fr="Instagram" data-ar="إنستغرام">Instagram</b>
-            <span>@bss_food_03</span>
-          </div>
-        </div>
-        <div class="hero-ctas" style="justify-content:flex-start; margin-top:24px;">
-          <a class="btn btn-primary" href="https://wa.me/213670814232" target="_blank" rel="noopener">
-            <span data-fr="WhatsApp" data-ar="واتساب">WhatsApp</span>
-          </a>
-          <a class="btn btn-outline" href="tel:+213670814232">
-            <span data-fr="Appeler" data-ar="اتصل">Appeler</span>
-          </a>
-        </div>
-      </div>
-
-      <div class="map-card">
-        <iframe src="https://www.google.com/maps?q=Laghouat,Algeria&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- footer -->
 <footer>
   <div class="wrap">
@@ -1388,21 +1276,6 @@
     el.src = MENU_IMG_PLACEHOLDER;
   }
 
-  // ---------- ticker content ----------
-  var tickerItems = {
-    fr: ["🛵 Livraison rapide à Laghouat", "🔥 Sauce maison, pâte fraîche", "📍 À emporter & en livraison uniquement", "📞 +213 670 81 43 22"],
-    ar: ["🛵 توصيل سريع في الأغواط", "🔥 صلصة منزلية، عجين طازج", "📍 طلب خارجي وتوصيل فقط", "📞 213 670 81 43 22+"]
-  };
-  function buildTicker(lang){
-    var track = document.getElementById('tickerTrack');
-    var items = tickerItems[lang];
-    var html = "";
-    for (var r = 0; r < 2; r++){
-      items.forEach(function(t){ html += "<span>" + t + "</span>"; });
-    }
-    track.innerHTML = html;
-  }
-
   // ---------- language toggle ----------
   function setLang(lang){
     document.documentElement.lang = lang;
@@ -1413,7 +1286,6 @@
     document.querySelectorAll('[data-fr][data-ar]').forEach(function(el){
       el.textContent = el.getAttribute('data-' + lang);
     });
-    buildTicker(lang);
     updateStatus();
     localStorage_safeSet(lang);
   }
@@ -1448,7 +1320,6 @@
   }
 
   // ---------- init ----------
-  buildTicker('fr');
   updateStatus();
   setInterval(updateStatus, 60000);
 </script>
