@@ -28,7 +28,7 @@
   html{scroll-behavior:smooth;}
   body{
     margin:0;
-    background:var(--bg);
+    background:#0a0908;
     color:var(--cream);
     font-family:'Cairo', sans-serif;
     -webkit-font-smoothing:antialiased;
@@ -62,34 +62,65 @@
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
-  /* ---------- header ---------- */
+  /* ---------- header – cardboard pizza-box ---------- */
   header{
     position:sticky; top:0; z-index:40;
-    background:rgba(11,9,8,0.85);
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--line);
+    /* cardboard texture: fills the panel, never distorts */
+    background-color:transparent;
+    background-image:url("images/cardboard.png");
+    background-size:cover;
+    background-position:center 90%;
+    background-repeat:no-repeat;
+
+    /* relative so pseudo-elements stack correctly */
+    position:sticky;
   }
+
   .nav{
     display:flex; align-items:center; justify-content:space-between;
-    padding-block:14px;
+    padding-block:18px;
+    position:relative; z-index:2;  /* above header overlays */
   }
   .logo-mini{
     display:flex; align-items:center; gap:10px;
   }
   .logo-mini img{
     width:46px; height:46px; border-radius:50%; object-fit:cover;
-    box-shadow:0 0 0 1px var(--line), 0 0 18px rgba(255,84,104,0.35);
+    box-shadow:none;
   }
 
   .nav-actions{display:flex; align-items:center; gap:10px;}
   .lang-toggle{
-    display:flex; border:1px solid var(--line); border-radius:999px; overflow:hidden;
+    display:flex;
+    border:2px solid #0a0908;
+    border-radius:999px; overflow:hidden;
+    background:transparent;
   }
   .lang-toggle button{
-    background:none; border:none; color:var(--muted); font-size:13px; font-weight:700;
+    background:none; border:none; color:#0a0908; font-size:13px; font-weight:800;
     padding:7px 14px;
   }
-  .lang-toggle button.active{background:var(--orange); color:#0b0908;}
+  .lang-toggle button.active{background:#0a0908; color:#c8915a;}
+
+  /* single-button language switcher for small screens */
+  .lang-single{
+    display:none;
+    border:2px solid #0a0908;
+    border-radius:999px;
+    background:none;
+    color:#0a0908;
+    font-size:13px;
+    font-weight:800;
+    padding:7px 14px;
+    cursor:pointer;
+    font-family:inherit;
+    -webkit-tap-highlight-color:transparent;
+  }
+
+  @media(max-width:480px){
+    .lang-toggle{ display:none; }
+    .lang-single{ display:block; }
+  }
 
   .btn{
     display:inline-flex; align-items:center; gap:8px;
@@ -102,6 +133,14 @@
     color:#fff;
     box-shadow:0 0 0 0 rgba(255,84,104,0.6);
   }
+  /* stamped-on-cardboard override for the header call button */
+  header .btn-primary{
+    background:transparent;
+    border:2px solid #0a0908;
+    color:#0a0908;
+    box-shadow:none;
+  }
+  header .btn-primary svg{stroke:#0a0908; fill:none;}
   .btn-ghost{
     border-color:var(--line); color:var(--cream); background:transparent;
   }
@@ -109,15 +148,43 @@
     border-color:var(--orange); color:var(--orange); background:transparent;
   }
   .btn-instagram{
-    background:linear-gradient(135deg, #f58529 0%, #dd2a7b 55%, #8134af 100%);
+    background:linear-gradient(135deg, #f58529 0%, #dd2a7b 50%, #8134af 100%);
     color:#fff;
-    box-shadow:0 10px 26px rgba(221,42,123,0.28);
+    box-shadow:0 8px 24px rgba(221,42,123,0.35);
+    border:none;
+    /* force GPU compositing to kill gradient aliasing on the pill edges */
+    -webkit-transform:translateZ(0);
+    transform:translateZ(0);
+    -webkit-backface-visibility:hidden;
+    backface-visibility:hidden;
+    /* tighten the clip to the border-radius */
+    -webkit-mask-image:-webkit-radial-gradient(white, black);
+    isolation:isolate;
+  }
+  .btn-instagram:hover{
+    box-shadow:0 12px 32px rgba(221,42,123,0.5);
+    filter:brightness(1.08);
   }
   .btn-maps{
     background:linear-gradient(135deg, #1a73e8 0%, #4285f4 100%);
     color:#fff;
-    box-shadow:0 10px 26px rgba(26,115,232,0.28);
-    border:1px solid rgba(255,255,255,0.12);
+    box-shadow:0 8px 24px rgba(26,115,232,0.35);
+    border:none;
+    -webkit-transform:translateZ(0);
+    transform:translateZ(0);
+  }
+  .btn-maps:hover{
+    box-shadow:0 12px 32px rgba(26,115,232,0.5);
+    filter:brightness(1.08);
+  }
+
+  /* on mobile make both hero CTAs full-width and taller for easier tapping */
+  @media(max-width:480px){
+    .hero-ctas{ flex-direction:column; gap:12px; }
+    .hero-ctas .btn{
+      width:100%; justify-content:center;
+      padding:14px 24px; font-size:15px;
+    }
   }
 
   .splash-divider{
@@ -182,11 +249,12 @@
     padding-block:74px 90px;
     text-align:center;
     overflow:hidden;
+    background:#080806;
   }
   .hero::before{
     content:"";
     position:absolute; inset:-20% -10% auto -10%; height:520px;
-    background:radial-gradient(closest-side, rgba(255,84,104,0.18), transparent 70%);
+    background:radial-gradient(closest-side, rgba(255,84,104,0.12), transparent 70%);
     z-index:0;
   }
   .hero-inner{position:relative; z-index:2;}
@@ -206,37 +274,40 @@
     top:8%; left:-2%;
     width:clamp(80px, 9vw, 150px);
     transform:rotate(-12deg);
-    animation:float-a 7s ease-in-out infinite;
   }
   .hero-deco.mushroom{
     bottom:6%; left:3%;
     width:clamp(70px, 8vw, 130px);
     transform:rotate(8deg);
-    animation:float-b 8s ease-in-out infinite;
   }
   .hero-deco.onion{
     top:10%; right:-1%;
     width:clamp(80px, 9vw, 150px);
     transform:rotate(14deg);
-    animation:float-b 7.5s ease-in-out infinite;
   }
   .hero-deco.poivron{
     bottom:8%; right:4%;
     width:clamp(70px, 8vw, 130px);
     transform:rotate(-10deg);
-    animation:float-a 8.5s ease-in-out infinite;
   }
 
-  @keyframes float-a{
-    0%,100%{transform:translateY(0) rotate(-12deg);}
-    50%{transform:translateY(-16px) rotate(-8deg);}
+  /* ---------- phone ring animation ---------- */
+  @keyframes phone-ring{
+    0%,100%{transform:rotate(0deg);}
+    10%{transform:rotate(-18deg);}
+    20%{transform:rotate(18deg);}
+    30%{transform:rotate(-14deg);}
+    40%{transform:rotate(14deg);}
+    50%{transform:rotate(-8deg);}
+    60%{transform:rotate(8deg);}
+    70%{transform:rotate(0deg);}
   }
-  @keyframes float-b{
-    0%,100%{transform:translateY(0) rotate(8deg);}
-    50%{transform:translateY(-14px) rotate(12deg);}
+  header .btn-primary svg{
+    animation:phone-ring 2.4s ease-in-out infinite;
+    transform-origin:center;
   }
   @media (prefers-reduced-motion: reduce){
-    .hero-deco{animation:none !important;}
+    header .btn-primary svg{animation:none;}
   }
 
   @media (max-width:980px){
@@ -535,6 +606,8 @@
         <button data-lang-btn="fr" class="active">FR</button>
         <button data-lang-btn="ar">ع</button>
       </div>
+      <!-- compact: shows only the OTHER language on small screens -->
+      <button class="lang-single" id="langSingleBtn">ع</button>
       <a class="btn btn-primary" href="tel:+213670814232" aria-label="Call">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.81.3 1.6.54 2.36a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.72-1.11a2 2 0 0 1 2.11-.45c.76.24 1.55.42 2.36.54A2 2 0 0 1 22 16.92z"/></svg>
         <span class="label" data-fr="Appeler" data-ar="اتصل بنا">Appeler</span>
@@ -1436,6 +1509,12 @@
     document.querySelectorAll('[data-fr][data-ar]').forEach(function(el){
       el.textContent = el.getAttribute('data-' + lang);
     });
+    // compact button: show the OTHER language so tapping switches to it
+    var singleBtn = document.getElementById('langSingleBtn');
+    if(singleBtn){
+      singleBtn.textContent = (lang === 'fr') ? 'ع' : 'FR';
+      singleBtn.setAttribute('data-target-lang', (lang === 'fr') ? 'ar' : 'fr');
+    }
     updateStatus();
     localStorage_safeSet(lang);
   }
@@ -1444,6 +1523,15 @@
   document.querySelectorAll('[data-lang-btn]').forEach(function(btn){
     btn.addEventListener('click', function(){ setLang(btn.getAttribute('data-lang-btn')); });
   });
+
+  // compact single-button handler
+  var langSingleBtn = document.getElementById('langSingleBtn');
+  if(langSingleBtn){
+    langSingleBtn.setAttribute('data-target-lang', 'ar'); // initial: currently FR, so target is AR
+    langSingleBtn.addEventListener('click', function(){
+      setLang(langSingleBtn.getAttribute('data-target-lang'));
+    });
+  }
 
   // ---------- tabs ----------
   document.querySelectorAll('.tab').forEach(function(tab){
