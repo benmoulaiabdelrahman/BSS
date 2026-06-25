@@ -66,14 +66,28 @@ function setLang(lang){
 }
 
 // ---------- tabs ----------
+function loadPanelImages(panel){
+  if(!panel) return;
+  panel.querySelectorAll('img[data-src]').forEach(function(img){
+    img.src = img.getAttribute('data-src');
+    img.removeAttribute('data-src');
+  });
+}
+
 function initTabs(){
+  // images for the panel that's active on page load
+  loadPanelImages(document.querySelector('.panel.active'));
+
   document.querySelectorAll('.tab').forEach(function(tab){
     tab.addEventListener('click', function(){
       document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
       document.querySelectorAll('.panel').forEach(function(p){ p.classList.remove('active'); });
       tab.classList.add('active');
       var panel = document.querySelector('.panel[data-panel="' + tab.getAttribute('data-tab') + '"]');
-      if(panel) panel.classList.add('active');
+      if(panel){
+        panel.classList.add('active');
+        loadPanelImages(panel);
+      }
     });
   });
 }
