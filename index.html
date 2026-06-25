@@ -529,16 +529,19 @@
   .menu-photo img{
     width:100%; height:100%; border-radius:50%; object-fit:cover;
     background:radial-gradient(circle at 35% 30%, var(--surface-2), var(--bg-soft));
-    box-shadow:0 14px 26px rgba(0,0,0,0.45);
+    box-shadow:none;
   }
   .menu-grid.no-circle-images .menu-photo{
-    display:inline-flex;
+    display:flex;
     justify-content:center;
     align-items:center;
-    width:fit-content;
+    width:100%;
     max-width:100%;
     aspect-ratio:auto;
     margin:0 auto 16px;
+    /* overflow visible so drop-shadow on the <img> isn't clipped by this box */
+    overflow:visible;
+    background:transparent;
   }
   .menu-grid.no-circle-images .menu-photo img{
     display:block;
@@ -552,6 +555,17 @@
     width:auto;
     max-width:100%;
     max-height:190px;
+    filter:none;
+  }
+  /* Pizza-only circular drop-shadow — must match the actual HTML class: no-circle-images + data-panel=pizzas */
+  .menu-grid.no-circle-images[data-panel="pizzas"] .menu-photo{
+    overflow:visible;
+  }
+  .menu-grid.no-circle-images[data-panel="pizzas"] .menu-photo img{
+    clip-path:circle(50% at 50% 50%);
+    filter:
+      drop-shadow(0 6px 10px rgba(0,0,0,0.55))
+      drop-shadow(0 14px 24px rgba(0,0,0,0.4));
   }
   /* placeholder: give it a fixed size so the broken img doesn't collapse */
   .menu-grid.no-circle-images .menu-photo img.img-placeholder{
@@ -560,24 +574,25 @@
     border-radius:50%;
     opacity:0.85;
   }
-  .menu-grid[data-panel="pizzas"] .menu-photo img{
-    padding:0;
-    box-sizing:border-box;
-    filter:drop-shadow(0 14px 18px rgba(0,0,0,0.5)) drop-shadow(0 4px 6px rgba(0,0,0,0.35));
-  }
+
   .menu-badge{
-    position:absolute; top:-6px; right:2px;
+    position:absolute;
+    top:8%; right:8%;
     font-size:10.5px; font-weight:900;
     padding:5px 10px; border-radius:999px; white-space:nowrap;
     transform:rotate(8deg);
+    z-index:2;
   }
   .menu-badge-size{box-shadow:0 4px 10px rgba(0,0,0,0.18);}
   .menu-badge-medium{background:var(--amber); color:#1f1404; box-shadow:0 4px 10px rgba(255,220,77,0.35);}
   .menu-badge-large{background:var(--orange); color:#fff; box-shadow:0 4px 10px rgba(255,146,51,0.35);}
   .menu-badge-mega{background:var(--red); color:#fff; box-shadow:0 4px 10px rgba(255,84,104,0.4);}
-  html[dir="rtl"] .menu-badge{right:auto; left:2px; transform:rotate(-8deg);}
+  html[dir="rtl"] .menu-badge{right:auto; left:8%; transform:rotate(-8deg);}
   .menu-grid.no-circle-images .menu-badge{top:8px; right:18px;}
   html[dir="rtl"] .menu-grid.no-circle-images .menu-badge{right:auto; left:18px;}
+  /* Pizza badge: override no-circle-images fixed px with % so it tracks the circle */
+  .menu-grid.no-circle-images[data-panel="pizzas"] .menu-badge{top:8%; right:8%;}
+  html[dir="rtl"] .menu-grid.no-circle-images[data-panel="pizzas"] .menu-badge{right:auto; left:8%;}
   .menu-name{font-size:16.5px; font-weight:800; color:var(--cream);}
   .menu-desc{font-size:13px; color:var(--muted); margin-top:7px; line-height:1.6; min-height:36px; max-width:200px; flex:1;} /* flex:1 pushes price to bottom */
   .menu-price{font-family:'Anton', sans-serif; font-size:19px; color:var(--amber); margin-top:14px; align-self:center;}
