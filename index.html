@@ -768,15 +768,13 @@
   ════════════════════════════════════════════════════ */
   @media (max-width: 768px){
 
-    /* Hide the 2-col grid, replace with slider layout */
-    .menu-grid{
-      display:block !important;   /* kill repeat(2,1fr) grid */
-      grid-template-columns:none !important;
-    }
+    /* Kill the 2-col grid ONLY on the active panel, keep others hidden */
+    .panel{ display:none; }
     .panel.active{
       display:block;
       position:relative;
       overflow:hidden;
+      grid-template-columns:none;
     }
 
     /* The slider track: all items side by side, will be translated */
