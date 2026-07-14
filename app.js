@@ -169,7 +169,8 @@ setInterval(updateStatus, 60000);
 
     var counter = document.createElement('div'); counter.className='slider-counter';
 
-    ctrl.appendChild(arrowsDiv); ctrl.appendChild(dotsDiv); ctrl.appendChild(counter);
+    ctrl.appendChild(dotsDiv); ctrl.appendChild(counter);
+    panel.appendChild(arrowsDiv);
     panel.appendChild(ctrl);
 
     var cur=0, timer=null;
