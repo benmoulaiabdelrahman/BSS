@@ -151,9 +151,13 @@ setInterval(updateStatus, 60000);
     var ctrl = document.createElement('div'); ctrl.className='slider-controls';
     var arrowsDiv = document.createElement('div'); arrowsDiv.className='slider-arrows';
     var prev = document.createElement('button');
-    prev.className='slider-arrow'; prev.innerHTML='&#8592;'; prev.setAttribute('aria-label','Précédent');
+    prev.className='slider-arrow';
+    prev.innerHTML='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>';
+    prev.setAttribute('aria-label','Précédent');
     var next = document.createElement('button');
-    next.className='slider-arrow'; next.innerHTML='&#8594;'; next.setAttribute('aria-label','Suivant');
+    next.className='slider-arrow';
+    next.innerHTML='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>';
+    next.setAttribute('aria-label','Suivant');
     arrowsDiv.appendChild(prev); arrowsDiv.appendChild(next);
 
     var dotsDiv = document.createElement('div'); dotsDiv.className='slider-dots';
@@ -174,7 +178,7 @@ setInterval(updateStatus, 60000);
       if(idx<0) idx=items.length-1;
       if(idx>=items.length) idx=0;
       cur=idx;
-      track.style.transform='translateX(-'+(cur*panel.offsetWidth)+'px)';
+      track.style.transform='translateX(-'+(cur*window.innerWidth)+'px)';
       dots.forEach(function(d,i){ d.classList.toggle('active',i===cur); });
       counter.textContent=(cur+1)+' / '+items.length;
       if(user) pauseResume();
@@ -198,7 +202,7 @@ setInterval(updateStatus, 60000);
     /* recalc on resize */
     window.addEventListener('resize',function(){
       track.style.transition='none';
-      track.style.transform='translateX(-'+(cur*panel.offsetWidth)+'px)';
+      track.style.transform='translateX(-'+(cur*window.innerWidth)+'px)';
       setTimeout(function(){ track.style.transition=''; },50);
     });
 
