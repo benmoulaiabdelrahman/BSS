@@ -124,218 +124,127 @@ initTabs();
 updateStatus();
 setInterval(updateStatus, 60000);
 
-/* ============================================================
-   MOBILE SLIDER  (≤560 px)
-   - Wraps .menu-item children of each .panel in a .slider-track
-   - Adds arrow buttons, dot indicators, counter
-   - Auto-plays with a 3.5 s interval, pauses on interaction
-   - Supports touch swipe
-   - Pizza drop-shadow slides with the image (handled by CSS transition)
-   ============================================================ */
-
+/* ── MOBILE SLIDER ≤768px ── */
 (function(){
+  var BP = 768, DELAY = 3500;
 
-  var MOBILE_BP = 768;
-  var AUTO_INTERVAL = 3500;
+  function isMobile(){ return window.innerWidth <= BP; }
 
-  // One slider state per panel
-  var sliders = [];
+  function build(panel){
+    if(panel._sb) return;
+    panel._sb = true;
 
-  function isMobile(){
-    return window.innerWidth <= MOBILE_BP;
-  }
+    var items = [];
+    for(var i=0;i<panel.children.length;i++){
+      if(panel.children[i].classList.contains('menu-item'))
+        items.push(panel.children[i]);
+    }
+    if(!items.length) return;
 
-  /* ---- Build slider DOM for one panel ---- */
-  function buildSlider(panel){
-    var items = Array.from(panel.querySelectorAll(':scope > .menu-item'));
-    if(items.length === 0) return null;
-
-    // Wrap items in a track div
+    /* track */
     var track = document.createElement('div');
     track.className = 'slider-track';
-    items.forEach(function(item){ track.appendChild(item); });
+    items.forEach(function(it){ track.appendChild(it); });
     panel.insertBefore(track, panel.firstChild);
 
-    // Arrow buttons
-    var arrows = document.createElement('div');
-    arrows.className = 'slider-arrows';
-    var btnPrev = document.createElement('button');
-    btnPrev.className = 'slider-arrow slider-prev';
-    btnPrev.setAttribute('aria-label', 'Précédent');
-    btnPrev.innerHTML = '&#8592;';
-    var btnNext = document.createElement('button');
-    btnNext.className = 'slider-arrow slider-next';
-    btnNext.setAttribute('aria-label', 'Suivant');
-    btnNext.innerHTML = '&#8594;';
-    arrows.appendChild(btnPrev);
-    arrows.appendChild(btnNext);
-    panel.appendChild(arrows);
+    /* controls */
+    var ctrl = document.createElement('div'); ctrl.className='slider-controls';
+    var arrowsDiv = document.createElement('div'); arrowsDiv.className='slider-arrows';
+    var prev = document.createElement('button');
+    prev.className='slider-arrow'; prev.innerHTML='&#8592;'; prev.setAttribute('aria-label','Précédent');
+    var next = document.createElement('button');
+    next.className='slider-arrow'; next.innerHTML='&#8594;'; next.setAttribute('aria-label','Suivant');
+    arrowsDiv.appendChild(prev); arrowsDiv.appendChild(next);
 
-    // Dots
-    var dotsWrap = document.createElement('div');
-    dotsWrap.className = 'slider-dots';
-    items.forEach(function(_, i){
-      var d = document.createElement('span');
-      d.className = 'slider-dot' + (i === 0 ? ' active' : '');
-      d.setAttribute('data-index', i);
-      dotsWrap.appendChild(d);
+    var dotsDiv = document.createElement('div'); dotsDiv.className='slider-dots';
+    var dots = items.map(function(_,i){
+      var d=document.createElement('span');
+      d.className='slider-dot'+(i===0?' active':'');
+      dotsDiv.appendChild(d); return d;
     });
-    panel.appendChild(dotsWrap);
 
-    // Counter
-    var counter = document.createElement('div');
-    counter.className = 'slider-counter';
-    panel.appendChild(counter);
+    var counter = document.createElement('div'); counter.className='slider-counter';
 
-    var state = {
-      panel: panel,
-      track: track,
-      items: items,
-      dots: Array.from(dotsWrap.querySelectorAll('.slider-dot')),
-      counter: counter,
-      btnPrev: btnPrev,
-      btnNext: btnNext,
-      current: 0,
-      total: items.length,
-      timer: null,
-      built: true
-    };
+    ctrl.appendChild(arrowsDiv); ctrl.appendChild(dotsDiv); ctrl.appendChild(counter);
+    panel.appendChild(ctrl);
 
-    // Update function
-    function goTo(idx, userAction){
-      // loop
-      if(idx < 0) idx = state.total - 1;
-      if(idx >= state.total) idx = 0;
-      state.current = idx;
-      track.style.transform = 'translateX(-' + (idx * 100) + '%)';
-      state.dots.forEach(function(d, i){ d.classList.toggle('active', i === idx); });
-      counter.textContent = (idx + 1) + ' / ' + state.total;
-      if(userAction) resetAutoPlay(state);
+    var cur=0, timer=null;
+
+    function go(idx, user){
+      if(idx<0) idx=items.length-1;
+      if(idx>=items.length) idx=0;
+      cur=idx;
+      track.style.transform='translateX(-'+(cur*panel.offsetWidth)+'px)';
+      dots.forEach(function(d,i){ d.classList.toggle('active',i===cur); });
+      counter.textContent=(cur+1)+' / '+items.length;
+      if(user) pauseResume();
     }
-    state.goTo = goTo;
+    function startAuto(){ if(timer)clearInterval(timer); timer=setInterval(function(){ go(cur+1,false); },DELAY); }
+    function stopAuto(){ if(timer){ clearInterval(timer); timer=null; } }
+    function pauseResume(){ stopAuto(); timer=setTimeout(startAuto, DELAY*1.5); }
 
-    // Arrows
-    btnPrev.addEventListener('click', function(){ goTo(state.current - 1, true); });
-    btnNext.addEventListener('click', function(){ goTo(state.current + 1, true); });
+    prev.addEventListener('click',function(){ go(cur-1,true); });
+    next.addEventListener('click',function(){ go(cur+1,true); });
+    dots.forEach(function(d,i){ d.addEventListener('click',function(){ go(i,true); }); });
 
-    // Dots
-    state.dots.forEach(function(d){
-      d.addEventListener('click', function(){
-        goTo(parseInt(d.getAttribute('data-index')), true);
-      });
+    /* swipe */
+    var tx0=0;
+    track.addEventListener('touchstart',function(e){ tx0=e.touches[0].clientX; },{passive:true});
+    track.addEventListener('touchend',function(e){
+      var dx=e.changedTouches[0].clientX-tx0;
+      if(Math.abs(dx)>35) go(dx<0?cur+1:cur-1,true);
+    },{passive:true});
+
+    /* recalc on resize */
+    window.addEventListener('resize',function(){
+      track.style.transition='none';
+      track.style.transform='translateX(-'+(cur*panel.offsetWidth)+'px)';
+      setTimeout(function(){ track.style.transition=''; },50);
     });
 
-    // Touch swipe
-    var touchStartX = 0;
-    track.addEventListener('touchstart', function(e){
-      touchStartX = e.touches[0].clientX;
-      resetAutoPlay(state);
-    }, {passive:true});
-    track.addEventListener('touchend', function(e){
-      var dx = e.changedTouches[0].clientX - touchStartX;
-      if(Math.abs(dx) > 40){
-        goTo(dx < 0 ? state.current + 1 : state.current - 1, true);
-      }
-    }, {passive:true});
-
-    goTo(0, false);
-    return state;
+    panel._sbGo=go; panel._sbStart=startAuto; panel._sbStop=stopAuto;
+    go(0,false);
+    if(panel.classList.contains('active')) startAuto();
   }
 
-  /* ---- Auto-play ---- */
-  function startAutoPlay(state){
-    if(state.timer) clearInterval(state.timer);
-    state.timer = setInterval(function(){
-      state.goTo(state.current + 1, false);
-    }, AUTO_INTERVAL);
-  }
-  function resetAutoPlay(state){
-    if(state.timer) clearInterval(state.timer);
-    state.timer = setTimeout(function(){
-      startAutoPlay(state);
-    }, AUTO_INTERVAL * 1.5); // small pause after user interaction
+  function destroy(panel){
+    if(!panel._sb) return;
+    panel._sbStop && panel._sbStop();
+    var track=panel.querySelector('.slider-track');
+    var ctrl=panel.querySelector('.slider-controls');
+    if(track){ while(track.firstChild) panel.insertBefore(track.firstChild,track); track.remove(); }
+    if(ctrl) ctrl.remove();
+    panel._sb=false; panel._sbGo=panel._sbStart=panel._sbStop=null;
   }
 
-  /* ---- Unwrap slider DOM (for desktop) ---- */
-  function destroySlider(state){
-    var track = state.track;
-    var panel = state.panel;
-    // Move items back to panel
-    state.items.forEach(function(item){ panel.insertBefore(item, track); });
-    track.remove();
-    // Remove controls
-    var arrows = panel.querySelector('.slider-arrows');
-    var dots = panel.querySelector('.slider-dots');
-    var counter = panel.querySelector('.slider-counter');
-    if(arrows) arrows.remove();
-    if(dots) dots.remove();
-    if(counter) counter.remove();
-    if(state.timer) clearInterval(state.timer);
-    state.built = false;
+  function init(){
+    var ps=Array.from(document.querySelectorAll('.panel'));
+    if(isMobile()){ ps.forEach(build); }
+    else { ps.forEach(destroy); }
   }
 
-  /* ---- Init / destroy on resize ---- */
-  function initSliders(){
-    var panels = Array.from(document.querySelectorAll('.panel'));
-    if(isMobile()){
-      panels.forEach(function(panel, i){
-        if(!sliders[i] || !sliders[i].built){
-          sliders[i] = buildSlider(panel);
-        }
-        if(sliders[i] && panel.classList.contains('active')){
-          startAutoPlay(sliders[i]);
-        }
-      });
-    } else {
-      panels.forEach(function(panel, i){
-        if(sliders[i] && sliders[i].built){
-          destroySlider(sliders[i]);
-        }
-      });
-      sliders = [];
-    }
-  }
-
-  /* ---- Hook tab switches to restart auto-play ---- */
-  function hookTabs(){
-    document.querySelectorAll('.tab').forEach(function(tab){
-      tab.addEventListener('click', function(){
-        if(!isMobile()) return;
-        var panelName = tab.getAttribute('data-tab');
-        var panel = document.querySelector('.panel[data-panel="' + panelName + '"]');
-        if(!panel) return;
-        // Load lazy images first
-        loadPanelImages(panel);
-        // Find or build slider for this panel
-        var panels = Array.from(document.querySelectorAll('.panel'));
-        var idx = panels.indexOf(panel);
-        if(idx < 0) return;
-        // Allow the panel to become active (handled by existing initTabs)
-        setTimeout(function(){
-          if(!sliders[idx] || !sliders[idx].built){
-            sliders[idx] = buildSlider(panel);
-          }
-          if(sliders[idx]){
-            sliders[idx].goTo(0, false);
-            startAutoPlay(sliders[idx]);
-          }
-        }, 30);
-      });
+  /* re-hook tabs */
+  document.querySelectorAll('.tab').forEach(function(tab){
+    tab.addEventListener('click',function(){
+      if(!isMobile()) return;
+      var panel=document.querySelector('.panel[data-panel="'+tab.getAttribute('data-tab')+'"]');
+      if(!panel) return;
+      setTimeout(function(){
+        if(!panel._sb) build(panel);
+        if(panel._sbGo) panel._sbGo(0,false);
+        if(panel._sbStop) panel._sbStop();
+        if(panel._sbStart) panel._sbStart();
+      },30);
     });
-  }
-
-  /* ---- Resize debounce ---- */
-  var resizeTimer;
-  window.addEventListener('resize', function(){
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(initSliders, 120);
   });
 
-  /* ---- Boot ---- */
-  // Wait for initTabs() (already called above) to finish first
-  setTimeout(function(){
-    initSliders();
-    hookTabs();
-  }, 0);
+  var rTimer;
+  window.addEventListener('resize',function(){ clearTimeout(rTimer); rTimer=setTimeout(init,150); });
 
+  /* boot — after layout is complete */
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',function(){ setTimeout(init,0); });
+  } else {
+    setTimeout(init,0);
+  }
 })();
