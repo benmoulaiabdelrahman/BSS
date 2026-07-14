@@ -135,7 +135,7 @@ setInterval(updateStatus, 60000);
 
 (function(){
 
-  var MOBILE_BP = 560;
+  var MOBILE_BP = 768;
   var AUTO_INTERVAL = 3500;
 
   // One slider state per panel

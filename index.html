@@ -762,13 +762,17 @@
   }
 
   /* ═══════════════════════════════════════════════════
-     MOBILE SLIDER — ≤560px only
+     MOBILE SLIDER — ≤768px only
      The grid stays exactly as-is on desktop/tablet.
      On mobile each .panel becomes a full-width slideshow.
   ════════════════════════════════════════════════════ */
-  @media (max-width: 560px){
+  @media (max-width: 768px){
 
     /* Hide the 2-col grid, replace with slider layout */
+    .menu-grid{
+      display:block !important;   /* kill repeat(2,1fr) grid */
+      grid-template-columns:none !important;
+    }
     .panel.active{
       display:block;
       position:relative;
