@@ -114,14 +114,14 @@ document.querySelectorAll('[data-lang-btn]').forEach(function(btn){
 
 var langSingleBtn = document.getElementById('langSingleBtn');
 if(langSingleBtn){
-  langSingleBtn.setAttribute('data-target-lang', 'ar');
+  langSingleBtn.setAttribute('data-target-lang', 'fr');
   langSingleBtn.addEventListener('click', function(){
     setLang(langSingleBtn.getAttribute('data-target-lang'));
   });
 }
 
 initTabs();
-updateStatus();
+setLang('ar');
 setInterval(updateStatus, 60000);
 
 /* ── MOBILE SLIDER ≤768px ── */
