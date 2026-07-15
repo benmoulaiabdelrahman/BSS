@@ -209,6 +209,8 @@ setLang('ar');
       dragging = false;
       var threshold = window.innerWidth * 0.18; /* 18% of screen width to trigger a slide change */
 
+      track.style.transition = ''; /* re-enable the CSS transition (was 'none' during drag) */
+
       if(Math.abs(dx) > threshold){
         go(dx<0 ? cur+1 : cur-1, true);
       } else {
@@ -220,6 +222,7 @@ setLang('ar');
     track.addEventListener('touchcancel',function(){
       if(!dragging) return;
       dragging = false;
+      track.style.transition = '';
       setTrackX(baseX, true);
       pauseResume();
     },{passive:true});
