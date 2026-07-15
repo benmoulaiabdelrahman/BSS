@@ -697,7 +697,12 @@
     background-repeat:no-repeat;
   }
   footer .wrap{position:relative; z-index:1;}
-  footer .logo-mini img{box-shadow:0 4px 14px rgba(0,0,0,0.3);}
+  footer .logo-mini img{
+    box-shadow:none;
+    border-radius:0;
+    width:58px; height:58px;
+    object-fit:contain;
+  }
   footer .foot-socials a{
     border-color:rgba(0,0,0,0.18);
     color:#3a2204;
@@ -1661,7 +1666,7 @@
   <div class="wrap">
     <div class="foot-grid">
       <a class="logo-mini" href="#" aria-label="BSS FOOD - accueil">
-        <img src="images/logo.webp" alt="BSS FOOD - Pizza Houssam logo" loading="lazy" decoding="async">
+        <img src="images/bss_sticker.webp" alt="BSS FOOD - Pizza Houssam logo" loading="lazy" decoding="async">
       </a>
       <div class="foot-socials">
         <a href="https://www.instagram.com/bss_food_03/" target="_blank" rel="noopener" aria-label="Instagram">
