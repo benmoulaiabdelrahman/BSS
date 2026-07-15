@@ -175,12 +175,53 @@ setLang('ar');
     next.addEventListener('click',function(){ go(cur+1,true); });
     dots.forEach(function(d,i){ d.addEventListener('click',function(){ go(i,true); }); });
 
-    /* swipe */
-    var tx0=0;
-    track.addEventListener('touchstart',function(e){ tx0=e.touches[0].clientX; },{passive:true});
-    track.addEventListener('touchend',function(e){
-      var dx=e.changedTouches[0].clientX-tx0;
-      if(Math.abs(dx)>35) go(dx<0?cur+1:cur-1,true);
+    /* swipe — live drag that follows the finger */
+    var tx0=0, dx=0, dragging=false, baseX=0;
+
+    function setTrackX(px, withTransition){
+      track.style.transition = withTransition ? '' : 'none';
+      track.style.transform = 'translateX(' + px + 'px)';
+    }
+
+    track.addEventListener('touchstart',function(e){
+      tx0 = e.touches[0].clientX;
+      dx = 0;
+      dragging = true;
+      baseX = -(cur * window.innerWidth);
+      stopAuto();
+      setTrackX(baseX, false); /* kill transition so drag tracks 1:1 */
+    },{passive:true});
+
+    track.addEventListener('touchmove',function(e){
+      if(!dragging) return;
+      dx = e.touches[0].clientX - tx0;
+
+      /* resistance at the ends so it doesn't drag past first/last slide */
+      var atStart = (cur===0 && dx>0);
+      var atEnd   = (cur===items.length-1 && dx<0);
+      var moveX = (atStart||atEnd) ? dx*0.35 : dx;
+
+      setTrackX(baseX + moveX, false);
+    },{passive:true});
+
+    track.addEventListener('touchend',function(){
+      if(!dragging) return;
+      dragging = false;
+      var threshold = window.innerWidth * 0.18; /* 18% of screen width to trigger a slide change */
+
+      if(Math.abs(dx) > threshold){
+        go(dx<0 ? cur+1 : cur-1, true);
+      } else {
+        setTrackX(baseX, true); /* snap back to current slide */
+        pauseResume();
+      }
+    },{passive:true});
+
+    track.addEventListener('touchcancel',function(){
+      if(!dragging) return;
+      dragging = false;
+      setTrackX(baseX, true);
+      pauseResume();
     },{passive:true});
 
     /* recalc on resize */
