@@ -420,77 +420,6 @@
     .hero-deco.poivron{width:46px; bottom:4%;}
   }
 
-  .neon-badge{
-    display:flex; flex-direction:column; align-items:center; gap:9px;
-    margin-bottom:26px;
-  }
-
-  /* ── neon sign (boxed, like a hanging OPEN sign) ── */
-  .neon-sign{
-    display:inline-block;
-    padding:12px 28px;
-    border-radius:14px;
-    background:radial-gradient(ellipse at center, rgba(20,14,8,0.55), rgba(0,0,0,0.75));
-    box-shadow:
-      0 0 0 3px rgba(255,255,255,0.06),
-      inset 0 0 0 1px rgba(255,255,255,0.02);
-    transition:box-shadow .6s ease, background .6s ease;
-  }
-  .neon-sign span{
-    display:inline-block;
-    font-family:'Anton', sans-serif;
-    font-size:25px;
-    letter-spacing:4px;
-    color:rgba(255,146,51,0.22);
-    text-shadow:none;
-    transition:color .6s ease, text-shadow .6s ease;
-  }
-  html[dir="rtl"] .neon-sign span{
-    font-family:'Cairo'; font-weight:900; letter-spacing:0; font-size:21px;
-  }
-
-  /* powered on / open — white-blue tube frame, amber-orange glowing text */
-  .neon-sign.open{
-    background:radial-gradient(ellipse at center, rgba(60,30,10,0.45), rgba(0,0,0,0.8));
-    box-shadow:
-      0 0 0 3px #eaf6ff,
-      0 0 6px #eaf6ff,
-      0 0 14px rgba(140,190,255,0.8),
-      0 0 30px rgba(90,150,255,0.55),
-      0 0 60px rgba(90,150,255,0.3),
-      inset 0 0 12px rgba(140,190,255,0.35);
-    animation:neon-frame-flicker 3.6s infinite;
-  }
-  .neon-sign.open span{
-    color:#ffcf7d;
-    text-shadow:
-      0 0 4px rgba(255,224,168,0.95),
-      0 0 11px rgba(255,196,109,0.9),
-      0 0 22px var(--orange),
-      0 0 44px var(--orange),
-      0 0 80px rgba(255,146,51,0.55);
-    animation:neon-flicker 3.6s infinite;
-  }
-  @keyframes neon-flicker{
-    0%, 19%, 21%, 23%, 54%, 56%, 100%{opacity:1;}
-    20%, 22%, 55%{opacity:.78;}
-  }
-  @keyframes neon-frame-flicker{
-    0%, 19%, 21%, 23%, 54%, 56%, 100%{opacity:1;}
-    20%, 22%, 55%{opacity:.85;}
-  }
-  @media (prefers-reduced-motion: reduce){
-    .neon-sign.open span, .neon-sign.open{animation:none;}
-  }
-
-  /* powered off / closed — dark unlit tube, no glow */
-  .neon-sign.closed{
-    box-shadow: 0 0 0 3px rgba(255,255,255,0.07);
-  }
-  .neon-sign.closed span{
-    color:rgba(255,146,51,0.18);
-  }
-
   .hero h1{
     font-size:clamp(54px, 11vw, 118px);
     font-weight:400;
@@ -502,6 +431,7 @@
       drop-shadow(0 0 10px rgba(255,84,104,0.55))
       drop-shadow(0 0 26px rgba(255,146,51,0.4))
       drop-shadow(0 0 50px rgba(255,220,77,0.3));
+    animation:sign-flicker 4.5s linear infinite;
   }
   .hero h1 .flicker-slow{ animation:flicker 3s linear infinite; }
   .hero h1 .flicker-fast{ animation:flicker 1s linear infinite; }
@@ -509,7 +439,12 @@
     0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100%{ opacity:.99; }
     20%, 21.999%, 63%, 63.999%, 65%, 69.999%{ opacity:0.4; }
   }
+  @keyframes sign-flicker{
+    0%, 18%, 20%, 22.5%, 24%, 54%, 56.5%, 58%, 100%{ opacity:1; }
+    19%, 21%, 23%, 55%, 57%{ opacity:.55; }
+  }
   @media (prefers-reduced-motion: reduce){
+    .hero h1{animation:none;}
     .hero h1 .flicker-slow, .hero h1 .flicker-fast{animation:none;}
     header .btn-primary svg{animation:none !important;}
     *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
@@ -895,12 +830,6 @@
   <img class="hero-deco onion" src="images/onion_ring_right.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="hero-deco poivron" src="images/poivron_right.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap hero-inner">
-    <div class="neon-badge">
-      <span class="neon-sign" id="neonSign">
-        <span id="statusText" data-fr="OUVERT" data-ar="مفتوح">OUVERT</span>
-      </span>
-    </div>
-
     <h1>BS<span class="flicker-slow">S</span> FO<span class="flicker-fast">O</span>D</h1>
     <p class="hero-tagline" data-fr="PIZZA HOUSSAM" data-ar="بيتزا حسام">PIZZA HOUSSAM</p>
 

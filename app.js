@@ -32,25 +32,6 @@ function handleImgErr(el){
   if(photo){ photo.style.minHeight = '140px'; }
 }
 
-// ---------- open/closed status (Africa/Algiers, UTC+1 year-round) ----------
-function updateStatus(){
-  var nowUTC = new Date(new Date().toUTCString());
-  var algiersHour = (nowUTC.getUTCHours() + 1) % 24;
-  var isOpen = algiersHour >= 11 && algiersHour < 23;
-  var sign = document.getElementById('neonSign');
-  var text = document.getElementById('statusText');
-  if(!sign || !text) return;
-  sign.classList.toggle('open', isOpen);
-  sign.classList.toggle('closed', !isOpen);
-  var lang = document.documentElement.lang === 'ar' ? 'ar' : 'fr';
-  var word = isOpen
-    ? (lang === 'ar' ? 'مفتوح' : 'OUVERT')
-    : (lang === 'ar' ? 'مغلق' : 'FERMÉ');
-  text.textContent = word;
-  text.setAttribute('data-fr', isOpen ? 'OUVERT' : 'FERMÉ');
-  text.setAttribute('data-ar', isOpen ? 'مفتوح' : 'مغلق');
-}
-
 // ---------- language toggle ----------
 function setLang(lang){
   document.documentElement.lang = lang;
@@ -66,7 +47,6 @@ function setLang(lang){
     singleBtn.textContent = (lang === 'fr') ? 'ع' : 'FR';
     singleBtn.setAttribute('data-target-lang', (lang === 'fr') ? 'ar' : 'fr');
   }
-  updateStatus();
 }
 
 // ---------- tabs ----------
@@ -126,7 +106,6 @@ if(langSingleBtn){
 
 initTabs();
 setLang('ar');
-setInterval(updateStatus, 60000);
 
 /* ── MOBILE SLIDER ≤768px ── */
 (function(){
