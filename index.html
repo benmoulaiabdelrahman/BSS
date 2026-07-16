@@ -426,12 +426,26 @@
     background:linear-gradient(to bottom, #ff5468 0%, #ff9233 50%, #ffdc4d 100%);
     -webkit-background-clip:text;
     background-clip:text;
+    -webkit-text-fill-color:transparent;
     color:transparent;
     filter:
       drop-shadow(0 0 10px rgba(255,84,104,0.55))
       drop-shadow(0 0 26px rgba(255,146,51,0.4))
       drop-shadow(0 0 50px rgba(255,220,77,0.3));
     animation:sign-flicker 4.5s linear infinite;
+  }
+  .hero h1 .flicker-slow,
+  .hero h1 .flicker-fast{
+    /* each flickering letter gets its own gradient + clip instead of
+       inheriting the parent's masked paint, so isolating it onto its
+       own compositing layer for the opacity animation doesn't break
+       the text mask on weaker mobile GPUs/WebViews */
+    display:inline-block;
+    background:linear-gradient(to bottom, #ff5468 0%, #ff9233 50%, #ffdc4d 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+    color:transparent;
   }
   .hero h1 .flicker-slow{ animation:flicker 3s linear infinite; }
   .hero h1 .flicker-fast{ animation:flicker 1s linear infinite; }
