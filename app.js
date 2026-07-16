@@ -133,8 +133,13 @@ setLang('ar');
 
   /* cache viewport width; touchmove/go fire a lot during a drag, so we
      avoid re-querying window.innerWidth (a layout-forcing read) on every
-     single event and only refresh it on init/resize instead. */
-  var vw = window.innerWidth;
+     single event and only refresh it on init/resize instead.
+     NOTE: don't read it here at parse time — setLang() just ran above us
+     and dirtied the DOM (textContent + dir + class toggles), so an
+     immediate layout read here forces a synchronous reflow. init() (below,
+     called via requestAnimationFrame) sets the real value before it's
+     ever used, so 0 is a safe placeholder. */
+  var vw = 0;
 
   function isMobile(){ return vw <= BP; }
 
