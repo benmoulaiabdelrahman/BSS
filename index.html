@@ -47,12 +47,6 @@
 <!-- Preload critical above-fold assets -->
 <link rel="preload" href="images/cardboard.webp" as="image" fetchpriority="high">
 <link rel="preload" href="images/logo.webp" as="image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- Load fonts async to avoid render-blocking -->
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Anton&family=Cairo:wght@400;700;800;900&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Cairo:wght@400;700;800;900&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Cairo:wght@400;700;800;900&display=swap"></noscript>
 <style>
   :root{
     --bg:#070707;
@@ -67,6 +61,8 @@
     --muted:#9c9690;
     --green:#3ddc84;
     --max: 1180px;
+    --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --font-display: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   }
 
   *{box-sizing:border-box;}
@@ -75,27 +71,28 @@
     margin:0;
     background:#0a0908;
     color:var(--cream);
-    font-family:'Cairo', sans-serif;
+    font-family:var(--font-body);
     -webkit-font-smoothing:antialiased;
     overflow-x:hidden;
   }
-  html[dir="rtl"] body{font-family:'Cairo', sans-serif;}
+  html[dir="rtl"] body{font-family:var(--font-body);}
 
   h1,h2,h3, .display{
-    font-family:'Anton', 'Cairo', sans-serif;
+    font-family:var(--font-display);
+    font-weight:900;
     text-transform:uppercase;
     letter-spacing:0.5px;
     margin:0;
     line-height:1.02;
   }
   html[dir="rtl"] h1, html[dir="rtl"] h2, html[dir="rtl"] h3, html[dir="rtl"] .display{
-    font-family:'Cairo', sans-serif;
+    font-family:var(--font-body);
     font-weight:900;
     text-transform:none;
   }
   html[dir="rtl"] .hero h1{
-    font-family:'Anton', sans-serif;
-    font-weight:400;
+    font-family:var(--font-display);
+    font-weight:900;
     text-transform:uppercase;
     letter-spacing:0.5px;
   }
@@ -123,10 +120,7 @@
     background-position:center 90%;
     background-repeat:no-repeat;
 
-    /* drop-shadow traces the exact painted shape incl. the logo bump cutout */
-    filter:
-      drop-shadow(0 6px 4px rgba(0,0,0,0.35))
-      drop-shadow(0 12px 18px rgba(0,0,0,0.28));
+    box-shadow:0 10px 18px rgba(0,0,0,0.28);
 
     /* overflow visible so the logo bump is included in the shadow shape */
     overflow:visible;
@@ -422,7 +416,7 @@
 
   .hero h1{
     font-size:clamp(54px, 11vw, 118px);
-    font-weight:400;
+    font-weight:900;
     background:linear-gradient(to bottom, #ff5468 0%, #ff9233 50%, #ffdc4d 100%);
     -webkit-background-clip:text;
     background-clip:text;
@@ -471,16 +465,20 @@
   /* ── Prevent invisible animations wasting GPU on weak phones ── */
   @media (max-width:640px){
     .grain{display:none;}  /* saves a repaint layer on low-end phones */
+    header{background-color:#c8915a; background-image:none;}
+    .hero h1{animation:none; filter:none;}
+    .hero h1 .flicker-slow, .hero h1 .flicker-fast{animation:none;}
   }
 
   .hero-tagline{
-    font-family:'Anton', sans-serif;
+    font-family:var(--font-display);
+    font-weight:900;
     font-size:clamp(14px, 2.2vw, 18px);
     letter-spacing:6px;
     color:var(--amber);
     margin-top:10px;
   }
-  html[dir="rtl"] .hero-tagline{font-family:'Cairo'; font-weight:800; letter-spacing:0;}
+  html[dir="rtl"] .hero-tagline{font-family:var(--font-body); font-weight:800; letter-spacing:0;}
 
   .hero-sub{
     max-width:560px; margin:26px auto 0;
@@ -495,7 +493,8 @@
     display:flex; gap:34px; justify-content:center; margin-top:54px; flex-wrap:wrap;
   }
   .stat{text-align:center;}
-  .stat b{display:block; font-family:'Anton', sans-serif; font-size:30px; color:var(--orange);}
+  .stat b{display:block; font-family:var(--font-display);
+    font-weight:900; font-size:30px; color:var(--orange);}
   .stat span{font-size:12.5px; color:var(--muted); font-weight:600;}
 
   /* ---------- section heading ---------- */
@@ -614,8 +613,9 @@
   html[dir="rtl"] .menu-grid.no-circle-images[data-panel="pizzas"] .menu-badge{right:auto; left:8%;}
   .menu-name{font-size:16.5px; font-weight:800; color:var(--cream);}
   .menu-desc{font-size:13px; color:var(--muted); margin-top:7px; line-height:1.6; min-height:36px; max-width:200px; flex:1;} /* flex:1 pushes price to bottom */
-  .menu-price{font-family:'Anton', sans-serif; font-size:19px; color:var(--amber); margin-top:14px; align-self:center;}
-  html[dir="rtl"] .menu-price{font-family:'Cairo'; font-weight:900;}
+  .menu-price{font-family:var(--font-display);
+    font-weight:900; font-size:19px; color:var(--amber); margin-top:14px; align-self:center;}
+  html[dir="rtl"] .menu-price{font-family:var(--font-body); font-weight:900;}
 
   /* ---------- info banner ---------- */
   .info-banner{
@@ -825,7 +825,7 @@
 <header>
   <div class="wrap nav">
     <a class="logo-mini" href="#" aria-label="BSS FOOD - accueil">
-      <img src="images/logo.webp" alt="BSS FOOD - Pizza Houssam logo" loading="lazy" decoding="async" width="600" height="600">
+      <img src="images/logo.webp" alt="BSS FOOD - Pizza Houssam logo" loading="eager" fetchpriority="high" decoding="async" srcset="images/logo-sm.webp 320w, images/logo.webp 600w" sizes="46px" width="600" height="600">
     </a>
     <div class="nav-actions">
       <div class="lang-toggle">
@@ -900,7 +900,7 @@
 <!-- Pizza Medium -->
       <div class="menu-item">
 <div class="menu-photo">
-<img alt="Mixte" onerror="handleImgErr(this)" src="images/mixte-medium.webp" loading="lazy" decoding="async" width="500" height="500">
+<img alt="Mixte" onerror="handleImgErr(this)" src="images/mixte-medium.webp" srcset="images/mixte-medium-sm.webp 320w, images/mixte-medium.webp 500w" sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
 <span class="menu-badge menu-badge-size menu-badge-medium" data-ar="وسط" data-fr="Moyenne">Moyenne</span>
 </div>
 <div class="menu-name" data-ar="ميكست" data-fr="Mixte">Mixte</div>
@@ -909,7 +909,7 @@
 </div>
       <div class="menu-item">
 <div class="menu-photo">
-<img alt="3 Saison" onerror="handleImgErr(this)" src="images/3-saison-medium.webp" loading="lazy" decoding="async" width="500" height="500">
+<img alt="3 Saison" onerror="handleImgErr(this)" src="images/3-saison-medium.webp" srcset="images/3-saison-medium-sm.webp 320w, images/3-saison-medium.webp 500w" sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
 <span class="menu-badge menu-badge-size menu-badge-medium" data-ar="وسط" data-fr="Moyenne">Moyenne</span>
 </div>
 <div class="menu-name" data-ar="3 سيزون" data-fr="3 Saison">3 Saison</div>
@@ -918,7 +918,7 @@
 </div>
       <div class="menu-item">
 <div class="menu-photo">
-<img alt="4 Saison" onerror="handleImgErr(this)" src="images/4-saison-medium.webp" loading="lazy" decoding="async" width="500" height="500">
+<img alt="4 Saison" onerror="handleImgErr(this)" src="images/4-saison-medium.webp" srcset="images/4-saison-medium-sm.webp 320w, images/4-saison-medium.webp 500w" sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
 <span class="menu-badge menu-badge-size menu-badge-medium" data-ar="وسط" data-fr="Moyenne">Moyenne</span>
 </div>
 <div class="menu-name" data-ar="4 سيزون" data-fr="4 Saison">4 Saison</div>
@@ -927,7 +927,7 @@
 </div>
       <div class="menu-item">
 <div class="menu-photo">
-<img alt="Special" onerror="handleImgErr(this)" src="images/special-medium.webp" loading="lazy" decoding="async" width="500" height="500">
+<img alt="Special" onerror="handleImgErr(this)" src="images/special-medium.webp" srcset="images/special-medium-sm.webp 320w, images/special-medium.webp 500w" sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
 <span class="menu-badge menu-badge-size menu-badge-medium" data-ar="وسط" data-fr="Moyenne">Moyenne</span>
 </div>
 <div class="menu-name" data-ar="سبيسيال" data-fr="Special">Special</div>
@@ -936,7 +936,7 @@
 </div>
       <div class="menu-item">
 <div class="menu-photo">
-<img alt="Bss" onerror="handleImgErr(this)" src="images/bss-medium.webp" loading="lazy" decoding="async" width="500" height="500">
+<img alt="Bss" onerror="handleImgErr(this)" src="images/bss-medium.webp" srcset="images/bss-medium-sm.webp 320w, images/bss-medium.webp 500w" sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
 <span class="menu-badge menu-badge-size menu-badge-medium" data-ar="وسط" data-fr="Moyenne">Moyenne</span>
 </div>
 <div class="menu-name" data-ar="بي إس إس" data-fr="Bss">Bss</div>
@@ -946,7 +946,7 @@
 <!-- Pizza Large -->
       <div class="menu-item">
 <div class="menu-photo">
-<img alt="Marguerite" onerror="handleImgErr(this)" src="images/marguerite.webp" loading="lazy" decoding="async" width="500" height="500"><span class="menu-badge menu-badge-size menu-badge-large" data-ar="كبير" data-fr="Grand">Grand</span>
+<img alt="Marguerite" onerror="handleImgErr(this)" src="images/marguerite.webp" srcset="images/marguerite-sm.webp 320w, images/marguerite.webp 500w" sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500"><span class="menu-badge menu-badge-size menu-badge-large" data-ar="كبير" data-fr="Grand">Grand</span>
 </div>
 <div class="menu-name" data-ar="مارغريت" data-fr="Marguerite">Marguerite</div>
 <div class="menu-desc" data-ar="صلصة طماطم، جبن" data-fr="Sauce tomate, fromage">Sauce tomate, fromage</div>
@@ -954,7 +954,7 @@
 </div>
       <div class="menu-item">
 <div class="menu-photo">
-<img alt="Marguerite Plus" onerror="handleImgErr(this)" src="images/marguerite-plus.webp" loading="lazy" decoding="async" width="500" height="500"><span class="menu-badge menu-badge-size menu-badge-large" data-ar="كبير" data-fr="Grand">Grand</span>
+<img alt="Marguerite Plus" onerror="handleImgErr(this)" src="images/marguerite-plus.webp" srcset="images/marguerite-plus-sm.webp 320w, images/marguerite-plus.webp 500w" sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500"><span class="menu-badge menu-badge-size menu-badge-large" data-ar="كبير" data-fr="Grand">Grand</span>
 </div>
 <div class="menu-name" data-ar="مارغريت بلاس" data-fr="Marguerite Plus">Marguerite Plus</div>
 <div class="menu-desc" data-ar="صلصة طماطم، جبن، شيدار" data-fr="Sauce tomate, fromage, cheddar">Sauce tomate, fromage, cheddar</div>
@@ -962,7 +962,7 @@
 </div>
       <div class="menu-item">
 <div class="menu-photo">
-<img alt="3 Fromage" onerror="handleImgErr(this)" src="images/3-fromage.webp" loading="lazy" decoding="async" width="500" height="500"><span class="menu-badge menu-badge-size menu-badge-large" data-ar="كبير" data-fr="Grand">Grand</span>
+<img alt="3 Fromage" onerror="handleImgErr(this)" src="images/3-fromage.webp" srcset="images/3-fromage-sm.webp 320w, images/3-fromage.webp 500w" sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500"><span class="menu-badge menu-badge-size menu-badge-large" data-ar="كبير" data-fr="Grand">Grand</span>
 </div>
 <div class="menu-name" data-ar="3 أجبان" data-fr="3 Fromage">3 Fromage</div>
 <div class="menu-desc" data-ar="صلصة طماطم، جبن، شيدار، موتزاريلا" data-fr="Sauce tomate, fromage, cheddar, mozzarella">Sauce tomate, fromage, cheddar, mozzarella</div>
@@ -970,7 +970,7 @@
 </div>
       <div class="menu-item">
 <div class="menu-photo">
-<img alt="4 Fromage" onerror="handleImgErr(this)" src="images/4-fromage.webp" loading="lazy" decoding="async" width="500" height="500"><span class="menu-badge menu-badge-size menu-badge-large" data-ar="كبير" data-fr="Grand">Grand</span>
+<img alt="4 Fromage" onerror="handleImgErr(this)" src="images/4-fromage.webp" srcset="images/4-fromage-sm.webp 320w, images/4-fromage.webp 500w" sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500"><span class="menu-badge menu-badge-size menu-badge-large" data-ar="كبير" data-fr="Grand">Grand</span>
 </div>
 <div class="menu-name" data-ar="4 أجبان" data-fr="4 Fromage">4 Fromage</div>
 <div class="menu-desc" data-ar="صلصة طماطم، جبن، شيدار، موتزاريلا، كامامبار" data-fr="Sauce tomate, fromage, cheddar, mozzarella, camembert">Sauce tomate, fromage, cheddar, mozzarella, camembert</div>
@@ -978,7 +978,7 @@
 </div>
       <div class="menu-item">
 <div class="menu-photo">
-<img alt="5 Fromage" onerror="handleImgErr(this)" src="images/5-fromage.webp" loading="lazy" decoding="async" width="500" height="500"><span class="menu-badge menu-badge-size menu-badge-large" data-ar="كبير" data-fr="Grand">Grand</span>
+<img alt="5 Fromage" onerror="handleImgErr(this)" src="images/5-fromage.webp" srcset="images/5-fromage-sm.webp 320w, images/5-fromage.webp 500w" sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500"><span class="menu-badge menu-badge-size menu-badge-large" data-ar="كبير" data-fr="Grand">Grand</span>
 </div>
 <div class="menu-name" data-ar="5 أجبان" data-fr="5 Fromage">5 Fromage</div>
 <div class="menu-desc" data-ar="صلصة بيضاء، جبن، شيدار، كامامبار، موتزاريلا، غريار" data-fr="Sauce blanche, fromage, cheddar, camembert, mozzarella, gruyère">Sauce blanche, fromage, cheddar, camembert, mozzarella, gruyère</div>
@@ -986,7 +986,7 @@
 </div>
       <div class="menu-item">
 <div class="menu-photo">
-<img alt="Poulet" onerror="handleImgErr(this)" src="images/poulet-l.webp" loading="lazy" decoding="async" width="500" height="500"><span class="menu-badge menu-badge-size menu-badge-large" data-ar="كبير" data-fr="Grand">Grand</span>
+<img alt="Poulet" onerror="handleImgErr(this)" src="images/poulet-l.webp" srcset="images/poulet-l-sm.webp 320w, images/poulet-l.webp 500w" sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500"><span class="menu-badge menu-badge-size menu-badge-large" data-ar="كبير" data-fr="Grand">Grand</span>
 </div>
 <div class="menu-name" data-ar="دجاج" data-fr="Poulet">Poulet</div>
 <div class="menu-desc" data-ar="صلصة طماطم، جبن، دجاج مثلي" data-fr="Sauce tomate, fromage, poulet grillé">Sauce tomate, fromage, poulet grillé</div>
@@ -994,7 +994,7 @@
 </div>
       <div class="menu-item">
 <div class="menu-photo">
-<img alt="Chawrma" onerror="handleImgErr(this)" src="images/chawrma-l.webp" loading="lazy" decoding="async" width="500" height="500"><span class="menu-badge menu-badge-size menu-badge-large" data-ar="كبير" data-fr="Grand">Grand</span>
+<img alt="Chawrma" onerror="handleImgErr(this)" src="images/chawrma-l.webp" srcset="images/chawrma-l-sm.webp 320w, images/chawrma-l.webp 500w" sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500"><span class="menu-badge menu-badge-size menu-badge-large" data-ar="كبير" data-fr="Grand">Grand</span>
 </div>
 <div class="menu-name" data-ar="شاورما" data-fr="Chawrma">Chawrma</div>
 <div class="menu-desc" data-ar="صلصة طماطم، جبن، شاورما، موتزاريلا" data-fr="Sauce tomate, fromage, chawarma, mozzarella">Sauce tomate, fromage, chawarma, mozzarella</div>
@@ -1002,7 +1002,7 @@
 </div>
       <div class="menu-item">
 <div class="menu-photo">
-<img alt="Champignons" onerror="handleImgErr(this)" src="images/champignons-l.webp" loading="lazy" decoding="async" width="500" height="500"><span class="menu-badge menu-badge-size menu-badge-large" data-ar="كبير" data-fr="Grand">Grand</span>
+<img alt="Champignons" onerror="handleImgErr(this)" src="images/champignons-l.webp" srcset="images/champignons-l-sm.webp 320w, images/champignons-l.webp 500w" sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500"><span class="menu-badge menu-badge-size menu-badge-large" data-ar="كبير" data-fr="Grand">Grand</span>
 </div>
 <div class="menu-name" data-ar="فطر" data-fr="Champignons">Champignons</div>
 <div class="menu-desc" data-ar="صلصة طماطم، جبن، فطر طبيعي، موتزاريلا" data-fr="Sauce tomate, fromage, champignons naturels, mozzarella">Sauce tomate, fromage, champignons naturels, mozzarella</div>
@@ -1010,7 +1010,7 @@
 </div>
       <div class="menu-item">
 <div class="menu-photo">
-<img alt="Poulet Fumé" onerror="handleImgErr(this)" src="images/poulet-fume-l.webp" loading="lazy" decoding="async" width="500" height="500"><span class="menu-badge menu-badge-size menu-badge-large" data-ar="كبير" data-fr="Grand">Grand</span>
+<img alt="Poulet Fumé" onerror="handleImgErr(this)" src="images/poulet-fume-l.webp" srcset="images/poulet-fume-l-sm.webp 320w, images/poulet-fume-l.webp 500w" sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500"><span class="menu-badge menu-badge-size menu-badge-large" data-ar="كبير" data-fr="Grand">Grand</span>
 </div>
 <div class="menu-name" data-ar="دجاج مدخن" data-fr="Poulet Fumé">Poulet Fumé</div>
 <div class="menu-desc" data-ar="صلصة طماطم، جبن، دجاج مدخن، موتزاريلا" data-fr="Sauce tomate, fromage, poulet fumé, mozzarella">Sauce tomate, fromage, poulet fumé, mozzarella</div>
@@ -1018,7 +1018,7 @@
 </div>
       <div class="menu-item">
 <div class="menu-photo">
-<img alt="Viande" onerror="handleImgErr(this)" src="images/viande-l.webp" loading="lazy" decoding="async" width="500" height="500"><span class="menu-badge menu-badge-size menu-badge-large" data-ar="كبير" data-fr="Grand">Grand</span>
+<img alt="Viande" onerror="handleImgErr(this)" src="images/viande-l.webp" srcset="images/viande-l-sm.webp 320w, images/viande-l.webp 500w" sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500"><span class="menu-badge menu-badge-size menu-badge-large" data-ar="كبير" data-fr="Grand">Grand</span>
 </div>
 <div class="menu-name" data-ar="لحم" data-fr="Viande">Viande</div>
 <div class="menu-desc" data-ar="صلصة طماطم، جبن، لحم مفروم، موتزاريلا" data-fr="Sauce tomate, fromage, viande hachée, mozzarella">Sauce tomate, fromage, viande hachée, mozzarella</div>
@@ -1026,7 +1026,7 @@
 </div>
       <div class="menu-item">
 <div class="menu-photo">
-<img alt="Thon" onerror="handleImgErr(this)" src="images/thon-l.webp" loading="lazy" decoding="async" width="500" height="500"><span class="menu-badge menu-badge-size menu-badge-large" data-ar="كبير" data-fr="Grand">Grand</span>
+<img alt="Thon" onerror="handleImgErr(this)" src="images/thon-l.webp" srcset="images/thon-l-sm.webp 320w, images/thon-l.webp 500w" sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500"><span class="menu-badge menu-badge-size menu-badge-large" data-ar="كبير" data-fr="Grand">Grand</span>
 </div>
 <div class="menu-name" data-ar="تونة" data-fr="Thon">Thon</div>
 <div class="menu-desc" data-ar="صلصة طماطم، جبن، تونة، شيدار" data-fr="Sauce tomate, fromage, thon, cheddar">Sauce tomate, fromage, thon, cheddar</div>
@@ -1034,7 +1034,7 @@
 </div>
       <div class="menu-item">
 <div class="menu-photo">
-<img alt="Boisée" onerror="handleImgErr(this)" src="images/boisee-l.webp" loading="lazy" decoding="async" width="500" height="500"><span class="menu-badge menu-badge-size menu-badge-large" data-ar="كبير" data-fr="Grand">Grand</span>
+<img alt="Boisée" onerror="handleImgErr(this)" src="images/boisee-l.webp" srcset="images/boisee-l-sm.webp 320w, images/boisee-l.webp 500w" sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500"><span class="menu-badge menu-badge-size menu-badge-large" data-ar="كبير" data-fr="Grand">Grand</span>
 </div>
 <div class="menu-name" data-ar="بوازي" data-fr="Boisée">Boisée</div>
 <div class="menu-desc" data-ar="صلصة طماطم، شيدار، موتزاريلا، فطر، خلطة لحم" data-fr="Sauce tomate, cheddar, mozzarella, champignons, mélange viande">Sauce tomate, cheddar, mozzarella, champignons, mélange viande</div>
@@ -1042,7 +1042,7 @@
 </div>
       <div class="menu-item">
 <div class="menu-photo">
-<img alt="Mixte" onerror="handleImgErr(this)" src="images/mixte-l.webp" loading="lazy" decoding="async" width="500" height="500"><span class="menu-badge menu-badge-size menu-badge-large" data-ar="كبير" data-fr="Grand">Grand</span>
+<img alt="Mixte" onerror="handleImgErr(this)" src="images/mixte-l.webp" srcset="images/mixte-l-sm.webp 320w, images/mixte-l.webp 500w" sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500"><span class="menu-badge menu-badge-size menu-badge-large" data-ar="كبير" data-fr="Grand">Grand</span>
 </div>
 <div class="menu-name" data-ar="ميكست" data-fr="Mixte">Mixte</div>
 <div class="menu-desc" data-ar="صلصة طماطم، جبن، لحم مفروم، دجاج مفروم، موتزاريلا" data-fr="Sauce tomate, fromage, viande hachée, poulet haché, mozzarella">Sauce tomate, fromage, viande hachée, poulet haché, mozzarella</div>
@@ -1050,7 +1050,7 @@
 </div>
       <div class="menu-item">
 <div class="menu-photo">
-<img alt="Royal" onerror="handleImgErr(this)" src="images/royal-l.webp" loading="lazy" decoding="async" width="500" height="500"><span class="menu-badge menu-badge-size menu-badge-large" data-ar="كبير" data-fr="Grand">Grand</span>
+<img alt="Royal" onerror="handleImgErr(this)" src="images/royal-l.webp" srcset="images/royal-l-sm.webp 320w, images/royal-l.webp 500w" sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500"><span class="menu-badge menu-badge-size menu-badge-large" data-ar="كبير" data-fr="Grand">Grand</span>
 </div>
 <div class="menu-name" data-ar="رويال" data-fr="Royal">Royal</div>
 <div class="menu-desc" data-ar="صلصة طماطم، جبن، موتزاريلا، شيدار" data-fr="Sauce tomate, fromage, mozzarella, cheddar">Sauce tomate, fromage, mozzarella, cheddar</div>
@@ -1058,7 +1058,7 @@
 </div>
       <div class="menu-item">
 <div class="menu-photo">
-<img alt="4 Saisons" onerror="handleImgErr(this)" src="images/4-saisons-l.webp" loading="lazy" decoding="async" width="500" height="500"><span class="menu-badge menu-badge-size menu-badge-large" data-ar="كبير" data-fr="Grand">Grand</span>
+<img alt="4 Saisons" onerror="handleImgErr(this)" src="images/4-saisons-l.webp" srcset="images/4-saisons-l-sm.webp 320w, images/4-saisons-l.webp 500w" sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500"><span class="menu-badge menu-badge-size menu-badge-large" data-ar="كبير" data-fr="Grand">Grand</span>
 </div>
 <div class="menu-name" data-ar="4 سيزون" data-fr="4 Saisons">4 Saisons</div>
 <div class="menu-desc" data-ar="صلصة طماطم، جبن، لحم مفروم، دجاج مفروم، شيدار، موتزاريلا" data-fr="Sauce tomate, fromage, viande hachée, poulet haché, cheddar, mozzarella">Sauce tomate, fromage, viande hachée, poulet haché, cheddar, mozzarella</div>
@@ -1066,7 +1066,7 @@
 </div>
       <div class="menu-item">
 <div class="menu-photo">
-<img alt="Crevette" onerror="handleImgErr(this)" src="images/crevette-l.webp" loading="lazy" decoding="async" width="500" height="500"><span class="menu-badge menu-badge-size menu-badge-large" data-ar="كبير" data-fr="Grand">Grand</span>
+<img alt="Crevette" onerror="handleImgErr(this)" src="images/crevette-l.webp" srcset="images/crevette-l-sm.webp 320w, images/crevette-l.webp 500w" sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500"><span class="menu-badge menu-badge-size menu-badge-large" data-ar="كبير" data-fr="Grand">Grand</span>
 </div>
 <div class="menu-name" data-ar="كريفيت" data-fr="Crevette">Crevette</div>
 <div class="menu-desc" data-ar="صلصة طماطم، جبن، موتزاريلا، شيدار" data-fr="Sauce tomate, fromage, mozzarella, cheddar">Sauce tomate, fromage, mozzarella, cheddar</div>
@@ -1074,7 +1074,7 @@
 </div>
       <div class="menu-item">
 <div class="menu-photo">
-<img alt="Special" onerror="handleImgErr(this)" src="images/special-l.webp" loading="lazy" decoding="async" width="500" height="500"><span class="menu-badge menu-badge-size menu-badge-large" data-ar="كبير" data-fr="Grand">Grand</span>
+<img alt="Special" onerror="handleImgErr(this)" src="images/special-l.webp" srcset="images/special-l-sm.webp 320w, images/special-l.webp 500w" sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500"><span class="menu-badge menu-badge-size menu-badge-large" data-ar="كبير" data-fr="Grand">Grand</span>
 </div>
 <div class="menu-name" data-ar="سبيسيال" data-fr="Special">Special</div>
 <div class="menu-desc" data-ar="صلصة طماطم، جبن، دجاج مدخن، شاورما، كامامبار، تونة، موتزاريلا" data-fr="Sauce tomate, fromage, poulet fumé, chawarma, camembert, thon, mozzarella">Sauce tomate, fromage, poulet fumé, chawarma, camembert, thon, mozzarella</div>
@@ -1083,7 +1083,7 @@
 <!-- Pizza Mega -->
       <div class="menu-item">
 <div class="menu-photo">
-<img alt="Miga Mixte" onerror="handleImgErr(this)" src="images/miga-mixte.webp" loading="lazy" decoding="async" width="500" height="500">
+<img alt="Miga Mixte" onerror="handleImgErr(this)" src="images/miga-mixte.webp" srcset="images/miga-mixte-sm.webp 320w, images/miga-mixte.webp 500w" sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
 <span class="menu-badge menu-badge-size menu-badge-mega" data-ar="ميغا" data-fr="Mega">Mega</span>
 </div>
 <div class="menu-name" data-ar="ميكست" data-fr="Mixte">Mixte</div>
@@ -1092,7 +1092,7 @@
 </div>
       <div class="menu-item">
 <div class="menu-photo">
-<img alt="Miga 3 Saison" onerror="handleImgErr(this)" src="images/miga-3saison.webp" loading="lazy" decoding="async" width="500" height="500">
+<img alt="Miga 3 Saison" onerror="handleImgErr(this)" src="images/miga-3saison.webp" srcset="images/miga-3saison-sm.webp 320w, images/miga-3saison.webp 500w" sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
 <span class="menu-badge menu-badge-size menu-badge-mega" data-ar="ميغا" data-fr="Mega">Mega</span>
 </div>
 <div class="menu-name" data-ar="3 سيزون" data-fr="3 Saison">3 Saison</div>
@@ -1101,7 +1101,7 @@
 </div>
       <div class="menu-item">
 <div class="menu-photo">
-<img alt="Miga 4 Saison" onerror="handleImgErr(this)" src="images/miga-4saison.webp" loading="lazy" decoding="async" width="500" height="500">
+<img alt="Miga 4 Saison" onerror="handleImgErr(this)" src="images/miga-4saison.webp" srcset="images/miga-4saison-sm.webp 320w, images/miga-4saison.webp 500w" sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
 <span class="menu-badge menu-badge-size menu-badge-mega" data-ar="ميغا" data-fr="Mega">Mega</span>
 </div>
 <div class="menu-name" data-ar="4 سيزون" data-fr="4 Saison">4 Saison</div>
@@ -1110,7 +1110,7 @@
 </div>
       <div class="menu-item">
 <div class="menu-photo">
-<img alt="Miga Jardiné" onerror="handleImgErr(this)" src="images/miga-jardine.webp" loading="lazy" decoding="async" width="500" height="500">
+<img alt="Miga Jardiné" onerror="handleImgErr(this)" src="images/miga-jardine.webp" srcset="images/miga-jardine-sm.webp 320w, images/miga-jardine.webp 500w" sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
 <span class="menu-badge menu-badge-size menu-badge-mega" data-ar="ميغا" data-fr="Mega">Mega</span>
 </div>
 <div class="menu-name" data-ar="جارديني" data-fr="Jardiné">Jardiné</div>
@@ -1119,7 +1119,7 @@
 </div>
       <div class="menu-item">
 <div class="menu-photo">
-<img alt="Miga Special 8 Saison" onerror="handleImgErr(this)" src="images/miga-special8.webp" loading="lazy" decoding="async" width="500" height="500">
+<img alt="Miga Special 8 Saison" onerror="handleImgErr(this)" src="images/miga-special8.webp" srcset="images/miga-special8-sm.webp 320w, images/miga-special8.webp 500w" sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
 <span class="menu-badge menu-badge-size menu-badge-mega" data-ar="ميغا" data-fr="Mega">Mega</span>
 </div>
 <div class="menu-name" data-ar="سبيسيال 8 سيزون" data-fr="Special 8 Saison">Special 8 Saison</div>
@@ -1128,7 +1128,7 @@
 </div>
       <div class="menu-item">
 <div class="menu-photo">
-<img alt="Bss" onerror="handleImgErr(this)" src="images/miga-bss.webp" loading="lazy" decoding="async" width="500" height="500">
+<img alt="Bss" onerror="handleImgErr(this)" src="images/miga-bss.webp" srcset="images/miga-bss-sm.webp 320w, images/miga-bss.webp 500w" sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
 <span class="menu-badge menu-badge-size menu-badge-mega" data-ar="ميغا" data-fr="Mega">Mega</span>
 </div>
 <div class="menu-name" data-ar="بي إس إس" data-fr="Bss">Bss</div>
@@ -1143,7 +1143,7 @@
       <!-- Tacos -->
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/tacos-poulet.webp" alt="Tacos Poulet" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/tacos-poulet.webp" alt="Tacos Poulet" onerror="handleImgErr(this)" data-srcset="images/tacos-poulet-sm.webp 320w, images/tacos-poulet.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Tacos Poulet" data-ar="تاكوس دجاج">Tacos Poulet</div>
         <div class="menu-desc" data-fr="M: 400 DA · L: 600 DA · XXL: 1100 DA" data-ar="M: 400 DA · L: 600 DA · XXL: 1100 DA">M: 400 DA · L: 600 DA · XXL: 1100 DA</div>
@@ -1152,7 +1152,7 @@
 
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/tacos-viande.webp" alt="Tacos Viande" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/tacos-viande.webp" alt="Tacos Viande" onerror="handleImgErr(this)" data-srcset="images/tacos-viande-sm.webp 320w, images/tacos-viande.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Tacos Viande" data-ar="تاكوس لحم">Tacos Viande</div>
         <div class="menu-desc" data-fr="M: 500 DA · L: 700 DA · XL: 900 DA · XXL: 1300 DA" data-ar="M: 500 DA · L: 700 DA · XL: 900 DA · XXL: 1300 DA">M: 500 DA · L: 700 DA · XL: 900 DA · XXL: 1300 DA</div>
@@ -1161,7 +1161,7 @@
 
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/tacos-poulet-marine.webp" alt="Tacos Poulet Mariné" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/tacos-poulet-marine.webp" alt="Tacos Poulet Mariné" onerror="handleImgErr(this)" data-srcset="images/tacos-poulet-marine-sm.webp 320w, images/tacos-poulet-marine.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Tacos Poulet Mariné" data-ar="تاكوس دجاج مارين">Tacos Poulet Mariné</div>
         <div class="menu-desc" data-fr="M: 500 DA · L: 700 DA" data-ar="M: 500 DA · L: 700 DA">M: 500 DA · L: 700 DA</div>
@@ -1170,7 +1170,7 @@
 
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/tacos-mixte.webp" alt="Tacos Mixte" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/tacos-mixte.webp" alt="Tacos Mixte" onerror="handleImgErr(this)" data-srcset="images/tacos-mixte-sm.webp 320w, images/tacos-mixte.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Tacos Mixte" data-ar="تاكوس ميكست">Tacos Mixte</div>
         <div class="menu-desc" data-fr="M: 500 DA · L: 700 DA · XL: 1000 DA · XXL: 1200 DA" data-ar="M: 500 DA · L: 700 DA · XL: 1000 DA · XXL: 1200 DA">M: 500 DA · L: 700 DA · XL: 1000 DA · XXL: 1200 DA</div>
@@ -1179,7 +1179,7 @@
 
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/tacos-gratine.webp" alt="Tacos Gratiné" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/tacos-gratine.webp" alt="Tacos Gratiné" onerror="handleImgErr(this)" data-srcset="images/tacos-gratine-sm.webp 320w, images/tacos-gratine.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Tacos Gratiné" data-ar="تاكوس غراتيني">Tacos Gratiné</div>
         <div class="menu-desc" data-fr="M: 600 DA · L: 800 DA · XL: 1000 DA · XXL: 1200 DA" data-ar="M: 600 DA · L: 800 DA · XL: 1000 DA · XXL: 1200 DA">M: 600 DA · L: 800 DA · XL: 1000 DA · XXL: 1200 DA</div>
@@ -1189,7 +1189,7 @@
       <!-- Soufflé -->
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/souffle-viande.webp" alt="Soufflé Viande" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/souffle-viande.webp" alt="Soufflé Viande" onerror="handleImgErr(this)" data-srcset="images/souffle-viande-sm.webp 320w, images/souffle-viande.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Soufflé Viande" data-ar="سوفلي لحم">Soufflé Viande</div>
         <div class="menu-desc" data-fr="Pâte soufflée garnie de viande hachée, fromage, sauce tomate" data-ar="عجينة سوفلي محشوة بلحم مفروم، جبن، صلصة طماطم">Pâte soufflée garnie de viande hachée, fromage, sauce tomate</div>
@@ -1198,7 +1198,7 @@
 
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/souffle-poulet.webp" alt="Soufflé Poulet Giant" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/souffle-poulet.webp" alt="Soufflé Poulet Giant" onerror="handleImgErr(this)" data-srcset="images/souffle-poulet-sm.webp 320w, images/souffle-poulet.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Soufflé Poulet Giant" data-ar="سوفلي دجاج جاينت">Soufflé Poulet Giant</div>
         <div class="menu-desc" data-fr="Pâte soufflée garnie de poulet, fromage, sauce tomate, format généreux" data-ar="عجينة سوفلي محشوة بالدجاج، جبن، صلصة طماطم، حجم كبير">Pâte soufflée garnie de poulet, fromage, sauce tomate, format généreux</div>
@@ -1208,7 +1208,7 @@
       <!-- Panini -->
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/panini-3fromage.webp" alt="Panini 3 Fromage" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/panini-3fromage.webp" alt="Panini 3 Fromage" onerror="handleImgErr(this)" data-srcset="images/panini-3fromage-sm.webp 320w, images/panini-3fromage.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Panini 3 Fromage" data-ar="بانيني 3 جبن">Panini 3 Fromage</div>
         <div class="menu-desc" data-fr="Pain panini grillé, cheddar, mozzarella, camembert" data-ar="خبز بانيني مشوي، شيدار، موتزاريلا، كامامبير">Pain panini grillé, cheddar, mozzarella, camembert</div>
@@ -1217,7 +1217,7 @@
 
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/panini-poulet.webp" alt="Panini Poulet" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/panini-poulet.webp" alt="Panini Poulet" onerror="handleImgErr(this)" data-srcset="images/panini-poulet-sm.webp 320w, images/panini-poulet.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Panini Poulet" data-ar="بانيني دجاج">Panini Poulet</div>
         <div class="menu-desc" data-fr="Pain panini grillé, poulet grillé, fromage, sauce" data-ar="خبز بانيني مشوي، دجاج مشوي، جبن، صلصة">Pain panini grillé, poulet grillé, fromage, sauce</div>
@@ -1226,7 +1226,7 @@
 
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/panini-viande.webp" alt="Panini Viande" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/panini-viande.webp" alt="Panini Viande" onerror="handleImgErr(this)" data-srcset="images/panini-viande-sm.webp 320w, images/panini-viande.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Panini Viande" data-ar="بانيني لحم">Panini Viande</div>
         <div class="menu-desc" data-fr="Pain panini grillé, viande hachée, fromage, sauce" data-ar="خبز بانيني مشوي، لحم مفروم، جبن، صلصة">Pain panini grillé, viande hachée, fromage, sauce</div>
@@ -1236,7 +1236,7 @@
       <!-- Sandwiches -->
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/sandwich-chawarma.webp" alt="Sandwich Chawarma" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/sandwich-chawarma.webp" alt="Sandwich Chawarma" onerror="handleImgErr(this)" data-srcset="images/sandwich-chawarma-sm.webp 320w, images/sandwich-chawarma.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Sandwich Chawarma" data-ar="ساندويتش شاورما">Sandwich Chawarma</div>
         <div class="menu-desc" data-fr="Pain garni, viande chawarma, salade, tomate, sauce blanche" data-ar="خبز محشو، لحم شاورما، سلطة، طماطم، صلصة بيضاء">Pain garni, viande chawarma, salade, tomate, sauce blanche</div>
@@ -1245,7 +1245,7 @@
 
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/sandwich-poulet-marine.webp" alt="Sandwich Poulet Marine" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/sandwich-poulet-marine.webp" alt="Sandwich Poulet Marine" onerror="handleImgErr(this)" data-srcset="images/sandwich-poulet-marine-sm.webp 320w, images/sandwich-poulet-marine.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Sandwich Poulet Marine" data-ar="ساندويتش دجاج مارين">Sandwich Poulet Marine</div>
         <div class="menu-desc" data-fr="Pain garni, poulet mariné grillé, salade, tomate, sauce" data-ar="خبز محشو، دجاج مارين مشوي، سلطة، طماطم، صلصة">Pain garni, poulet mariné grillé, salade, tomate, sauce</div>
@@ -1254,7 +1254,7 @@
 
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/sandwich-viande.webp" alt="Sandwich Viande Haché" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/sandwich-viande.webp" alt="Sandwich Viande Haché" onerror="handleImgErr(this)" data-srcset="images/sandwich-viande-sm.webp 320w, images/sandwich-viande.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Sandwich Viande Haché" data-ar="ساندويتش لحم مفروم">Sandwich Viande Haché</div>
         <div class="menu-desc" data-fr="Pain garni, viande hachée, salade, tomate, sauce" data-ar="خبز محشو، لحم مفروم، سلطة، طماطم، صلصة">Pain garni, viande hachée, salade, tomate, sauce</div>
@@ -1263,7 +1263,7 @@
 
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/sandwich-poulet-hache.webp" alt="Sandwich Poulet Haché" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/sandwich-poulet-hache.webp" alt="Sandwich Poulet Haché" onerror="handleImgErr(this)" data-srcset="images/sandwich-poulet-hache-sm.webp 320w, images/sandwich-poulet-hache.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Sandwich Poulet Haché" data-ar="ساندويتش دجاج مفروم">Sandwich Poulet Haché</div>
         <div class="menu-desc" data-fr="Pain garni, poulet haché, salade, tomate, sauce" data-ar="خبز محشو، دجاج مفروم، سلطة، طماطم، صلصة">Pain garni, poulet haché, salade, tomate, sauce</div>
@@ -1272,7 +1272,7 @@
 
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/sandwich-escalope.webp" alt="Sandwich Escalope" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/sandwich-escalope.webp" alt="Sandwich Escalope" onerror="handleImgErr(this)" data-srcset="images/sandwich-escalope-sm.webp 320w, images/sandwich-escalope.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Sandwich Escalope" data-ar="ساندويتش إسكالوب">Sandwich Escalope</div>
         <div class="menu-desc" data-fr="Pain garni, escalope de poulet panée, salade, tomate, sauce" data-ar="خبز محشو، إسكالوب دجاج مقرمش، سلطة، طماطم، صلصة">Pain garni, escalope de poulet panée, salade, tomate, sauce</div>
@@ -1281,7 +1281,7 @@
 
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/raghif.webp" alt="Raghif" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/raghif.webp" alt="Raghif" onerror="handleImgErr(this)" data-srcset="images/raghif-sm.webp 320w, images/raghif.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Raghif" data-ar="رغيف">Raghif</div>
         <div class="menu-desc" data-fr="Pain plat garni au fromage fondant et à la garniture au choix" data-ar="رغيف محشو بالجبن الذائب والحشوة حسب الاختيار">Pain plat garni au fromage fondant et à la garniture au choix</div>
@@ -1290,7 +1290,7 @@
 
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/fajitas.webp" alt="Fajitas" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/fajitas.webp" alt="Fajitas" onerror="handleImgErr(this)" data-srcset="images/fajitas-sm.webp 320w, images/fajitas.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Fajitas" data-ar="فاهيتاس">Fajitas</div>
         <div class="menu-desc" data-fr="Poulet grillé épicé, poivrons, oignons, sauce, pain tortilla" data-ar="دجاج مشوي متبل، فليفلة، بصل، صلصة، خبز تورتيا">Poulet grillé épicé, poivrons, oignons, sauce, pain tortilla</div>
@@ -1299,7 +1299,7 @@
 
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/arabi-chawarma.webp" alt="Arabi Chawarma" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/arabi-chawarma.webp" alt="Arabi Chawarma" onerror="handleImgErr(this)" data-srcset="images/arabi-chawarma-sm.webp 320w, images/arabi-chawarma.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Arabi Chawarma" data-ar="عربي شاورما">Arabi Chawarma</div>
         <div class="menu-desc" data-fr="Pain arabe garni, viande chawarma, salade, sauce, frites" data-ar="خبز عربي محشو، لحم شاورما، سلطة، صلصة، فريت">Pain arabe garni, viande chawarma, salade, sauce, frites</div>
@@ -1308,7 +1308,7 @@
 
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/panozo-poulet.webp" alt="Panozo Poulet" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/panozo-poulet.webp" alt="Panozo Poulet" onerror="handleImgErr(this)" data-srcset="images/panozo-poulet-sm.webp 320w, images/panozo-poulet.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Panozo Poulet" data-ar="بانوزو دجاج">Panozo Poulet</div>
         <div class="menu-desc" data-fr="Pain panuozzo croustillant, poulet, fromage fondant, sauce spéciale" data-ar="خبز بانوزو مقرمش، دجاج، جبن ذائب، صلصة خاصة">Pain panuozzo croustillant, poulet, fromage fondant, sauce spéciale</div>
@@ -1317,7 +1317,7 @@
 
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/panozo-viande.webp" alt="Panozo Viande" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/panozo-viande.webp" alt="Panozo Viande" onerror="handleImgErr(this)" data-srcset="images/panozo-viande-sm.webp 320w, images/panozo-viande.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Panozo Viande" data-ar="بانوزو لحم">Panozo Viande</div>
         <div class="menu-desc" data-fr="Pain panuozzo croustillant, viande hachée, fromage fondant, sauce spéciale" data-ar="خبز بانوزو مقرمش، لحم مفروم، جبن ذائب، صلصة خاصة">Pain panuozzo croustillant, viande hachée, fromage fondant, sauce spéciale</div>
@@ -1327,7 +1327,7 @@
       <!-- Burgers -->
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/chicken-burger.webp" alt="Chicken Burger" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/chicken-burger.webp" alt="Chicken Burger" onerror="handleImgErr(this)" data-srcset="images/chicken-burger-sm.webp 320w, images/chicken-burger.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Chicken Burger" data-ar="تشيكن برغر">Chicken Burger</div>
         <div class="menu-desc" data-fr="Poulet haché, salade, tomate, sauce burger" data-ar="دجاج مفروم، سلطة، طماطم، صلصة برغر">Poulet haché, salade, tomate, sauce burger</div>
@@ -1336,7 +1336,7 @@
 
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/cheese-burger.webp" alt="Cheese Burger" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/cheese-burger.webp" alt="Cheese Burger" onerror="handleImgErr(this)" data-srcset="images/cheese-burger-sm.webp 320w, images/cheese-burger.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Cheese Burger" data-ar="تشيز برغر">Cheese Burger</div>
         <div class="menu-desc" data-fr="Steak haché, salade, tomate, sauce burger, oignon" data-ar="ستيك مفروم، سلطة، طماطم، صلصة برغر، بصل">Steak haché, salade, tomate, sauce burger, oignon</div>
@@ -1345,7 +1345,7 @@
 
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/crispy-burger.webp" alt="Crispy Burger" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/crispy-burger.webp" alt="Crispy Burger" onerror="handleImgErr(this)" data-srcset="images/crispy-burger-sm.webp 320w, images/crispy-burger.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Crispy Burger" data-ar="كريسبي برغر">Crispy Burger</div>
         <div class="menu-desc" data-fr="Poulet tender, salade, tomate, sauce fromage" data-ar="دجاج تندر، سلطة، طماطم، صلصة جبن">Poulet tender, salade, tomate, sauce fromage</div>
@@ -1354,7 +1354,7 @@
 
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/double-cheese-burger.webp" alt="Double Cheese Burger" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/double-cheese-burger.webp" alt="Double Cheese Burger" onerror="handleImgErr(this)" data-srcset="images/double-cheese-burger-sm.webp 320w, images/double-cheese-burger.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Double Cheese Burger" data-ar="دابل تشيز برغر">Double Cheese Burger</div>
         <div class="menu-desc" data-fr="100g steak haché, salade, tomate, sauce fromage, oignon" data-ar="100 غ ستيك مفروم، سلطة، طماطم، صلصة جبن، بصل">100g steak haché, salade, tomate, sauce fromage, oignon</div>
@@ -1364,7 +1364,7 @@
       <!-- Plats -->
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/chawrma-plat.webp" alt="Chawrma Plat" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/chawrma-plat.webp" alt="Chawrma Plat" onerror="handleImgErr(this)" data-srcset="images/chawrma-plat-sm.webp 320w, images/chawrma-plat.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Plat Chawrma" data-ar="طبق شاورما">Plat Chawrma</div>
         <div class="menu-desc" data-fr="Viande chawarma, frites, salade, sauce, pain" data-ar="لحم شاورما، فريت، سلطة، صلصة، خبز">Viande chawarma, frites, salade, sauce, pain</div>
@@ -1373,7 +1373,7 @@
 
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/viande-hachee-plat.webp" alt="Viande Hachée Plat" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/viande-hachee-plat.webp" alt="Viande Hachée Plat" onerror="handleImgErr(this)" data-srcset="images/viande-hachee-plat-sm.webp 320w, images/viande-hachee-plat.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Plat Viande Hachée" data-ar="طبق لحم مفروم">Plat Viande Hachée</div>
         <div class="menu-desc" data-fr="Viande hachée grillée, frites, salade, sauce" data-ar="لحم مفروم مشوي، فريت، سلطة، صلصة">Viande hachée grillée, frites, salade, sauce</div>
@@ -1382,7 +1382,7 @@
 
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/poulet-marine-plat.webp" alt="Poulet Marine Plat" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/poulet-marine-plat.webp" alt="Poulet Marine Plat" onerror="handleImgErr(this)" data-srcset="images/poulet-marine-plat-sm.webp 320w, images/poulet-marine-plat.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Plat Poulet Marine" data-ar="طبق دجاج مارين">Plat Poulet Marine</div>
         <div class="menu-desc" data-fr="Poulet mariné grillé, frites, salade, sauce" data-ar="دجاج مارين مشوي، فريت، سلطة، صلصة">Poulet mariné grillé, frites, salade, sauce</div>
@@ -1391,7 +1391,7 @@
 
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/escalope-plat.webp" alt="Escalope Plat" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/escalope-plat.webp" alt="Escalope Plat" onerror="handleImgErr(this)" data-srcset="images/escalope-plat-sm.webp 320w, images/escalope-plat.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Plat Escalope" data-ar="طبق إسكالوب">Plat Escalope</div>
         <div class="menu-desc" data-fr="Escalope de poulet panée, frites, salade, sauce" data-ar="إسكالوب دجاج مقرمش، فريت، سلطة، صلصة">Escalope de poulet panée, frites, salade, sauce</div>
@@ -1400,7 +1400,7 @@
 
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/poulet-hache-plat.webp" alt="Poulet Haché Plat" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/poulet-hache-plat.webp" alt="Poulet Haché Plat" onerror="handleImgErr(this)" data-srcset="images/poulet-hache-plat-sm.webp 320w, images/poulet-hache-plat.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Plat Poulet Haché" data-ar="طبق دجاج مفروم">Plat Poulet Haché</div>
         <div class="menu-desc" data-fr="Poulet haché grillé, frites, salade, sauce" data-ar="دجاج مفروم مشوي، فريت، سلطة، صلصة">Poulet haché grillé, frites, salade, sauce</div>
@@ -1409,7 +1409,7 @@
 
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/kabda-poulet.webp" alt="Kabda Poulet" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/kabda-poulet.webp" alt="Kabda Poulet" onerror="handleImgErr(this)" data-srcset="images/kabda-poulet-sm.webp 320w, images/kabda-poulet.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Plat Kabda Poulet" data-ar="طبق كبدة دجاج">Plat Kabda Poulet</div>
         <div class="menu-desc" data-fr="Foie de poulet sauté, frites, salade, sauce" data-ar="كبدة دجاج مقلية، فريت، سلطة، صلصة">Foie de poulet sauté, frites, salade, sauce</div>
@@ -1418,7 +1418,7 @@
 
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/mixte-plat.webp" alt="Mixte Plat" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/mixte-plat.webp" alt="Mixte Plat" onerror="handleImgErr(this)" data-srcset="images/mixte-plat-sm.webp 320w, images/mixte-plat.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Plat Mixte" data-ar="طبق ميكست">Plat Mixte</div>
         <div class="menu-desc" data-fr="Viande et poulet grillés, frites, salade, sauce" data-ar="لحم ودجاج مشويين، فريت، سلطة، صلصة">Viande et poulet grillés, frites, salade, sauce</div>
@@ -1427,7 +1427,7 @@
 
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/viande-plat.webp" alt="Viande Plat" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/viande-plat.webp" alt="Viande Plat" onerror="handleImgErr(this)" data-srcset="images/viande-plat-sm.webp 320w, images/viande-plat.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Plat Viande" data-ar="طبق لحم">Plat Viande</div>
         <div class="menu-desc" data-fr="Viande grillée, frites, salade, sauce" data-ar="لحم مشوي، فريت، سلطة، صلصة">Viande grillée, frites, salade, sauce</div>
@@ -1436,7 +1436,7 @@
 
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/steak-viande.webp" alt="Steak Viande" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/steak-viande.webp" alt="Steak Viande" onerror="handleImgErr(this)" data-srcset="images/steak-viande-sm.webp 320w, images/steak-viande.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Plat Steak Viande" data-ar="طبق ستيك لحم">Plat Steak Viande</div>
         <div class="menu-desc" data-fr="Steak de viande grillé, frites, salade, sauce" data-ar="ستيك لحم مشوي، فريت، سلطة، صلصة">Steak de viande grillé, frites, salade, sauce</div>
@@ -1446,7 +1446,7 @@
       <!-- Plate Familly -->
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/plate-familly-5.webp" alt="Plate Familly 5 Personnes" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/plate-familly-5.webp" alt="Plate Familly 5 Personnes" onerror="handleImgErr(this)" data-srcset="images/plate-familly-5-sm.webp 320w, images/plate-familly-5.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Plate Familly 5 Personnes" data-ar="طبق عائلي 5 أشخاص">Plate Familly 5 Personnes</div>
         <div class="menu-desc" data-fr="Assortiment de viandes grillées et accompagnements pour 5 personnes" data-ar="تشكيلة لحوم مشوية ومرافقات لـ 5 أشخاص">Assortiment de viandes grillées et accompagnements pour 5 personnes</div>
@@ -1455,7 +1455,7 @@
 
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/plate-familly-2.webp" alt="Plate Familly 2 Personnes" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/plate-familly-2.webp" alt="Plate Familly 2 Personnes" onerror="handleImgErr(this)" data-srcset="images/plate-familly-2-sm.webp 320w, images/plate-familly-2.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Plate Familly 2 Personnes" data-ar="طبق عائلي 2 أشخاص">Plate Familly 2 Personnes</div>
         <div class="menu-desc" data-fr="Assortiment de viandes grillées et accompagnements pour 2 personnes" data-ar="تشكيلة لحوم مشوية ومرافقات لشخصين">Assortiment de viandes grillées et accompagnements pour 2 personnes</div>
@@ -1465,7 +1465,7 @@
       <!-- Boxes Crispy Chicken -->
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/crispy-4pcs.webp" alt="Crispy 4 pièces" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/crispy-4pcs.webp" alt="Crispy 4 pièces" onerror="handleImgErr(this)" data-srcset="images/crispy-4pcs-sm.webp 320w, images/crispy-4pcs.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Crispy Chicken 4 pièces" data-ar="كريسبي تشيكن 4 قطع">Crispy Chicken 4 pièces</div>
         <div class="menu-desc" data-fr="4 filets de poulet croustillants" data-ar="4 قطع فيليه دجاج مقرمش">4 filets de poulet croustillants</div>
@@ -1474,7 +1474,7 @@
 
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/crispy-8pcs.webp" alt="Crispy 8 pièces" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/crispy-8pcs.webp" alt="Crispy 8 pièces" onerror="handleImgErr(this)" data-srcset="images/crispy-8pcs-sm.webp 320w, images/crispy-8pcs.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Crispy Chicken 8 pièces" data-ar="كريسبي تشيكن 8 قطع">Crispy Chicken 8 pièces</div>
         <div class="menu-desc" data-fr="8 filets de poulet croustillants" data-ar="8 قطع فيليه دجاج مقرمش">8 filets de poulet croustillants</div>
@@ -1483,7 +1483,7 @@
 
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/crispy-family.webp" alt="Crispy Family" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/crispy-family.webp" alt="Crispy Family" onerror="handleImgErr(this)" data-srcset="images/crispy-family-sm.webp 320w, images/crispy-family.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Family Crispy Chicken" data-ar="فاميلي كريسبي تشيكن">Family Crispy Chicken</div>
         <div class="menu-desc" data-fr="Box familiale de filets croustillants" data-ar="صندوق عائلي من قطع الدجاج المقرمش">Box familiale de filets croustillants</div>
@@ -1497,7 +1497,7 @@
 
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/tiramisu-fraise.webp" alt="Tiramisu Fraise" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/tiramisu-fraise.webp" alt="Tiramisu Fraise" onerror="handleImgErr(this)" data-srcset="images/tiramisu-fraise-sm.webp 320w, images/tiramisu-fraise.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Tiramisu Fraise" data-ar="تيراميسو فراولة">Tiramisu Fraise</div>
         <div class="menu-desc" data-fr="Tiramisu maison à la fraise fraîche" data-ar="تيراميسو منزلي بالفراولة الطازجة">Tiramisu maison à la fraise fraîche</div>
@@ -1506,7 +1506,7 @@
 
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/tiramisu-pistachio.webp" alt="Tiramisu Pistachio" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/tiramisu-pistachio.webp" alt="Tiramisu Pistachio" onerror="handleImgErr(this)" data-srcset="images/tiramisu-pistachio-sm.webp 320w, images/tiramisu-pistachio.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Tiramisu Pistachio" data-ar="تيراميسو فستق">Tiramisu Pistachio</div>
         <div class="menu-desc" data-fr="Tiramisu maison à la pistache" data-ar="تيراميسو منزلي بالفستق">Tiramisu maison à la pistache</div>
@@ -1515,7 +1515,7 @@
 
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/tiramisu-chocolate.webp" alt="Tiramisu Chocolate" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/tiramisu-chocolate.webp" alt="Tiramisu Chocolate" onerror="handleImgErr(this)" data-srcset="images/tiramisu-chocolate-sm.webp 320w, images/tiramisu-chocolate.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Tiramisu Chocolate" data-ar="تيراميسو شوكولاتة">Tiramisu Chocolate</div>
         <div class="menu-desc" data-fr="Tiramisu maison au chocolat" data-ar="تيراميسو منزلي بالشوكولاتة">Tiramisu maison au chocolat</div>
@@ -1524,7 +1524,7 @@
 
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/pasta-chocolat.webp" alt="Pasta Chocolat" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/pasta-chocolat.webp" alt="Pasta Chocolat" onerror="handleImgErr(this)" data-srcset="images/pasta-chocolat-sm.webp 320w, images/pasta-chocolat.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Box Crêpes Pasta Chocolat" data-ar="باكس كريب باستا شوكولاتة">Box Crêpes Pasta Chocolat</div>
         <div class="menu-desc" data-fr="Crêpes moelleuses garnies de pâte à tartiner chocolat" data-ar="كريب طري محشو بمعجون الشوكولاتة">Crêpes moelleuses garnies de pâte à tartiner chocolat</div>
@@ -1533,7 +1533,7 @@
 
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/pasta-fraise.webp" alt="Pasta Fraise" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/pasta-fraise.webp" alt="Pasta Fraise" onerror="handleImgErr(this)" data-srcset="images/pasta-fraise-sm.webp 320w, images/pasta-fraise.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Box Crêpes Pasta Fraise" data-ar="باكس كريب باستا فراولة">Box Crêpes Pasta Fraise</div>
         <div class="menu-desc" data-fr="Crêpes moelleuses garnies de pâte à tartiner fraise" data-ar="كريب طري محشو بمعجون الفراولة">Crêpes moelleuses garnies de pâte à tartiner fraise</div>
@@ -1542,7 +1542,7 @@
 
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/pasta-banane.webp" alt="Pasta Banane" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/pasta-banane.webp" alt="Pasta Banane" onerror="handleImgErr(this)" data-srcset="images/pasta-banane-sm.webp 320w, images/pasta-banane.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Box Crêpes Pasta Banane" data-ar="باكس كريب باستا موز">Box Crêpes Pasta Banane</div>
         <div class="menu-desc" data-fr="Crêpes moelleuses garnies de pâte à tartiner banane" data-ar="كريب طري محشو بمعجون الموز">Crêpes moelleuses garnies de pâte à tartiner banane</div>
@@ -1551,7 +1551,7 @@
 
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/pasta-bss.webp" alt="Pasta Bss" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/pasta-bss.webp" alt="Pasta Bss" onerror="handleImgErr(this)" data-srcset="images/pasta-bss-sm.webp 320w, images/pasta-bss.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Box Crêpes Pasta Bss" data-ar="باكس كريب باستا بي إس إس">Box Crêpes Pasta Bss</div>
         <div class="menu-desc" data-fr="Crêpes moelleuses garnies de notre pâte à tartiner signature Bss" data-ar="كريب طري محشو بمعجون بي إس إس المميز">Crêpes moelleuses garnies de notre pâte à tartiner signature Bss</div>
@@ -1560,7 +1560,7 @@
 
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/creme-brulee.webp" alt="Crème brûlée" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/creme-brulee.webp" alt="Crème brûlée" onerror="handleImgErr(this)" data-srcset="images/creme-brulee-sm.webp 320w, images/creme-brulee.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Crème brûlée" data-ar="كريم بروليه">Crème brûlée</div>
         <div class="menu-desc" data-fr="Crème brûlée classique à la vanille, croûte caramélisée craquante" data-ar="كريم بروليه كلاسيكي بالفانيليا، بقشرة كراميل مقرمشة">Crème brûlée classique à la vanille, croûte caramélisée craquante</div>
@@ -1569,7 +1569,7 @@
 
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/san-sebastian.webp" alt="San Sebastian" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/san-sebastian.webp" alt="San Sebastian" onerror="handleImgErr(this)" data-srcset="images/san-sebastian-sm.webp 320w, images/san-sebastian.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="San Sebastian" data-ar="سان سيباستيان">San Sebastian</div>
         <div class="menu-desc" data-fr="Cheesecake basque au cœur fondant, caramélisé au four" data-ar="تشيزكيك باسكي بقلب طري، مكرمل في الفرن">Cheesecake basque au cœur fondant, caramélisé au four</div>
@@ -1578,7 +1578,7 @@
 
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/matilda-cake.webp" alt="Matilda cake" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/matilda-cake.webp" alt="Matilda cake" onerror="handleImgErr(this)" data-srcset="images/matilda-cake-sm.webp 320w, images/matilda-cake.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Matilda cake" data-ar="ماتيلدا كيك">Matilda cake</div>
         <div class="menu-desc" data-fr="Gâteau au chocolat fondant, généreuse portion gourmande" data-ar="كعكة شوكولاتة طرية، حصة سخية ولذيذة">Gâteau au chocolat fondant, généreuse portion gourmande</div>
@@ -1587,7 +1587,7 @@
 
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/cheesecake.webp" alt="Cheesecake" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/cheesecake.webp" alt="Cheesecake" onerror="handleImgErr(this)" data-srcset="images/cheesecake-sm.webp 320w, images/cheesecake.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Cheesecake" data-ar="تشيزكيك">Cheesecake</div>
         <div class="menu-desc" data-fr="Cheesecake crémeux, base biscuitée, coulis au choix" data-ar="تشيزكيك كريمي، قاعدة بسكويت، صوص حسب الاختيار">Cheesecake crémeux, base biscuitée, coulis au choix</div>
@@ -1596,7 +1596,7 @@
 
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/can-cake.webp" alt="Can cake" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/can-cake.webp" alt="Can cake" onerror="handleImgErr(this)" data-srcset="images/can-cake-sm.webp 320w, images/can-cake.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Can cake" data-ar="كان كيك">Can cake</div>
         <div class="menu-desc" data-fr="Gâteau moelleux servi dans une canette, glaçage gourmand" data-ar="كعكة طرية تقدَّم داخل علبة، بتغطية لذيذة">Gâteau moelleux servi dans une canette, glaçage gourmand</div>
@@ -1610,7 +1610,7 @@
 
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/canette-33cl.webp" alt="Canette gazeuse 33cl" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/canette-33cl.webp" alt="Canette gazeuse 33cl" onerror="handleImgErr(this)" data-srcset="images/canette-33cl-sm.webp 320w, images/canette-33cl.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Canette gazeuse 33cl" data-ar="علبة غازية 33 سل">Canette gazeuse 33cl</div>
         <div class="menu-desc" data-fr="Boisson gazeuse fraîche, 33 cl" data-ar="مشروب غازي منعش، 33 سل">Boisson gazeuse fraîche, 33 cl</div>
@@ -1619,7 +1619,7 @@
 
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/jus-33cl.webp" alt="Jus 33cl gazeuse" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/jus-33cl.webp" alt="Jus 33cl gazeuse" onerror="handleImgErr(this)" data-srcset="images/jus-33cl-sm.webp 320w, images/jus-33cl.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Jus 33cl gazeuse" data-ar="عصير 33 سل غازي">Jus 33cl gazeuse</div>
         <div class="menu-desc" data-fr="Jus pétillant aux fruits, 33 cl" data-ar="عصير فواكه غازي، 33 سل">Jus pétillant aux fruits, 33 cl</div>
@@ -1628,7 +1628,7 @@
 
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/jus-1l.webp" alt="Jus 1L" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/jus-1l.webp" alt="Jus 1L" onerror="handleImgErr(this)" data-srcset="images/jus-1l-sm.webp 320w, images/jus-1l.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Jus 1L" data-ar="عصير 1 لتر">Jus 1L</div>
         <div class="menu-desc" data-fr="Jus de fruits format 1 litre" data-ar="عصير فواكه بحجم 1 لتر">Jus de fruits format 1 litre</div>
@@ -1637,7 +1637,7 @@
 
       <div class="menu-item">
         <div class="menu-photo">
-          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/jus-top.webp" alt="Jus Top" onerror="handleImgErr(this)" loading="lazy" decoding="async" width="500" height="500">
+          <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/jus-top.webp" alt="Jus Top" onerror="handleImgErr(this)" data-srcset="images/jus-top-sm.webp 320w, images/jus-top.webp 500w" data-sizes="(max-width:768px) 240px, 190px" loading="lazy" decoding="async" width="500" height="500">
         </div>
         <div class="menu-name" data-fr="Jus Top" data-ar="جوس توب">Jus Top</div>
         <div class="menu-desc" data-fr="Petit jus de fruits Top, format individuel" data-ar="عصير فواكه توب، حجم فردي">Petit jus de fruits Top, format individuel</div>

@@ -53,14 +53,21 @@ function setLang(lang){
 function loadPanelImages(panel){
   if(!panel) return;
   panel.querySelectorAll('img[data-src]').forEach(function(img){
+    if(img.hasAttribute('data-srcset')){
+      img.srcset = img.getAttribute('data-srcset');
+      img.removeAttribute('data-srcset');
+    }
+    if(img.hasAttribute('data-sizes')){
+      img.sizes = img.getAttribute('data-sizes');
+      img.removeAttribute('data-sizes');
+    }
     img.src = img.getAttribute('data-src');
     img.removeAttribute('data-src');
   });
 }
 
 function initTabs(){
-  // images for the panel that's active on page load
-  loadPanelImages(document.querySelector('.panel.active'));
+  // load images when the menu comes near the viewport
 
   document.querySelectorAll('.tab').forEach(function(tab){
     tab.addEventListener('click', function(){
@@ -77,9 +84,6 @@ function initTabs(){
 }
 
 // ---------- performance: passive listeners ----------
-document.addEventListener('touchstart', function(){}, {passive:true});
-document.addEventListener('touchmove',  function(){}, {passive:true});
-document.addEventListener('wheel',      function(){}, {passive:true});
 
 // ---------- performance: IntersectionObserver for section reveals ----------
 if('IntersectionObserver' in window){
@@ -105,13 +109,34 @@ if(langSingleBtn){
 }
 
 initTabs();
+
+var menuSection = document.getElementById('menu');
+if(menuSection && 'IntersectionObserver' in window){
+  var menuObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        loadPanelImages(document.querySelector('.panel.active'));
+        menuObs.disconnect();
+      }
+    });
+  }, {rootMargin:'200px 0px'});
+  menuObs.observe(menuSection);
+} else {
+  loadPanelImages(document.querySelector('.panel.active'));
+}
+
 setLang('ar');
 
 /* ── MOBILE SLIDER ≤768px ── */
 (function(){
   var BP = 768, DELAY = 3500;
 
-  function isMobile(){ return window.innerWidth <= BP; }
+  /* cache viewport width; touchmove/go fire a lot during a drag, so we
+     avoid re-querying window.innerWidth (a layout-forcing read) on every
+     single event and only refresh it on init/resize instead. */
+  var vw = window.innerWidth;
+
+  function isMobile(){ return vw <= BP; }
 
   function build(panel){
     if(panel._sb) return;
@@ -162,7 +187,7 @@ setLang('ar');
       if(idx<0) idx=items.length-1;
       if(idx>=items.length) idx=0;
       cur=idx;
-      track.style.transform='translateX(-'+(cur*window.innerWidth)+'px)';
+      track.style.transform='translateX(-'+(cur*vw)+'px)';
       dots.forEach(function(d,i){ d.classList.toggle('active',i===cur); });
       counter.textContent=(cur+1)+' / '+items.length;
       if(user) pauseResume();
@@ -187,7 +212,7 @@ setLang('ar');
       tx0 = e.touches[0].clientX;
       dx = 0;
       dragging = true;
-      baseX = -(cur * window.innerWidth);
+      baseX = -(cur * vw);
       stopAuto();
       setTrackX(baseX, false); /* kill transition so drag tracks 1:1 */
     },{passive:true});
@@ -207,7 +232,7 @@ setLang('ar');
     track.addEventListener('touchend',function(){
       if(!dragging) return;
       dragging = false;
-      var threshold = window.innerWidth * 0.18; /* 18% of screen width to trigger a slide change */
+      var threshold = vw * 0.18; /* 18% of screen width to trigger a slide change */
 
       track.style.transition = ''; /* re-enable the CSS transition (was 'none' during drag) */
 
@@ -230,7 +255,7 @@ setLang('ar');
     /* recalc on resize */
     window.addEventListener('resize',function(){
       track.style.transition='none';
-      track.style.transform='translateX(-'+(cur*window.innerWidth)+'px)';
+      track.style.transform='translateX(-'+(cur*vw)+'px)';
       setTimeout(function(){ track.style.transition=''; },50);
     });
 
@@ -250,6 +275,7 @@ setLang('ar');
   }
 
   function init(){
+    vw = window.innerWidth;
     var ps=Array.from(document.querySelectorAll('.panel'));
     if(isMobile()){ ps.forEach(build); }
     else { ps.forEach(destroy); }
@@ -273,10 +299,5 @@ setLang('ar');
   var rTimer;
   window.addEventListener('resize',function(){ clearTimeout(rTimer); rTimer=setTimeout(init,150); });
 
-  /* boot — after layout is complete */
-  if(document.readyState==='loading'){
-    document.addEventListener('DOMContentLoaded',function(){ setTimeout(init,0); });
-  } else {
-    setTimeout(init,0);
-  }
+  init();
 })();
