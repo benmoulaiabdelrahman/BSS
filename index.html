@@ -47,7 +47,19 @@
 <!-- Preload critical above-fold assets -->
 <link rel="preload" href="images/cardboard.webp" as="image" fetchpriority="high">
 <link rel="preload" href="images/logo.webp" as="image">
+<link rel="preload" href="fonts/pizza-display.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+  /* Self-hosted, subsetted (~5KB) display font — only the glyphs the site
+     actually uses (French text + digits), so it costs almost nothing.
+     font-display:swap means text never blocks on it: the system font shows
+     immediately and swaps in once this loads (near-instant at 5KB). */
+  @font-face{
+    font-family:'PizzaDisplay';
+    src:url('fonts/pizza-display.woff2') format('woff2');
+    font-weight:400;
+    font-style:normal;
+    font-display:swap;
+  }
   :root{
     --bg:#070707;
     --bg-soft:#0e0e0e;
@@ -62,7 +74,7 @@
     --green:#3ddc84;
     --max: 1180px;
     --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    --font-display: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --font-display: 'PizzaDisplay', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   }
 
   *{box-sizing:border-box;}
@@ -417,11 +429,14 @@
   .hero h1{
     font-size:clamp(54px, 11vw, 118px);
     font-weight:900;
+    line-height:1.25;
+    padding-top:0.12em;
     background:linear-gradient(to bottom, #ff5468 0%, #ff9233 50%, #ffdc4d 100%);
     -webkit-background-clip:text;
     background-clip:text;
     -webkit-text-fill-color:transparent;
     color:transparent;
+    -webkit-text-stroke:1.5px rgba(255,146,51,0.5);
     filter:
       drop-shadow(0 0 10px rgba(255,84,104,0.55))
       drop-shadow(0 0 26px rgba(255,146,51,0.4))
@@ -462,12 +477,15 @@
   .section{contain:layout style;}
   #menu{contain:layout style;}
 
-  /* ── Prevent invisible animations wasting GPU on weak phones ── */
+  /* ── Trim GPU cost on weak phones, keep the flicker/wink animation ── */
   @media (max-width:640px){
     .grain{display:none;}  /* saves a repaint layer on low-end phones */
     header{background-color:#c8915a; background-image:none;}
-    .hero h1{animation:none; filter:none;}
-    .hero h1 .flicker-slow, .hero h1 .flicker-fast{animation:none;}
+    /* the animation itself only ever touches opacity (cheap, compositor-only);
+       the real GPU cost on weak phones was recompositing a triple-layered
+       blurred drop-shadow every frame. Swap it for one lighter shadow so the
+       sign still flickers/winks on mobile without the heavy blur stack. */
+    .hero h1{filter:drop-shadow(0 0 14px rgba(255,146,51,0.45));}
   }
 
   .hero-tagline{
