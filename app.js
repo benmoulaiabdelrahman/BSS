@@ -307,5 +307,5 @@ setLang('ar');
   var rTimer;
   window.addEventListener('resize',function(){ clearTimeout(rTimer); rTimer=setTimeout(init,150); });
 
-  init();
+  requestAnimationFrame(init);
 })();
