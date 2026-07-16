@@ -277,7 +277,15 @@ setLang('ar');
   function init(){
     vw = window.innerWidth;
     var ps=Array.from(document.querySelectorAll('.panel'));
-    if(isMobile()){ ps.forEach(build); }
+    if(isMobile()){
+      ps.forEach(function(panel){
+        /* only the visible tab needs to exist before first paint to avoid
+           a layout shift; the other tabs are built lazily when clicked
+           (see the tab click handler below), so we don't pay the DOM cost
+           of building all of them up front. */
+        if(panel.classList.contains('active')) build(panel);
+      });
+    }
     else { ps.forEach(destroy); }
   }
 
