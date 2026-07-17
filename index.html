@@ -126,6 +126,13 @@
   /* ---------- header – cardboard pizza-box ---------- */
   header{
     position:sticky; top:0; z-index:40;
+    /* NOTE: no filter here — filter + position:sticky on the same element
+       triggers a black-blob repaint glitch on mobile Chrome/WebView when
+       the sticky layer gets recomposited during scroll. The visual
+       (background + drop-shadow) now lives on .header-skin below instead. */
+  }
+  .header-skin{
+    display:block;
     /* cardboard texture: fills the panel, never distorts */
     background-color:transparent;
     background-image:url("images/cardboard.webp");
@@ -138,14 +145,13 @@
     filter:
       drop-shadow(0 6px 4px rgba(0,0,0,0.35))
       drop-shadow(0 12px 18px rgba(0,0,0,0.28));
-
     /* overflow visible so the logo bump is included in the shadow shape */
     overflow:visible;
   }
   @media (min-width:769px){
     /* crisper cardboard texture for larger viewports — the small webp was
        stretched past its native resolution on desktop and looked blurry */
-    header{background-image:url("images/cardboard-hd.webp");}
+    .header-skin{background-image:url("images/cardboard-hd.webp");}
   }
 
   .nav{
@@ -860,6 +866,7 @@
 
 <!-- header -->
 <header>
+ <div class="header-skin">
   <div class="wrap nav">
     <a class="logo-mini" href="#" aria-label="BSS FOOD - accueil">
       <img src="images/logo.webp" alt="BSS FOOD - Pizza Houssam logo" loading="eager" fetchpriority="high" decoding="async" srcset="images/logo-sm.webp 320w, images/logo.webp 600w" sizes="46px" width="600" height="600">
@@ -877,6 +884,7 @@
       </a>
     </div>
   </div>
+ </div>
 </header>
 
 <!-- hero -->
