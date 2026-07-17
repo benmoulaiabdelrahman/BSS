@@ -685,10 +685,10 @@
   .story-art img{width:62%; aspect-ratio:1/1; border-radius:50%; object-fit:cover; filter:drop-shadow(0 0 40px rgba(255,84,104,0.45));}
   .story h2{font-size:clamp(30px,4.4vw,42px); margin-bottom:18px;}
   .story p{color:var(--muted); font-size:15.5px; line-height:1.8; margin-bottom:16px;}
-  .story-text{position:relative; padding-bottom:260px;}
-  .story-signature{position:absolute; bottom:0; width:340px; height:auto; opacity:0.92; pointer-events:none; user-select:none;}
-  .story-signature-fr{right:0;}
-  .story-signature-ar{left:0;}
+  .story-text{position:relative;}
+  .story-signature{display:block; width:340px; height:auto; margin-top:24px; opacity:0.92; pointer-events:none; user-select:none;}
+  .story-signature-fr{margin-left:auto; margin-right:0;}
+  .story-signature-ar{margin-right:auto; margin-left:0;}
   html[lang="ar"] .story-signature-fr{display:none;}
   html[lang="fr"] .story-signature-ar{display:none;}
 
@@ -739,13 +739,8 @@
     position:relative;
     border-top:none;
     padding-block:40px;
-    background-image:url('images/footer.webp');
-    background-size:cover;
-    background-position:center 55%;
-    background-repeat:no-repeat;
-  }
-  @media (min-width:769px){
-    footer{background-image:url('images/footer-hd.webp');}
+    background-color:#f49404;
+    margin-top:-1px; /* avoid hairline gap under the image on some zoom levels */
   }
   footer .wrap{position:relative; z-index:1;}
   footer .logo-mini img{
@@ -759,7 +754,13 @@
     color:#3a2204;
     background:rgba(255,255,255,0.18);
   }
-  footer .foot-bottom{color:#5c3a0c;}
+  /* ---------- footer divider image (the wave/cheese art above <footer>) ---------- */
+  .footer-divider{
+    width:100%; line-height:0; margin:0; padding:0; display:block; font-size:0;
+  }
+  .footer-divider img{
+    display:block; width:100%; height:auto; margin:0; padding:0; vertical-align:bottom;
+  }
   
   .foot-grid{
     display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;
@@ -770,14 +771,13 @@
     display:flex; align-items:center; justify-content:center;
   }
   .foot-socials a svg{width:17px; height:17px;}
-  .foot-bottom{color:var(--muted); font-size:12.5px; margin-top:20px; text-align:center;}
+  .foot-bottom-sticker{display:block; margin:20px auto 0; height:44px; width:auto;}
 
   /* ---------- responsive ---------- */
   @media (max-width: 880px){
     .story-grid{grid-template-columns:1fr;}
     .story-art{max-width:320px; margin:0 auto;}
-    .story-signature{width:180px;}
-    .story-text{padding-bottom:150px;}
+    .story-signature{width:180px; margin-top:16px;}
     .menu-grid{grid-template-columns:repeat(3,1fr); row-gap:36px;}
     .insta-grid{grid-template-columns:repeat(2,1fr);}
     .location-grid{grid-template-columns:1fr;}
@@ -1714,11 +1714,8 @@
   </div>
 </section>
 
-<div style="width:100%;line-height:0;margin:0;padding:0;display:block;font-size:0;" aria-hidden="true">
-  <picture>
-    <source srcset="images/crunch-hd.webp" media="(min-width:769px)">
-    <img src="images/crunch.webp" alt="" width="1600" height="195" style="display:block;width:100%;height:auto;margin:0;padding:0;vertical-align:bottom;" loading="lazy" decoding="async">
-  </picture>
+<div class="footer-divider" aria-hidden="true">
+  <img src="images/footer.webp" alt="" width="2172" height="724" loading="lazy" decoding="async">
 </div>
 
 <!-- footer -->
@@ -1740,7 +1737,7 @@
         </a>
       </div>
     </div>
-    <p class="foot-bottom" data-fr="© 2026 BSS FOOD, Pizza Houssam · Laghouat, Algérie" data-ar="© 2026 BSS FOOD، بيتزا حسام · الأغواط، الجزائر">© 2026 BSS FOOD, Pizza Houssam · Laghouat, Algérie</p>
+    <img class="foot-bottom-sticker" src="images/foot-copyright.webp" alt="© 2026 BSS FOOD, Pizza Houssam" width="749" height="267" loading="lazy" decoding="async">
   </div>
 </footer>
 
