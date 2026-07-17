@@ -461,6 +461,14 @@
       drop-shadow(0 0 26px rgba(255,146,51,0.4))
       drop-shadow(0 0 50px rgba(255,220,77,0.3));
     animation:sign-flicker 4.5s linear infinite;
+    /* Forces its own GPU compositing layer. Without this, some Chromium/
+       Android WebViews (Samsung Internet, Chrome mobile) mis-clip the
+       stacked drop-shadow glow against the background-clip:text mask,
+       leaving a stray blob of shadow color floating near the first
+       glyph. Promoting the layer fixes the mis-clip. */
+    transform:translateZ(0);
+    will-change:filter;
+    backface-visibility:hidden;
   }
   .hero h1 .flicker-slow,
   .hero h1 .flicker-fast{
