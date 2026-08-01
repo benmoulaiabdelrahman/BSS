@@ -23,8 +23,8 @@ It provides:
 
 ## Performance
 
-- Lighthouse score: 100/100 (Performance, Accessibility, Best Practices, SEO)
-- All menu images converted to WebP and lazy-loaded
+- Lighthouse score: 91 Performance / 100 Accessibility / 100 Best Practices / 100 SEO (tested live, mobile, slow 4G throttling)
+- All menu images converted to WebP, properly sized via srcset, and lazy-loaded
 - No external font/JS bloat — kept dependency-free for speed
 
 ## Screenshots
@@ -48,6 +48,10 @@ It provides:
 ### Category Filter in Action
 
 ![Category Filter](docs/screenshots/category-filter.png)
+
+### Lighthouse Audit
+
+![Lighthouse Score](docs/screenshots/lighthouse-score.png)
 
 ## Repository Structure
 
