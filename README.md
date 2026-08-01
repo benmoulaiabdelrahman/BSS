@@ -31,23 +31,23 @@ It provides:
 
 ### Hero Section
 
-*(screenshot placeholder — full-width hero with logo, tagline, and contact/social buttons)*
+![Hero Section](docs/screenshots/hero.png)
 
 ### Menu — Arabic (RTL)
 
-*(screenshot placeholder — pizza category grid, RTL layout, red/black theme)*
+![Menu Arabic](docs/screenshots/menu-ar.png)
 
 ### Menu — French
 
-*(screenshot placeholder — same grid with language toggled to French)*
+![Menu French](docs/screenshots/menu-fr.png)
 
 ### Mobile View
 
-*(screenshot placeholder — menu grid on a phone-width viewport, showing responsive stacking)*
+![Mobile View](docs/screenshots/mobile-menu.png)
 
 ### Category Filter in Action
 
-*(screenshot placeholder — tacos/sandwiches or drinks tab selected)*
+![Category Filter](docs/screenshots/category-filter.png)
 
 ## Repository Structure
 
